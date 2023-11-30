@@ -12,11 +12,16 @@ beforeEach(async () => {
 
 describe('getUser', () => {
   it('should return a user with the given auth0id', async () => {
-    const friends = await getUser('auth0|001')
-    expect(friends).toHaveLength(1)
-    expect(friends[0]).toHaveProperty('username')
-    expect(friends[0]).toHaveProperty('name')
-    expect(friends[0]).toHaveProperty('email')
-    expect(friends[0]).toHaveProperty('is_admin')
+    const user = await getUser('auth0|001')
+    expect(user).toHaveLength(1)
+    expect(user[0]).toHaveProperty('username')
+    expect(user[0]).toHaveProperty('name')
+    expect(user[0]).toHaveProperty('email')
+    expect(user[0]).toHaveProperty('is_admin')
+  })
+
+  it('should return an empty array when user not found', async () => {
+    const user = await getUser('userThatDoesntExist')
+    expect(user).toHaveLength(0)
   })
 })

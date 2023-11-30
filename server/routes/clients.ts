@@ -9,14 +9,13 @@ const router = express.Router()
 router.get('/:auth0id', async (req, res) => {
   const auth0id = req.params.auth0id
 
-  if (!auth0id) {
-    console.error('Bad Request - no id')
-    return res.status(400).send('Bad request')
-  }
-
   try {
-    const client = await db.getUser(auth0id)
-    return res.json({ client })
+    const result = await db.getUser(auth0id)
+    if (result.length === 0) {
+      return res.status(404).send('Not found')
+    } else {
+      return res.json(result)
+    }
   } catch (error) {
     console.error(error)
   }
