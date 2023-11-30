@@ -20,7 +20,7 @@ export async function up(knex) {
       .inTable('task_options')
       .notNullable()
     table.string('data')
-    table.boolean('is_complete')
+    table.boolean('is_complete').defaultTo(false)
     table.date('date')
   })
 }

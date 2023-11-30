@@ -4,7 +4,7 @@ export async function up(knex) {
     table.string('username').unique()
     table.string('name')
     table.string('email')
-    table.boolean('is_admin')
+    table.boolean('is_admin').defaultTo(false)
   })
 }
 
