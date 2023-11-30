@@ -3,10 +3,13 @@ import { Request } from 'express'
 import { ParamsDictionary } from 'express-serve-static-core'
 import { JwtPayload } from 'jsonwebtoken'
 import jwks from 'jwks-rsa'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 // TODO: set the domain and audience (API Identifier)
-const domain = 'https://'
-const audience = 'https://'
+const domain = `https://${process.env.VITE_AUTH0_DOMAIN}`
+const audience = process.env.VITE_AUTH0_AUDIENCE
 
 const checkJwt = jwt({
   secret: jwks.expressJwtSecret({

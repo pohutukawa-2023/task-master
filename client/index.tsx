@@ -9,6 +9,7 @@ const queryClient = new QueryClient()
 const router = createBrowserRouter(routes)
 
 const root = createRoot(document.getElementById('app') as HTMLElement)
+
 root.render(
   /**
    * Auth0Provider is a component that has a hook that provides
@@ -17,10 +18,19 @@ root.render(
    * TODO: replace the empty strings below with your own domain, clientId, and audience
    */
   <Auth0Provider
-    domain="task-master.au.auth0.com"
-    clientId="aVDAx5Aps8JFieDSLVKVilNssd09QIFu"
-    redirectUri={window.location.origin}
-    audience="https://tasks/api"
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    domain={import.meta.env.VITE_AUTH0_DOMAIN as string}
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    clientId={import.meta.env.VITE_AUTH0_CLIENT_ID as string}
+    cacheLocation="localstorage"
+    authorizationParams={{
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      audience: import.meta.env.VITE_AUTH0_AUDIENCE as string,
+      redirect_uri: window.location.origin,
+    }}
   >
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />

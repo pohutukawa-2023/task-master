@@ -26,14 +26,14 @@
   },
   "eslintConfig": {
     "extends": [
-      "@devacademy/eslint-config/react", "plugin:storybook/recommended"
+      "@devacademy/eslint-config/react",
+      "plugin:storybook/recommended"
     ],
     "ignorePatterns": [
       "bundle.js"
     ]
   },
   "dependencies": {
-    "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "express-jwt": "^7.7.5",
     "express-jwt-authz": "^2.4.1",
@@ -42,7 +42,7 @@
     "sqlite3": "^5.1.6"
   },
   "devDependencies": {
-    "@auth0/auth0-react": "^1.12.0",
+    "@auth0/auth0-react": "^2.2.3",
     "@devacademy/eslint-config": "^1.9.1",
     "@storybook/addon-essentials": "^7.6.1",
     "@storybook/addon-interactions": "^7.6.1",
@@ -66,6 +66,7 @@
     "@vitejs/plugin-react": "^4.0.4",
     "@vitest/coverage-c8": "^0.31.0",
     "babel-plugin-styled-components": "^1.12.0",
+    "dotenv": "^16.3.1",
     "esbuild": "^0.19.2",
     "eslint": "^8.10.0",
     "eslint-plugin-import": "^2.25.4",
