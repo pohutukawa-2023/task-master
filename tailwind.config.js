@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./*.html', './client/*'],
+  content: ['./*.html', './client/**/*.[tj]sx', './client/**/*.[tj]sx'],
   media: false,
   theme: {
     extend: {
@@ -13,8 +13,8 @@ export default {
         warning: '#F27C7C',
       },
       fontFamily: {
-        serif: ['"Roboto Slab"', 'serif'],
-        sans: ['Quicksand', 'sans-serif'],
+        serif: ['Bree Serif', 'serif'],
+        sans: ['Montserrat', 'sans-serif'],
       },
     },
   },
@@ -23,3 +23,6 @@ export default {
   },
   plugins: [],
 }
+
+// for the logo
+// font-family: 'Oswald', sans-serif;

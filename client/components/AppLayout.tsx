@@ -7,10 +7,9 @@ export default function AppLayout() {
   return (
     <>
       <Nav />
-      <main>
-        <Button>Save</Button>
+      <main className="font-sans">
         <Outlet />
-        <h1 className="bg-black">Hello World</h1>
+        <h1 className=" font-serif font-semibold text-lg">Hello World</h1>
       </main>
     </>
   )
