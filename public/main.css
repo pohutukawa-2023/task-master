@@ -525,6 +525,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
 }
@@ -533,21 +537,62 @@ video {
   display: grid;
 }
 
+.h-6 {
+  height: 1.5rem;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.justify-center {
+  justify-content: center;
 }
 
 .rounded-full {
   border-radius: 9999px;
 }
 
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+
 .border {
   border-width: 1px;
+}
+
+.border-transparent {
+  border-color: transparent;
 }
 
 .bg-lightPurple {
   --tw-bg-opacity: 1;
   background-color: rgb(195 172 208 / var(--tw-bg-opacity));
+}
+
+.bg-primaryBeige {
+  --tw-bg-opacity: 1;
+  background-color: rgb(247 239 229 / var(--tw-bg-opacity));
+}
+
+.p-2 {
+  padding: 0.5rem;
 }
 
 .px-8 {
@@ -564,26 +609,38 @@ video {
   font-family: Montserrat, sans-serif;
 }
 
-.font-serif {
-  font-family: Bree Serif, serif;
-}
-
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .font-bold {
   font-weight: 700;
 }
 
-.font-semibold {
-  font-weight: 600;
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .text-darkNavy {
   --tw-text-opacity: 1;
   color: rgb(10 0 71 / var(--tw-text-opacity));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.placeholder-\[\#B07CF2\]::placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(176 124 242 / var(--tw-placeholder-opacity));
 }
 
 .hover\:bg-darkPurple:hover {
@@ -594,4 +651,46 @@ video {
 .hover\:text-primary:hover {
   --tw-text-opacity: 1;
   color: rgb(255 251 245 / var(--tw-text-opacity));
+}
+
+.focus\:shadow-\[0px_0px_9px_2px_\#B07CF2\]:focus {
+  --tw-shadow: 0px 0px 9px 2px #B07CF2;
+  --tw-shadow-colored: 0px 0px 9px 2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.focus\:shadow-\[0px_0px_9px_2px_violet-400\]:focus {
+  --tw-shadow: 0px 0px 9px 2px violet-400;
+  --tw-shadow-colored: 0px 0px 9px 2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.focus\:shadow-\[0px_0px_9px_2px_\#BA55D3\]:focus {
+  --tw-shadow: 0px 0px 9px 2px #BA55D3;
+  --tw-shadow-colored: 0px 0px 9px 2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.focus\:shadow-\[0px_0px_9px_2px_\#C3ACD0\]:focus {
+  --tw-shadow: 0px 0px 9px 2px #C3ACD0;
+  --tw-shadow-colored: 0px 0px 9px 2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.focus\:shadow-\[0px_0px_5px_2px_\#C3ACD0\]:focus {
+  --tw-shadow: 0px 0px 5px 2px #C3ACD0;
+  --tw-shadow-colored: 0px 0px 5px 2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+@media (min-width: 640px) {
+  .sm\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
 }
