@@ -1,0 +1,6 @@
+### Get a clients details (200)
+GET http://localhost:3000/api/v1/client/auth0|001
+
+
+### Try to get a client that doesn't exist (404)
+GET http://localhost:3000/api/v1/client/fakeUser987
