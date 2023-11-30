@@ -20,11 +20,14 @@
     "build:server": "esbuild --packages=external --platform=node --format=esm --outfile=dist/server.js --bundle server/index.ts",
     "test": "vitest",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "format": "prettier -w '**/*.{js,jsx,ts,tsx}'"
-
+    "format": "prettier -w '**/*.{js,jsx,ts,tsx}'",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "eslintConfig": {
-    "extends": "@devacademy/eslint-config/react",
+    "extends": [
+      "@devacademy/eslint-config/react", "plugin:storybook/recommended"
+    ],
     "ignorePatterns": [
       "bundle.js"
     ]
@@ -41,6 +44,14 @@
   "devDependencies": {
     "@auth0/auth0-react": "^1.12.0",
     "@devacademy/eslint-config": "^1.9.1",
+    "@storybook/addon-essentials": "^7.6.1",
+    "@storybook/addon-interactions": "^7.6.1",
+    "@storybook/addon-links": "^7.6.1",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.6.1",
+    "@storybook/react": "^7.6.1",
+    "@storybook/react-vite": "^7.6.1",
+    "@storybook/test": "^7.6.1",
     "@tanstack/react-query": "^4.29.12",
     "@tanstack/react-query-devtools": "^4.29.12",
     "@testing-library/jest-dom": "^6.1.3",
@@ -64,6 +75,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-storybook": "^0.6.15",
     "jsdom": "^22.1.0",
     "npm-run-all": "^4.1.5",
     "prettier": "2.6.1",
@@ -71,6 +83,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.2",
     "regenerator-runtime": "^0.13.7",
+    "storybook": "^7.6.1",
     "styled-components": "^5.3.1",
     "superagent": "7.1.1",
     "supertest": "^6.2.2",
