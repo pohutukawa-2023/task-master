@@ -55,3 +55,7 @@ Fonts
 - Display dashboard down the bottom to link to other pages
 - Deploy our app
 - Do 20 tests
+
+## Canva
+
+https://www.canva.com/design/DAF1ghbFOtc/pi2yHcM0OICUMSrxah55Lw/edit?utm_content=DAF1ghbFOtc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
