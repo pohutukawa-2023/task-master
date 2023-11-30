@@ -31,4 +31,12 @@ describe('GET /api/v1/client/:auth0id', () => {
     expect(response.status).toBe(404)
     expect(response.text).toEqual('Not found')
   })
+
+  it('should return 500 if the promise is rejected', async () => {
+    vi.mocked(db.getUser).mockRejectedValue(new Error())
+    const response = await request(server).get('/api/v1/client/auth0|001')
+    // .set('authorization', `Bearer ${getMockToken()}`)
+    expect(response.status).toBe(500)
+    expect(response.text).toEqual('Something went wrong')
+  })
 })

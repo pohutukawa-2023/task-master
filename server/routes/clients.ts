@@ -18,6 +18,7 @@ router.get('/:auth0id', async (req, res) => {
     }
   } catch (error) {
     console.error(error)
+    return res.status(500).send('Something went wrong')
   }
 })
 
