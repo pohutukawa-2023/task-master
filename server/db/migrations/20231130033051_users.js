@@ -1,0 +1,13 @@
+export async function up(knex) {
+  await knex.schema.createTable('users', (table) => {
+    table.increments('id').primary()
+    table.string('username').unique()
+    table.string('name')
+    table.string('email')
+    table.boolean('is_admin')
+  })
+}
+
+export async function down(knex) {
+  await knex.schema.dropTable('users')
+}
