@@ -17,10 +17,10 @@ root.render(
    * TODO: replace the empty strings below with your own domain, clientId, and audience
    */
   <Auth0Provider
-    domain=""
-    clientId=""
+    domain="task-master.au.auth0.com"
+    clientId="aVDAx5Aps8JFieDSLVKVilNssd09QIFu"
     redirectUri={window.location.origin}
-    audience=""
+    audience="https://tasks/api"
   >
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
