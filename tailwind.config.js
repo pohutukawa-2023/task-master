@@ -1,13 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./*.html', './client/**/*.[tj]sx'],
+  content: ['./*.html', './client/*'],
   media: false,
   theme: {
     extend: {
       colors: {
         primary: '#FFFBF5',
         primaryBeige: '#F7EFE5',
-        lightPurple: '#C3ACDO',
+        lightPurple: '#C3ACD0',
         darkPurple: '#7743DB',
         darkNavy: '#0A0047',
         warning: '#F27C7C',
