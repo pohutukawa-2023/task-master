@@ -7,7 +7,7 @@ export interface UserSnakeCase {
 }
 
 export interface User {
-  id: number
+  id: string
   username: string
   name: string
   email: string

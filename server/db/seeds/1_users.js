@@ -1,24 +1,24 @@
 export async function seed(knex) {
   await knex('users').insert([
     {
-      id: 1,
+      id: 'auth0|001',
       username: 'banana',
       name: 'Banana Cabana',
-      email: 'auth0|123',
+      email: 'banana@example.org',
       is_admin: false,
     },
     {
-      id: 2,
+      id: 'auth0|002',
       username: 'apple',
       name: 'Apple Berapple',
-      email: 'auth0|456',
+      email: 'apple@example.org',
       is_admin: true,
     },
     {
-      id: 3,
+      id: 'auth0|999',
       username: 'physio',
       name: 'Physio Therapist',
-      email: 'auth0|012',
+      email: 'physio@example.org',
       is_admin: true,
     },
   ])
