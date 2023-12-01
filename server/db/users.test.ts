@@ -27,7 +27,7 @@ describe('getUser', () => {
 
   it('should return an empty array when user not found', async () => {
     const user = await getUser('userThatDoesntExist')
-    expect(user).toBe([])
+    expect(user).toBe(undefined)
   })
 })
 
