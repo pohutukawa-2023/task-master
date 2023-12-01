@@ -28,5 +28,12 @@ export async function seed(knex) {
       email: 'dave@example.org',
       is_admin: false,
     },
+    {
+      id: 'auth0|6567ec0f1531c5f8eeca7c39',
+      username: 'pathik@example.com',
+      name: 'Pathik Therapist',
+      email: 'pathik@example.com',
+      is_admin: true,
+    },
   ])
 }
