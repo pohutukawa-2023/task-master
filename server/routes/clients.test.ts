@@ -38,7 +38,7 @@ describe('GET /api/v1/client/:auth0id', () => {
   })
 
   it('should return 500 if the promise is rejected', async () => {
-    vi.mocked(getUser).mockRejectedValue(new Error())
+    vi.mocked(getUser).mockRejectedValue('')
     const response = await request(server)
       .get('/api/v1/client/')
       .set('authorization', `Bearer ${getMockToken()}`)
@@ -96,7 +96,7 @@ describe('POST /api/v1/client/add', () => {
       name: 'Harry Otter',
       email: 'harry@example.com',
     }
-    vi.mocked(addUser).mockRejectedValue(Error('db error'))
+    vi.mocked(addUser).mockRejectedValue('')
     const response = await request(server)
       .post('/api/v1/client/add')
       .send(newClient)

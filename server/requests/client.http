@@ -18,7 +18,7 @@ content-type: application/json
 }
 
 
-### Get an access token
+### Get an access token (Note: must add a .env in this folder)
 POST https://task-master.au.auth0.com/oauth/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
