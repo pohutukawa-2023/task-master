@@ -14,12 +14,16 @@ function Home() {
   }
 
   function handleSignIn() {
+    console.log(user)
     loginWithRedirect()
   }
 
   return (
     <>
       <div className="flex justify-end p-4 font-title text-lg">
+        <IfAuthenticated>
+          {user && <p>Welcome {user?.nickname}</p>}
+        </IfAuthenticated>
         <Logo>t</Logo>
       </div>
       <div className="pt-title px-4 h-full">
@@ -34,14 +38,12 @@ function Home() {
       </div>
 
       <div className="flex gap-4 justify-center pt-[55%]">
-        {/* <Button>Login</Button>
-        <Button>Register</Button> */}
         <IfNotAuthenticated>
           <Button onClick={handleSignIn}>Login</Button>
+          <Button>Register</Button>
         </IfNotAuthenticated>
         <IfAuthenticated>
           <Button onClick={handleSignOut}>Logout</Button>
-          {user && <p>Signed in as: {user?.nickname}</p>}
         </IfAuthenticated>
       </div>
     </>
