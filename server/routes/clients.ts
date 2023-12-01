@@ -19,7 +19,8 @@ router.get('/', validateAccessToken, async (req, res) => {
 
   try {
     const result = await getUser(auth0Id)
-    if (result.length === 0) {
+
+    if (!result) {
       return res.status(404).send('Not found')
     } else {
       return res.json(result)
