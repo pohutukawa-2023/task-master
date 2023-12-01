@@ -21,5 +21,19 @@ export async function seed(knex) {
       email: 'physio@example.org',
       is_admin: true,
     },
+    {
+      id: 'auth0|6568fbe776c1b421367adca1',
+      username: 'FakeDave',
+      name: 'Dave IsFake',
+      email: 'dave@example.org',
+      is_admin: false,
+    },
+    {
+      id: 'auth0|6567ec0f1531c5f8eeca7c39',
+      username: 'pathik@example.com',
+      name: 'Pathik Therapist',
+      email: 'pathik@example.com',
+      is_admin: true,
+    },
   ])
 }
