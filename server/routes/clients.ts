@@ -1,13 +1,14 @@
 import express from 'express'
-// import { JwtRequest } from '../auth0.ts'
 
 import { getUser } from '../db/users.ts'
 import { getTasks } from '../db/getTasks.ts'
+import * as db from '../db/users.ts'
+import { validateAccessToken } from '../auth0'
 
 const router = express.Router()
 
 // GET /api/v1/client
-router.get('/:auth0id', async (req, res) => {
+router.get('/:auth0id', validateAccessToken, async (req, res) => {
   const auth0id = req.params.auth0id
 
   try {
