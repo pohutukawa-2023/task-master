@@ -3,19 +3,18 @@ import { useQuery } from '@tanstack/react-query'
 import { getClient } from '../apis/client'
 
 function useProfile() {
-  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
+  const { user, getAccessTokenSilently } = useAuth0()
 
+  // const queryClient = useQueryClient()
   const { data, isLoading } = useQuery({
-    queryKey: ['user'],
+    queryKey: ['client'],
     queryFn: async () => {
       const accessToken = await getAccessTokenSilently()
-      if (user && user.sub) {
-        const response = await getClient(accessToken)
-        return response
-      }
+      const response = await getClient(accessToken)
+      return response
     },
   })
-  return { user, isAuthenticated, data, isLoading }
+  return { user, data, isLoading }
 }
 
 export default useProfile
