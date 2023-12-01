@@ -2,7 +2,6 @@ import express from 'express'
 
 import { getUser } from '../db/users.ts'
 import { getTasks } from '../db/getTasks.ts'
-import * as db from '../db/users.ts'
 import { validateAccessToken } from '../auth0'
 
 const router = express.Router()
