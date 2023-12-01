@@ -3,4 +3,4 @@ bundle.*
 *.log
 *.sqlite3
 .env
-public/main.css
+/public/main.css
