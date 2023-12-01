@@ -4,9 +4,7 @@ import Nav from '../components/Nav'
 export default function AppLayout() {
   return (
     <>
-      <div>
-        <Nav />
-      </div>
+      <Nav />
       <main>
         <Outlet />
       </main>

@@ -42,5 +42,19 @@ export async function seed(knex) {
       task_option_id: 1,
       date: '2023-12-02',
     },
+    {
+      id: 7,
+      user_id: 'auth0|002',
+      admin_id: 'auth0|6567ec0f1531c5f8eeca7c39',
+      task_option_id: 2,
+      date: '2023-12-02',
+    },
+    {
+      id: 8,
+      user_id: 'auth0|6568fbe776c1b421367adca1',
+      admin_id: 'auth0|65694bb101091573c2085f70',
+      task_option_id: 1,
+      date: '2023-12-03',
+    },
   ])
 }
