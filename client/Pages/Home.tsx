@@ -1,7 +1,22 @@
+import { useAuth0 } from '@auth0/auth0-react'
 import Button from '../components/UI/Button/Button'
 import Logo from '../components/UI/Logo/Logo'
+import {
+  IfAuthenticated,
+  IfNotAuthenticated,
+} from '../components/Authenticated'
 
 function Home() {
+  const { logout, loginWithRedirect, user } = useAuth0()
+
+  function handleSignOut() {
+    logout()
+  }
+
+  function handleSignIn() {
+    loginWithRedirect()
+  }
+
   return (
     <>
       <div className="flex justify-end p-4 font-title text-lg">
@@ -19,8 +34,15 @@ function Home() {
       </div>
 
       <div className="flex gap-4 justify-center pt-[55%]">
-        <Button>Login</Button>
-        <Button>Register</Button>
+        {/* <Button>Login</Button>
+        <Button>Register</Button> */}
+        <IfNotAuthenticated>
+          <Button onClick={handleSignIn}>Login</Button>
+        </IfNotAuthenticated>
+        <IfAuthenticated>
+          <Button onClick={handleSignOut}>Logout</Button>
+          {user && <p>Signed in as: {user?.nickname}</p>}
+        </IfAuthenticated>
       </div>
     </>
   )
