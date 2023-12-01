@@ -3,6 +3,7 @@ import { getTasksByAdmin } from '../db/getTasks'
 
 import * as db from '../db/users.ts'
 import { validateAccessToken } from '../auth0'
+import { logError } from '../logger.ts'
 
 const router = express.Router()
 
@@ -18,7 +19,7 @@ router.get('/:clientId/tasks', validateAccessToken, async (req, res) => {
       return res.json(result)
     }
   } catch (error) {
-    console.error(error)
+    logError(error)
     return res.status(500).send('Something went wrong')
   }
 })
@@ -34,8 +35,8 @@ router.get('/clientlist', validateAccessToken, async (req, res) => {
   try {
     const clients = await db.getAdminClients(auth0id)
     res.status(200).json(clients)
-  } catch (e) {
-    console.error(e)
+  } catch (error) {
+    logError(error)
     res.status(500).json({ message: 'Unable to retrieve clients' })
   }
 })
