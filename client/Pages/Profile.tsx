@@ -5,6 +5,7 @@ function Profile() {
   // `user` is the auth0.com user details
   // `data` contains the `getUser()` data from our db
   const { user, isAuthenticated } = useAuth0()
+  console.log(user)
 
   const { data, isLoading } = useProfile()
 

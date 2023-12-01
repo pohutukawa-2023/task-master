@@ -5,6 +5,8 @@ import * as db from '../db/tasks.ts'
 
 const router = express.Router()
 
+// GET /api/v1/tasks
+
 // A public endpoint that anyone can access
 // GET /api/v1/fruits
 // router.get('/', async (req, res) => {
