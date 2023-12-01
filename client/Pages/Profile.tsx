@@ -1,32 +1,52 @@
-import { useAuth0 } from '@auth0/auth0-react'
+// import { useAuth0 } from '@auth0/auth0-react'
 import useProfile from '../hooks/useProfile'
+import Button from '../components/UI/Button/Button'
+
+function NewUserForm() {
+  return <div>User profile not found, please create one:</div>
+}
 
 function Profile() {
   // `user` is the auth0.com user details
-  // `data` contains the `getUser()` data from our db
-  const { user, isAuthenticated } = useAuth0()
-  console.log(user)
+  // const { user } = useAuth0()
 
-  const { data, isLoading } = useProfile()
+  // `data` contains the `getUser()` data from our db
+  const { data: client, isLoading, isError } = useProfile()
 
   if (isLoading) {
-    return <div>Loading ...</div>
+    return <div>Please wait while we load your user profile...</div>
   }
 
-  if (!isAuthenticated && !user) {
-    return <div>Not authenticated</div>
+  if (isError) {
+    // if error is '404: not found'
+    // TODO: handle other errors
+    return <NewUserForm />
   }
 
   return (
     <div>
-      <label>
-        username:
-        <div>{JSON.stringify(data[0]?.username)}</div>
+      <label htmlFor="name" className="font-semibold">
+        Name
       </label>
-      <label>
-        email:
-        <div>{JSON.stringify(data[0]?.email)}</div>
+      <div id="name" className="mb-2">
+        {client?.name}
+      </div>
+
+      <label htmlFor="username" className="font-semibold">
+        Username:
       </label>
+      <div id="username" className="mb-2">
+        {client?.username}
+      </div>
+
+      <label htmlFor="email" className="font-semibold">
+        Email:
+      </label>
+      <div id="email" className="mb-2">
+        {client?.email}
+      </div>
+
+      <Button>Edit</Button>
     </div>
   )
 }
