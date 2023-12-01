@@ -63,7 +63,8 @@ function Profile() {
   if (isError) {
     // if error is '404: not found'
     // TODO: handle other errors
-    return <NewUserForm />
+    // return <NewUserForm />
+    return <div>Cannot load user profile.</div>
   }
 
   return (
@@ -96,7 +97,7 @@ function Profile() {
         {client?.email}
       </div>
 
-      <Button>Edit</Button>
+      {/* <Button>Edit</Button> */}
     </div>
   )
 }
