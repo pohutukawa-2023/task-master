@@ -10,7 +10,7 @@ function Button({ children }: ButtonProps) {
   return (
     <button
       className={
-        'bg-lightPurple text-darkNavy font-bold py-2 px-8 rounded-full hover:bg-darkPurple hover:text-primary focus:shadow-[0px_0px_5px_2px_#C3ACD0]'
+        'bg-lightPurple text-darkNavy font-bold py-2 px-6 rounded-full hover:bg-darkPurple hover:text-primary focus:shadow-[0px_0px_5px_2px_#C3ACD0]'
       }
     >
       {children}

@@ -6,7 +6,7 @@ function Logo({ children, ...rest }: Props) {
   return (
     <div
       className={
-        'flex flex-col justify-center bg-extraLightPurple rounded-full text-black text-xs w-6 h-6'
+        'flex flex-row justify-center items-center bg-gradient-to-r from-lightPurple to-darkPurple  rounded-full text-black text-sm w-16 h-16'
       }
       {...rest}
     >
