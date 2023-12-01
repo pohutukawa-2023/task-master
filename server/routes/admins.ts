@@ -3,7 +3,7 @@ import { getTasksByAdmin } from '../db/getTasks'
 
 const router = express.Router()
 
-router.get('/:adminId/:clientId/tasks', async (req, res) => {
+router.get('/:clientId/tasks', async (req, res) => {
   const adminId = req.params.adminId
   const clientId = req.params.clientId
   try {
