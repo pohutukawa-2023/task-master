@@ -6,7 +6,7 @@ function useProfile() {
   const { user, getAccessTokenSilently } = useAuth0()
 
   // const queryClient = useQueryClient()
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError, status, error } = useQuery({
     queryKey: ['client'],
     queryFn: async () => {
       const accessToken = await getAccessTokenSilently()
@@ -14,7 +14,7 @@ function useProfile() {
       return response
     },
   })
-  return { user, data, isLoading }
+  return { user, data, isLoading, isError, status, error }
 }
 
 export default useProfile
