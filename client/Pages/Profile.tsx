@@ -1,17 +1,58 @@
-// import { useAuth0 } from '@auth0/auth0-react'
+import { useAuth0 } from '@auth0/auth0-react'
 import useProfile from '../hooks/useProfile'
 import Button from '../components/UI/Button/Button'
 
 function NewUserForm() {
-  return <div>User profile not found, please create one:</div>
+  // `user` is the auth0.com user details
+  const { user } = useAuth0()
+  console.log(user)
+
+  return (
+    <form className="grid">
+      <label htmlFor="auth0Id" className="font-semibold">
+        User ID
+      </label>
+      <div id="auth0Id" className="mb-2">
+        {user?.sub}
+      </div>
+
+      <label htmlFor="name" className="font-semibold">
+        Name
+      </label>
+      <input id="name" className="mb-2" type="text" defaultValue={user?.name} />
+
+      <label htmlFor="username" className="font-semibold">
+        Username:
+      </label>
+      <input
+        id="username"
+        className="mb-2"
+        type="text"
+        defaultValue={user?.nickname}
+      />
+      <label htmlFor="email" className="font-semibold">
+        Email:
+      </label>
+      <input
+        id="email"
+        className="mb-2"
+        type="text"
+        defaultValue={user?.email}
+      />
+      <Button>Save</Button>
+    </form>
+  )
 }
 
 function Profile() {
-  // `user` is the auth0.com user details
-  // const { user } = useAuth0()
-
   // `data` contains the `getUser()` data from our db
-  const { data: client, isLoading, isError } = useProfile()
+  const { user } = useAuth0()
+  // const { data: client, isLoading, isError } = useProfile()
+  const {
+    data: client,
+    isLoading,
+    isError,
+  } = { data: {}, isLoading: false, isError: true }
 
   if (isLoading) {
     return <div>Please wait while we load your user profile...</div>
@@ -25,6 +66,13 @@ function Profile() {
 
   return (
     <div>
+      <label htmlFor="auth0Id" className="font-semibold">
+        User ID
+      </label>
+      <div id="auth0Id" className="mb-2">
+        {user?.sub}
+      </div>
+
       <label htmlFor="name" className="font-semibold">
         Name
       </label>
