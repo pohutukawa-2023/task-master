@@ -1,4 +1,4 @@
-import { User, UserDraft } from '../../types/User.ts'
+import { User } from '../../types/User.ts'
 import db from './connection.ts'
 
 export async function getUser(id: User['id']): Promise<User[]> {
