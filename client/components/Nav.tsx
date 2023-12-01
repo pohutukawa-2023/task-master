@@ -16,8 +16,9 @@ function Nav() {
   }
 
   return (
-    <>
-      <NavGroup>
+    <div className="flex justify-between">
+      <h1>Task Master!</h1>
+      <div>
         <IfAuthenticated>
           <NavButton onClick={handleSignOut}>Sign out</NavButton>
           {user && <p>Signed in as: {user?.nickname}</p>}
@@ -25,9 +26,8 @@ function Nav() {
         <IfNotAuthenticated>
           <NavButton onClick={handleSignIn}>Sign in</NavButton>
         </IfNotAuthenticated>
-      </NavGroup>
-      <h1>Task Master!</h1>
-    </>
+      </div>
+    </div>
   )
 }
 
