@@ -1,13 +1,10 @@
 import request from 'superagent'
-import { Task } from '../models/task'
 
 const rootUrl = '/api/v1'
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+// const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export async function getAdminClients(token: string) {
-  await sleep(1500)
-
   const res = await request
     .get(`${rootUrl}/admin/clientlist`)
     .set('Authorization', `Bearer ${token}`)

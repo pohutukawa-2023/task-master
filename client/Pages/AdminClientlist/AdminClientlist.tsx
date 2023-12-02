@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery } from '@tanstack/react-query'
-import { getAdminClients } from '../../api'
+import { getAdminClients } from '../../apis/admin'
 
 function AdminClientlist() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
@@ -23,12 +23,18 @@ function AdminClientlist() {
   if (isError) {
     return <p>something went wrong</p>
   }
+
   return (
     <>
       <h2>Show Clients here:</h2>
       <div>
         {data &&
-          data.map((client: any) => <div key={client.id}>{client.name}</div>)}
+          [...new Set(data.map((client: any) => client.id))].map((uniqueId) => {
+            const uniqueClient = data.find(
+              (client: any) => client.id === uniqueId
+            )
+            return <div key={uniqueClient.id}>{uniqueClient.name}</div>
+          })}
       </div>
     </>
   )
