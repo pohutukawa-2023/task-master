@@ -21,9 +21,6 @@ function Home() {
   return (
     <>
       <div className="flex justify-end p-4 font-title text-lg">
-        <IfAuthenticated>
-          {user && <p>Welcome {user?.nickname}</p>}
-        </IfAuthenticated>
         <Logo>t</Logo>
       </div>
       <div className="pt-title px-4 h-full">
@@ -37,10 +34,10 @@ function Home() {
         <p className="text-md">complete, track, see results.</p>
       </div>
 
-      <div className="flex gap-4 justify-center pt-[55%]">
+      <div className="flex gap-4 justify-center pt-[45%]">
         <IfNotAuthenticated>
           <Button onClick={handleSignIn}>Login</Button>
-          <Button>Register</Button>
+          <Button onClick={handleSignIn}>Register</Button>
         </IfNotAuthenticated>
         <IfAuthenticated>
           <Button onClick={handleSignOut}>Logout</Button>
