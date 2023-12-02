@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { addUser, getUser } from '../db/users.ts'
+import { getUser, upsertUser } from '../db/users.ts'
 import { getTasks } from '../db/getTasks.ts'
 import { validateAccessToken } from '../auth0'
 import { userDraftSchema } from '../../types/User.ts'
@@ -49,7 +49,7 @@ router.get('/:auth0id/tasks', async (req, res) => {
 
 // POST /api/v1/client
 // uses the logged in users token,
-router.post('/add', validateAccessToken, async (req, res) => {
+router.post('/edit', validateAccessToken, async (req, res) => {
   const auth0Id = req.auth?.payload.sub
   const form = req.body
 
@@ -70,7 +70,7 @@ router.post('/add', validateAccessToken, async (req, res) => {
 
     if (userResult.success) {
       const user = { ...userResult.data, id: auth0Id, isAdmin: false }
-      const result = await addUser(user)
+      const result = await upsertUser(user)
       return res.status(201).send(result)
     }
   } catch (error) {

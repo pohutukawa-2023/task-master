@@ -15,15 +15,20 @@ export async function getAdminClients(authId: string) {
     .where('tasks.admin_id', authId)
 }
 
-export async function addUser(newUser: User) {
+export async function upsertUser(newUser: User) {
   try {
-    return await db('users').insert({
-      id: newUser.id,
-      username: newUser.username,
-      name: newUser.name,
-      email: newUser.email,
-      is_admin: newUser.isAdmin,
-    })
+    const result = await db('users')
+      .insert({
+        id: newUser.id,
+        username: newUser.username,
+        name: newUser.name,
+        email: newUser.email,
+        is_admin: newUser.isAdmin,
+      })
+      .returning('*')
+      .onConflict('id')
+      .merge()
+    return result[0]
   } catch (error) {
     return Promise.reject(new Error(error as string))
   }
