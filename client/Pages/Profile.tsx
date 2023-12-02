@@ -102,8 +102,6 @@ function Profile() {
         {updateMutation.isError ? (
           <div>An error occurred: {updateMutation.error.message}</div>
         ) : null}
-        <IfAuthenticated>Hello World</IfAuthenticated>
-        <IfAdmin>Hello</IfAdmin>
       </div>
     </form>
   )
