@@ -8,7 +8,7 @@ import { UserDraft } from '../../types/User'
 
 vi.mock('../db/users')
 
-describe('GET /api/v1/client/:auth0id', () => {
+describe('GET /api/v1/client/', () => {
   it('should return 200 with a user in an array', async () => {
     const testClient = [
       {
