@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeAll, beforeEach } from 'vitest'
 import db from './connection'
-import { getUser } from './users'
+import { addUser, getUser } from './users'
+import { User } from '../../types/User'
 
 beforeAll(async () => {
   await db.migrate.latest()
@@ -27,5 +28,32 @@ describe('getUser', () => {
   it('should return an empty array when user not found', async () => {
     const user = await getUser('userThatDoesntExist')
     expect(user).toBe(undefined)
+  })
+})
+
+describe('addUser', () => {
+  it('should add a new user if the user does not exist', async () => {
+    const newUser: User = {
+      id: 'auth0|666',
+      username: 'newUser',
+      name: 'Bla blabla',
+      email: 'blabla@example.org',
+      isAdmin: false,
+    }
+    const result = await addUser(newUser)
+    expect(result).toEqual([7]) // count of rows after insertion
+  })
+
+  it('should not add a duplicate user (auth0Id)', async () => {
+    const newUser: User = {
+      id: 'auth0|001',
+      username: 'newUser',
+      name: 'Bla blabla',
+      email: 'blabla@example.org',
+      isAdmin: false,
+    }
+    await expect(() => addUser(newUser)).rejects.toThrowError(
+      /UNIQUE constraint failed: users.id/
+    )
   })
 })
