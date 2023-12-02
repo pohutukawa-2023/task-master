@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll, beforeEach } from 'vitest'
 import db from './connection'
-import { addUser, getUser } from './users'
+import { upsertUser, getUser } from './users'
 import { User } from '../../types/User'
 
 beforeAll(async () => {
@@ -31,7 +31,7 @@ describe('getUser', () => {
   })
 })
 
-describe('addUser', () => {
+describe('upsertUser', () => {
   it('should add a new user if the user does not exist', async () => {
     const newUser: User = {
       id: 'auth0|666',
@@ -40,20 +40,26 @@ describe('addUser', () => {
       email: 'blabla@example.org',
       isAdmin: false,
     }
-    const result = await addUser(newUser)
-    expect(result).toEqual([7]) // count of rows after insertion
+    const result = await upsertUser(newUser)
+    expect(result.id).toEqual(newUser.id)
+
+    const after = await db('users').select()
+    expect(after).toHaveLength(7)
   })
 
   it('should not add a duplicate user (auth0Id)', async () => {
     const newUser: User = {
       id: 'auth0|001',
-      username: 'newUser',
-      name: 'Bla blabla',
-      email: 'blabla@example.org',
+      username: 'already',
+      name: 'exists',
+      email: 'innit@example.org',
       isAdmin: false,
     }
-    await expect(() => addUser(newUser)).rejects.toThrowError(
-      /UNIQUE constraint failed: users.id/
-    )
+    // await expect(() => upsertUser(newUser)).rejects.toThrowError(
+    //   /UNIQUE constraint failed: users.id/
+    // )
+    await upsertUser(newUser)
+    const after = await db('users').select()
+    expect(after).toHaveLength(6)
   })
 })
