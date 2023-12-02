@@ -529,10 +529,6 @@ video {
   margin-bottom: 0.5rem;
 }
 
-.mb-8 {
-  margin-bottom: 2rem;
-}
-
 .block {
   display: block;
 }
@@ -593,10 +589,6 @@ video {
   justify-content: center;
 }
 
-.justify-between {
-  justify-content: space-between;
-}
-
 .gap-4 {
   gap: 1rem;
 }
@@ -641,10 +633,6 @@ video {
   --tw-gradient-to: #7743DB var(--tw-gradient-to-position);
 }
 
-.object-right {
-  object-position: right;
-}
-
 .p-2 {
   padding: 0.5rem;
 }
@@ -685,12 +673,8 @@ video {
   padding-top: 40%;
 }
 
-.pb-2 {
-  padding-bottom: 0.5rem;
-}
-
-.text-right {
-  text-align: right;
+.pt-\[45\%\] {
+  padding-top: 45%;
 }
 
 .font-sans {
