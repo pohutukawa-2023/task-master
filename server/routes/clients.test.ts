@@ -7,7 +7,7 @@ import { getMockToken } from './mockToken'
 
 vi.mock('../db/users')
 
-describe('GET /api/v1/client/:auth0id', () => {
+describe('GET /api/v1/client/', () => {
   it('should return 200 with a user in an array', async () => {
     const testClient = [
       {
@@ -28,7 +28,7 @@ describe('GET /api/v1/client/:auth0id', () => {
   })
 
   it('should return 404 if the users not found', async () => {
-    vi.mocked(db.getUser).mockResolvedValue([])
+    vi.mocked(db.getUser).mockResolvedValue(undefined)
     const response = await request(server)
       .get('/api/v1/client/')
       .set('authorization', `Bearer ${getMockToken()}`)
