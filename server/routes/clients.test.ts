@@ -1,7 +1,7 @@
 import { vi, describe, it, expect } from 'vitest'
 import request from 'supertest'
 import server from '../server'
-import { getUser, addUser } from '../db/users'
+import { getUser, upsertUser } from '../db/users'
 
 import { getMockToken } from './mockToken'
 import { UserDraft } from '../../types/User'
@@ -29,7 +29,7 @@ describe('GET /api/v1/client/', () => {
   })
 
   it('should return 404 if the users not found', async () => {
-    vi.mocked(getUser).mockResolvedValue([])
+    vi.mocked(getUser).mockResolvedValue(undefined)
     const response = await request(server)
       .get('/api/v1/client/')
       .set('authorization', `Bearer ${getMockToken()}`)
@@ -54,9 +54,9 @@ describe('POST /api/v1/client/add', () => {
       name: 'Harry Otter',
       email: 'harry@example.com',
     }
-    vi.mocked(addUser).mockResolvedValue([1])
+    vi.mocked(upsertUser).mockResolvedValue([1])
     const response = await request(server)
-      .post('/api/v1/client/add')
+      .post('/api/v1/client/edit')
       .send(newClient)
       .set('authorization', `Bearer ${getMockToken()}`)
     expect(response.status).toBe(201)
@@ -69,24 +69,24 @@ describe('POST /api/v1/client/add', () => {
       name: 'Harry Otter',
       email: 'harry@example.com',
     }
-    vi.mocked(addUser).mockResolvedValue([1])
+    vi.mocked(upsertUser).mockResolvedValue([1])
     const response = await request(server)
-      .post('/api/v1/client/add')
+      .post('/api/v1/client/edit')
       .send(newClient)
     expect(response.status).toBe(401)
     expect(response.error).toEqual(
-      Error('cannot POST /api/v1/client/add (401)')
+      Error('cannot POST /api/v1/client/edit (401)')
     )
   })
 
   it('returns 400 if invalid user data sent', async () => {
-    vi.mocked(addUser).mockResolvedValue([1])
+    vi.mocked(upsertUser).mockResolvedValue([1])
     const response = await request(server)
-      .post('/api/v1/client/add')
+      .post('/api/v1/client/edit')
       .set('authorization', `Bearer ${getMockToken()}`)
     expect(response.status).toBe(400)
     expect(response.error).toEqual(
-      Error('cannot POST /api/v1/client/add (400)')
+      Error('cannot POST /api/v1/client/edit (400)')
     )
   })
 
@@ -96,14 +96,14 @@ describe('POST /api/v1/client/add', () => {
       name: 'Harry Otter',
       email: 'harry@example.com',
     }
-    vi.mocked(addUser).mockRejectedValue('')
+    vi.mocked(upsertUser).mockRejectedValue('')
     const response = await request(server)
-      .post('/api/v1/client/add')
+      .post('/api/v1/client/edit')
       .send(newClient)
       .set('authorization', `Bearer ${getMockToken()}`)
     expect(response.status).toBe(500)
     expect(response.error).toEqual(
-      Error('cannot POST /api/v1/client/add (500)')
+      Error('cannot POST /api/v1/client/edit (500)')
     )
   })
 })
