@@ -54,8 +54,8 @@ function ClientStats() {
 
   // shape I want the data in
   const stats = [
-    { date: '01-12-2023', tasksDone: 0, tasksToDo: 3 },
-    { date: '02-12-2023', tasksDone: 1, tasksToDo: 0 },
+    { date: '01-12-2023', tasksDone: 0, tasksTotal: 3 },
+    { date: '02-12-2023', tasksDone: 1, tasksTotal: 1 },
   ]
 
   // const { data, isLoading, isError } = useQuery({
