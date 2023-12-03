@@ -8,6 +8,7 @@ import ProtectedComponent from './components/UI/ProtectedComponent.tsx'
 import AdminClientTasks from './Pages/AdminClientTask.tsx'
 import TestLayout from './Pages/TestLayout.tsx'
 import ClientLayout from './Pages/ClientLayout.tsx'
+import AdminLayout from './Pages/AdminLayout.tsx'
 
 export const routes = createRoutesFromElements(
   <>
@@ -17,18 +18,15 @@ export const routes = createRoutesFromElements(
         path="/profile"
         element={<ProtectedComponent component={Profile} />}
       />
-      <Route path="/admin/clientlist" element={<AdminClientlist />} />
-      <Route
-        path="/admin/:clientUsername/tasks"
-        element={<AdminClientTasks />}
-      />
-      <Route path="/test" element={<TestLayout />} />
     </Route>
     <Route path="/client" element={<ClientLayout />}>
       <Route index element={<Home />} />
     </Route>
-    <Route path="/admin" element={<ClientLayout />}>
+    <Route path="/admin" element={<AdminLayout />}>
       <Route index element={<Home />} />
+      <Route path="clientlist" element={<AdminClientlist />} />
+      <Route path=":clientUsername/tasks" element={<AdminClientTasks />} />
     </Route>
+    <Route path="/test" element={<TestLayout />} />
   </>
 )

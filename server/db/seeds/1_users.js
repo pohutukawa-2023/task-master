@@ -47,7 +47,7 @@ export async function seed(knex) {
       username: 'kirsty@example.com',
       name: 'Kirsty Ammundsen',
       email: 'kirsty@example.com',
-      is_admin: false,
+      is_admin: true,
     },
     {
       id: 'auth0|656bbeec76c1b421367bd2eb',

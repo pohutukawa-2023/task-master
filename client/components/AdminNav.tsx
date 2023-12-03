@@ -6,28 +6,25 @@ function AdminNav() {
   return (
     <>
       <IfAdmin>
-        <div className="my-6 w-full md:w-fit flex justify-around absolute inset-x-0 bottom-0">
+        <div className="bg-primaryBeige my-6 w-full md:w-fit flex justify-around fixed inset-x-0 bottom-0">
           <Link to="/profile">
             <NavButton>
-              <img
-                src={`./images/png/007-user-1.png`}
-                alt="profile user icon"
-              />
+              <img src={`/images/png/007-user-1.png`} alt="profile user icon" />
             </NavButton>
           </Link>
           <Link to="/test">
             <NavButton>
-              <img src={`./images/png/019-add.png`} alt="add client icon" />
+              <img src={`/images/png/019-add.png`} alt="add client icon" />
             </NavButton>
           </Link>
           <Link to="/test">
             <NavButton>
-              <img src={`./images/png/013-task-1.png`} alt="add task icon" />
+              <img src={`/images/png/013-task-1.png`} alt="add task icon" />
             </NavButton>
           </Link>
           <Link to="/test">
             <NavButton>
-              <img src={`./images/png/001-bar-chart.png`} alt="stats icon" />
+              <img src={`/images/png/001-bar-chart.png`} alt="stats icon" />
             </NavButton>
           </Link>
         </div>

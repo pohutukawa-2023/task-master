@@ -2,10 +2,11 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery } from '@tanstack/react-query'
 import { getClient } from '../apis/client'
 import AdminNav from '../components/AdminNav'
+import { Outlet } from 'react-router-dom'
 
 // Note that you must add the useQuery and UseAuth0 on the page for the isAdmin and isNot Admin functions to work.
 
-export default function TestLayout() {
+export default function AdminLayout() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
 
   const { isLoading, isError } = useQuery({
@@ -22,7 +23,7 @@ export default function TestLayout() {
   })
 
   if (!isAuthenticated && !user) {
-    return <div>Not authenticated</div>
+    return <p>Not authenticated</p>
   }
 
   if (isLoading) {
@@ -35,6 +36,7 @@ export default function TestLayout() {
 
   return (
     <>
+      <Outlet />
       <AdminNav />
     </>
   )
