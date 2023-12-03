@@ -60,7 +60,7 @@ describe('upsertUser', () => {
     // )
     await upsertUser(newUser)
     const after = await db('users').select()
-    expect(after).toHaveLength(7)
+    expect(after).toHaveLength(8)
   })
 })
 
