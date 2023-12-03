@@ -43,7 +43,7 @@ Colour Palette
 
 white - #FFFBF5 (primary)
 beige - #F7EFE5 (primaryBeige)
-lilac - #C3ACDO (lightPurple)
+lilac - #C3ACD0 (lightPurple)
 purple - #7743DB (darkPurple)
 navy - #0A0047 (darkNavy)
 #F27C7C (warning)
