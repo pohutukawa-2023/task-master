@@ -56,7 +56,10 @@ function ClientStats() {
     queryKey: ['clientStats'],
     queryFn: async () => {
       const token = await getAccessTokenSilently()
-      const clientStats = await getClientStats(token, userURL.clientId)
+      const clientStats = await getClientStats(
+        token,
+        'auth0|656ba4f101f9e8a19d2c8d19'
+      )
       return clientStats
     },
   })

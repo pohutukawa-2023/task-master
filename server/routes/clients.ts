@@ -56,8 +56,8 @@ router.get('/tasks', validateAccessToken, async (req, res) => {
 
 // Get all tasks that have been assigned to a specific client on their account to look at stats
 
-router.get('/stats:auth0id', validateAccessToken, async (req, res) => {
-  const auth0id = req.params.auth0id
+router.get('/stats', validateAccessToken, async (req, res) => {
+  const auth0id = req.auth?.payload.sub
 
   if (!auth0id) {
     res.status(400).json({ message: 'Please provide a valid id' })
@@ -66,6 +66,7 @@ router.get('/stats:auth0id', validateAccessToken, async (req, res) => {
 
   try {
     const result = await getClientStatsTasks(auth0id)
+    console.log(result)
     if (!auth0id) {
       res.status(404).send('Not found')
     } else {

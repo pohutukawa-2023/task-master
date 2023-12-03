@@ -779,10 +779,6 @@ video {
   color: rgb(176 124 242 / var(--tw-placeholder-opacity));
 }
 
-.filter {
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
 .hover\:bg-darkPurple:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(119 67 219 / var(--tw-bg-opacity));

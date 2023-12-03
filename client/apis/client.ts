@@ -25,7 +25,6 @@ export async function getClientStats(token: string, clientId: string) {
     .get(`/api/v1/client/stats/${clientId}`)
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
-  console.log(res.body)
 
   return res.body
 }
