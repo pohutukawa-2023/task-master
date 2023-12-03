@@ -1,0 +1,19 @@
+### As an admin, get list of clients
+GET http://localhost:3000/api/v1/admin/clientlist
+Authorization: {{$dotenv PHYSIO_TOKEN}}
+
+### As an admin, get a specific clients tasks
+GET http://localhost:3000/api/v1/admin/auth0|656ba3141d577edc5228f00e/tasks
+Authorization: {{$dotenv PHYSIO_TOKEN}}
+
+
+### Get an access token (Note: must add a .env in this folder)
+POST https://task-master.au.auth0.com/oauth/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+audience={{$dotenv VITE_AUTH0_AUDIENCE}}
+&grant_type=password
+&client_id={{$dotenv VITE_AUTH0_CLIENT_ID}}
+&client_secret={{$dotenv VITE_AUTH0_CLIENT_SECRET}}
+&username={{$dotenv PATHIK_USERNAME}}
+&password={{$dotenv PATHIK_PASSWORD}}
