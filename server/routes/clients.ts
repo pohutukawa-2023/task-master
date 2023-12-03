@@ -31,8 +31,15 @@ router.get('/', validateAccessToken, async (req, res) => {
   }
 })
 
-router.get('/:auth0id/tasks', async (req, res) => {
+// Get all tasks that have been assigned to a specific client on their account.
+
+router.get('/tasks', validateAccessToken, async (req, res) => {
   const auth0id = req.params.auth0id
+
+  if (!auth0id) {
+    res.status(400).json({ message: 'Please provide a valid id' })
+    return
+  }
 
   try {
     const result = await getTasks(auth0id)
@@ -64,14 +71,12 @@ router.post('/edit', validateAccessToken, async (req, res) => {
   try {
     const userResult = userDraftSchema.safeParse(form)
 
-    if (!userResult.success) {
-      return res.status(400).json({ message: 'Invalid form' })
-    }
-
     if (userResult.success) {
       const user = { ...userResult.data, id: auth0Id, isAdmin: false }
       const result = await upsertUser(user)
       return res.status(201).send(result)
+    } else {
+      return res.status(400).json({ message: 'Invalid form' })
     }
   } catch (error) {
     logError(error)

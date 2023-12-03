@@ -44,7 +44,7 @@ describe('upsertUser', () => {
     expect(result.id).toEqual(newUser.id)
 
     const after = await db('users').select()
-    expect(after).toHaveLength(8)
+    expect(after).toHaveLength(9)
   })
 
   it('should not add a duplicate user (auth0Id)', async () => {

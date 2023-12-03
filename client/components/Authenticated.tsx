@@ -26,6 +26,22 @@ function useIsAdmin() {
   return admin.is_admin && isAuthenticated
 }
 
+function useIsAdmin() {
+  const { user, getAccessTokenSilently, isAuthenticated } = useAuth0()
+
+  const { data: admin } = useQuery({
+    queryKey: ['client', user?.sub],
+    queryFn: async () => {
+      const accessToken = await getAccessTokenSilently()
+      if (user && user.sub) {
+        const response = await getClient(accessToken)
+        return response
+      }
+    },
+  })
+  return admin.is_admin && isAuthenticated
+}
+
 interface Props {
   children: React.ReactNode
 }
@@ -37,9 +53,4 @@ export function IfAuthenticated(props: Props) {
 export function IfNotAuthenticated(props: Props) {
   const { children } = props
   return !useIsAuthenticated() ? <>{children}</> : null
-}
-
-export function IfAdmin(props: Props) {
-  const { children } = props
-  return useIsAdmin() ? <>{children}</> : null
 }

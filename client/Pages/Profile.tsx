@@ -3,7 +3,6 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { getClient, upsertClient } from '../apis/client'
 import { User, UserDraft } from '../../types/User'
 import Button from '../components/UI/Button/Button'
-import { IfAdmin, IfAuthenticated } from '../components/Authenticated'
 
 function Profile() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
@@ -56,56 +55,56 @@ function Profile() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid">
-      <label htmlFor="auth0Id" className="font-semibold">
-        User ID
-      </label>
-      <div id="auth0Id" className="mb-2">
-        {user?.sub}
-      </div>
+    <>
+      <form onSubmit={handleSubmit} className="grid">
+        <label htmlFor="auth0Id" className="font-semibold">
+          User ID
+        </label>
+        <div id="auth0Id" className="mb-2">
+          {user?.sub}
+        </div>
 
-      <label htmlFor="name" className="font-semibold">
-        Name
-      </label>
-      <input
-        id="name"
-        name="name"
-        className="mb-2"
-        type="text"
-        defaultValue={data?.name || user?.name}
-      />
+        <label htmlFor="name" className="font-semibold">
+          Name
+        </label>
+        <input
+          id="name"
+          name="name"
+          className="mb-2"
+          type="text"
+          defaultValue={data?.name || user?.name}
+        />
 
-      <label htmlFor="username" className="font-semibold">
-        Username:
-      </label>
-      <input
-        id="username"
-        name="username"
-        className="mb-2"
-        type="text"
-        defaultValue={data?.username || user?.nickname}
-      />
-      <label htmlFor="email" className="font-semibold">
-        Email:
-      </label>
-      <input
-        id="email"
-        name="email"
-        className="mb-2"
-        defaultValue={data?.email || user?.email}
-      />
-      <div>
-        <Button type="submit" disabled={updateMutation.isLoading}>
-          {updateMutation.isLoading ? 'Saving...' : 'Save'}
-        </Button>
-        {updateMutation.isSuccess && <p>Profile saved</p>}
-        {updateMutation.isError ? (
-          <div>An error occurred: {updateMutation.error.message}</div>
-        ) : null}
-        <IfAuthenticated>Hello World</IfAuthenticated>
-        <IfAdmin>Hello</IfAdmin>
-      </div>
-    </form>
+        <label htmlFor="username" className="font-semibold">
+          Username:
+        </label>
+        <input
+          id="username"
+          name="username"
+          className="mb-2"
+          type="text"
+          defaultValue={data?.username || user?.nickname}
+        />
+        <label htmlFor="email" className="font-semibold">
+          Email:
+        </label>
+        <input
+          id="email"
+          name="email"
+          className="mb-2"
+          defaultValue={data?.email || user?.email}
+        />
+        <div>
+          <Button type="submit" disabled={updateMutation.isLoading}>
+            {updateMutation.isLoading ? 'Saving...' : 'Save'}
+          </Button>
+          {updateMutation.isSuccess && <p>Profile saved</p>}
+          {updateMutation.isError ? (
+            <div>An error occurred: {updateMutation.error.message}</div>
+          ) : null}
+        </div>
+      </form>
+    </>
   )
 }
 
