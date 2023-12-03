@@ -20,3 +20,20 @@ export async function getTasksByAdmin(
     .join('task_options as o', 't.task_option_id', 'o.id')
     .select('o.id', 'o.name')
 }
+
+export async function getAdminClientTasks(adminId: string, clientId: string) {
+  return db('tasks')
+    .join('users', 'tasks.user_id', 'users.id')
+    .join('task_options', 'task_options.id', 'tasks.task_option_id')
+    .where('tasks.admin_id', adminId)
+    .where('tasks.user_id', clientId)
+    .select(
+      'tasks.id as id',
+      'tasks.user_id as userId',
+      'tasks.admin_id as adminId',
+      'tasks.task_option_id as taskId',
+      'tasks.data as taskData',
+      'tasks.is_complete as isComplete',
+      'tasks.date as date'
+    )
+}

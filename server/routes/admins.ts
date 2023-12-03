@@ -1,5 +1,5 @@
 import express from 'express'
-import { getTasksByAdmin } from '../db/getTasks'
+import { getTasksByAdmin, getAdminClientTasks } from '../db/getTasks'
 
 import * as db from '../db/users.ts'
 import { validateAccessToken } from '../auth0'
@@ -38,6 +38,24 @@ router.get('/clientlist', validateAccessToken, async (req, res) => {
   } catch (error) {
     logError(error)
     res.status(500).json({ message: 'Unable to retrieve clients' })
+  }
+})
+
+router.get('/:clientId/tasks', validateAccessToken, async (req, res) => {
+  const adminId = req.auth?.payload.sub
+  const clientId = req.params.clientId
+
+  if (!adminId) {
+    res.status(400).json({ message: 'Please login with your admin Id' })
+    return
+  }
+
+  try {
+    const adminClientTasks = await getAdminClientTasks(adminId, clientId)
+    res.status(200).json(adminClientTasks)
+  } catch (error) {
+    logError(error)
+    res.status(500).json({ message: 'Unable to retrieve client tasks' })
   }
 })
 

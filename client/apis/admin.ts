@@ -14,6 +14,16 @@ export async function getAdminClients(token: string) {
   return res.body
 }
 
+export async function getAdminClientTasks(token: string) {
+  const res = await request
+    .get(`${rootUrl}/admin/clientUsername/tasks`)
+    .set('Authorization', `Bearer ${token}`)
+    .set('Content-Type', 'application/json')
+  console.log(res.body)
+
+  return res.body
+}
+
 function logError(err: Error) {
   console.log(err)
   if (err.message === 'Username Taken') {
