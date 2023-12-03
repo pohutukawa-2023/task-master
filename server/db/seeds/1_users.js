@@ -22,9 +22,9 @@ export async function seed(knex) {
       is_admin: true,
     },
     {
-      id: 'auth0|6568fbe776c1b421367adca1',
-      username: 'FakeDave',
-      name: 'Dave IsFake',
+      id: 'auth0|656ba3141d577edc5228f00e',
+      username: 'DaveClient',
+      name: 'Dave NeedsPhysio',
       email: 'dave@example.org',
       is_admin: false,
     },
@@ -48,6 +48,13 @@ export async function seed(knex) {
       name: 'Kirsty Ammundsen',
       email: 'kirsty@example.com',
       is_admin: false,
+    },
+    {
+      id: 'auth0|656bbeec76c1b421367bd2eb',
+      username: 'physioDave',
+      name: 'Dave Physio',
+      email: 'physiodave@example.com',
+      is_admin: true,
     },
   ])
 }

@@ -64,14 +64,12 @@ router.post('/edit', validateAccessToken, async (req, res) => {
   try {
     const userResult = userDraftSchema.safeParse(form)
 
-    if (!userResult.success) {
-      return res.status(400).json({ message: 'Invalid form' })
-    }
-
     if (userResult.success) {
       const user = { ...userResult.data, id: auth0Id, isAdmin: false }
       const result = await upsertUser(user)
       return res.status(201).send(result)
+    } else {
+      return res.status(400).json({ message: 'Invalid form' })
     }
   } catch (error) {
     logError(error)
