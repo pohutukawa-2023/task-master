@@ -10,37 +10,21 @@ function useIsAuthenticated() {
   return isAuthenticated
 }
 
-function useIsAdmin() {
-  const { user, getAccessTokenSilently, isAuthenticated } = useAuth0()
+// function useIsAdmin() {
+//   const { user, getAccessTokenSilently, isAuthenticated } = useAuth0()
 
-  const { data: admin } = useQuery({
-    queryKey: ['client', user?.sub],
-    queryFn: async () => {
-      const accessToken = await getAccessTokenSilently()
-      if (user && user.sub) {
-        const response = await getClient(accessToken)
-        return response
-      }
-    },
-  })
-  return admin.is_admin && isAuthenticated
-}
-
-function useIsAdmin() {
-  const { user, getAccessTokenSilently, isAuthenticated } = useAuth0()
-
-  const { data: admin } = useQuery({
-    queryKey: ['client', user?.sub],
-    queryFn: async () => {
-      const accessToken = await getAccessTokenSilently()
-      if (user && user.sub) {
-        const response = await getClient(accessToken)
-        return response
-      }
-    },
-  })
-  return admin.is_admin && isAuthenticated
-}
+//   const { data: admin } = useQuery({
+//     queryKey: ['client', user?.sub],
+//     queryFn: async () => {
+//       const accessToken = await getAccessTokenSilently()
+//       if (user && user.sub) {
+//         const response = await getClient(accessToken)
+//         return response
+//       }
+//     },
+//   })
+//   return admin.is_admin && isAuthenticated
+// }
 
 interface Props {
   children: React.ReactNode

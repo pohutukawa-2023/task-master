@@ -62,7 +62,7 @@ router.get('/:clientUsername/tasks', validateAccessToken, async (req, res) => {
 
   try {
     const adminClientTasks = await getAdminClientTasks(adminId, clientUsername)
-    if (!adminClientTasks) {
+    if (adminClientTasks.length === 0) {
       return res.status(404).send('Not found')
     } else {
       return res.status(200).json(adminClientTasks)
