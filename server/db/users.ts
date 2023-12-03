@@ -1,7 +1,7 @@
 import { User } from '../../types/User.ts'
 import db from './connection.ts'
 
-export async function getUser(id: User['id']): Promise<User[]> {
+export async function getUser(id: User['id']): Promise<User[] | undefined> {
   return db('users')
     .select('username', 'name', 'email', 'is_admin')
     .where('id', id)
