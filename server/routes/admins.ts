@@ -5,7 +5,7 @@ import * as db from '../db/users.ts'
 import { validateAccessToken } from '../auth0'
 import { logError } from '../logger.ts'
 import { taskDraftSchema } from '../../types/Task.ts'
-import { insertTask } from '../db/tasks.ts'
+import { insertTask, deleteTask } from '../db/tasks.ts'
 
 const router = express.Router()
 
@@ -111,5 +111,29 @@ router.post('/:clientId/addTask', validateAccessToken, async (req, res) => {
     return res.status(500).send('Something went wrong')
   }
 })
+
+// GET /api/v1/admin/:clientUsername/tasks
+router.delete(
+  '/:clientUsername/tasks/:id',
+  validateAccessToken,
+  async (req, res) => {
+    const adminId = req.auth?.payload.sub
+    // const clientUsername = req.params.clientUsername
+    const id = Number(req.params.id)
+
+    if (!adminId) {
+      res.status(400).json({ message: 'Please login with your admin Id' })
+      return
+    }
+
+    try {
+      await deleteTask(id, adminId)
+      return res.status(200)
+    } catch (error) {
+      logError(error)
+      res.status(500).json({ message: 'Unable to delete the tasks' })
+    }
+  }
+)
 
 export default router

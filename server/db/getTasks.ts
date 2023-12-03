@@ -1,4 +1,4 @@
-import { Task, TaskSnakeCase } from '../../models/task.ts'
+import { Task } from '../../models/task.ts'
 import { TaskOptions } from '../../models/taskOption.ts'
 import db from './connection.ts'
 
