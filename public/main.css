@@ -529,10 +529,6 @@ video {
   position: fixed;
 }
 
-.absolute {
-  position: absolute;
-}
-
 .inset-x-0 {
   left: 0px;
   right: 0px;
@@ -781,6 +777,10 @@ video {
 .placeholder-\[\#B07CF2\]::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(176 124 242 / var(--tw-placeholder-opacity));
+}
+
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .hover\:bg-darkPurple:hover {

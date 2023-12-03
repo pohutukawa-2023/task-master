@@ -2,17 +2,22 @@ export async function seed(knex) {
   await knex('task_options').insert([
     {
       id: 1,
-      name: 'Breathing',
+      name: 'Power Breathing',
       link: '',
     },
     {
       id: 2,
-      name: 'Something else',
+      name: 'Yoga',
       link: '',
     },
     {
       id: 3,
-      name: 'Another task',
+      name: 'Walking',
+      link: '',
+    },
+    {
+      id: 4,
+      name: 'Box Breathing',
       link: '',
     },
   ])

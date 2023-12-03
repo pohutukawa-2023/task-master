@@ -9,6 +9,7 @@ import AdminClientTasks from './Pages/AdminClientTask.tsx'
 import TestLayout from './Pages/TestLayout.tsx'
 import ClientLayout from './Pages/ClientLayout.tsx'
 import AdminLayout from './Pages/AdminLayout.tsx'
+import ClientStats from './Pages/ClientStats.tsx'
 
 export const routes = createRoutesFromElements(
   <>
@@ -21,6 +22,7 @@ export const routes = createRoutesFromElements(
     </Route>
     <Route path="/client" element={<ClientLayout />}>
       <Route index element={<Home />} />
+      <Route path=":clientId/stats" element={<ClientStats />} />
     </Route>
     <Route path="/admin" element={<AdminLayout />}>
       <Route index element={<Home />} />

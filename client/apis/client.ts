@@ -19,3 +19,13 @@ export async function upsertClient(token: string, user: UserDraft) {
 
   return res.body
 }
+
+export async function getClientStats(token: string, clientId: string) {
+  const res = await request
+    .get(`/api/v1/client/stats/${clientId}`)
+    .set('Authorization', `Bearer ${token}`)
+    .set('Content-Type', 'application/json')
+  console.log(res.body)
+
+  return res.body
+}

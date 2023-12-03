@@ -44,3 +44,20 @@ export async function getAdminClientTasks(
       'task_options.name as taskName'
     )
 }
+
+export async function getClientStatsTasks(clientId: string) {
+  return await db('tasks')
+    .join('users', 'tasks.user_id', 'users.id')
+    .join('task_options', 'task_options.id', 'tasks.task_option_id')
+    .where('users.id', clientId)
+    .select(
+      'tasks.id as id',
+      'tasks.user_id as clientId',
+      'tasks.task_option_id as taskId',
+      'tasks.data as data',
+      'tasks.is_complete as isComplete',
+      'tasks.date as date',
+      'users.name as clientName',
+      'task_options.name as taskName'
+    )
+}
