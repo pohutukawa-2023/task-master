@@ -654,6 +654,21 @@ video {
   background-color: rgb(247 239 229 / var(--tw-bg-opacity));
 }
 
+.bg-slate-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
+.bg-slate-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
+.bg-slate-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(203 213 225 / var(--tw-bg-opacity));
+}
+
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
@@ -782,6 +797,11 @@ video {
 .hover\:text-primary:hover {
   --tw-text-opacity: 1;
   color: rgb(255 251 245 / var(--tw-text-opacity));
+}
+
+.focus\:bg-darkPurple:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgb(119 67 219 / var(--tw-bg-opacity));
 }
 
 .focus\:shadow-\[0px_0px_5px_2px_\#0A0047\]:focus {
