@@ -3,7 +3,6 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { getClient, upsertClient } from '../apis/client'
 import { User, UserDraft } from '../../types/User'
 import Button from '../components/UI/Button/Button'
-import { IfAdmin, IfAuthenticated } from '../components/Authenticated'
 
 function Profile() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
@@ -102,8 +101,6 @@ function Profile() {
         {updateMutation.isError ? (
           <div>An error occurred: {updateMutation.error.message}</div>
         ) : null}
-        <IfAuthenticated>Hello World</IfAuthenticated>
-        <IfAdmin>Hello</IfAdmin>
       </div>
     </form>
   )
