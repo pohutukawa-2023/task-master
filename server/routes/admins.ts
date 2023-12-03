@@ -6,9 +6,15 @@ import { validateAccessToken } from '../auth0'
 
 const router = express.Router()
 
+// Get and view all the tasks that have been assigned to a client by an admin by that clients id
 router.get('/:clientId/tasks', validateAccessToken, async (req, res) => {
   const adminId = req.auth?.payload.sub
   const clientId = req.params.clientId
+
+  if (!adminId) {
+    res.status(400).json({ message: 'Please login with your admin Id' })
+    return
+  }
 
   try {
     const result = await getTasksByAdmin(adminId as string, clientId)
@@ -22,6 +28,8 @@ router.get('/:clientId/tasks', validateAccessToken, async (req, res) => {
     return res.status(500).send('Something went wrong')
   }
 })
+
+// Get all clients that have been assigned to that admin.
 // GET /api/v1/admin
 router.get('/clientlist', validateAccessToken, async (req, res) => {
   const auth0id = req.auth?.payload.sub

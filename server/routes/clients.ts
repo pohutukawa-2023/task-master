@@ -28,8 +28,15 @@ router.get('/', validateAccessToken, async (req, res) => {
   }
 })
 
-router.get('/:auth0id/tasks', async (req, res) => {
+// Get all tasks that have been assigned to a specific client on their account.
+
+router.get('/tasks', validateAccessToken, async (req, res) => {
   const auth0id = req.params.auth0id
+
+  if (!auth0id) {
+    res.status(400).json({ message: 'Please provide a valid id' })
+    return
+  }
 
   try {
     const result = await getTasks(auth0id)
