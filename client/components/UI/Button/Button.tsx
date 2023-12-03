@@ -6,14 +6,13 @@ type ButtonProps = HtmlHTMLAttributes<HTMLButtonElement>
  <Button>button-name</Button> 
 */
 
-function Button({ onClick, children, ...rest }: ButtonProps) {
+function Button({ children, ...rest }: ButtonProps) {
   return (
     <button
       className={
         'bg-lightPurple text-darkNavy font-bold py-2 px-6 rounded-full hover:bg-darkPurple hover:text-primary focus:shadow-[0px_0px_5px_2px_#C3ACD0]'
       }
       {...rest}
-      onClick={onClick}
     >
       {children}
     </button>

@@ -21,7 +21,9 @@ function Home() {
   return (
     <>
       <div className="flex justify-end p-4 font-title text-lg">
-        <Logo>t</Logo>
+        <Logo>
+          <img src="t.svg" alt="Logo for Task Masters" />
+        </Logo>
       </div>
       <div className="pt-title px-4 h-full">
         <h1 className="text-darkPurple text-bigTask">

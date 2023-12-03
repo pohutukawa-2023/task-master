@@ -10,6 +10,7 @@ export default {
         lightPurple: '#C3ACD0',
         darkPurple: '#7743DB',
         darkNavy: '#0A0047',
+        grey: '#a6a6a6',
         warning: '#F27C7C',
       },
       fontFamily: {

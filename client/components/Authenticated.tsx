@@ -43,3 +43,8 @@ export function IfAdmin(props: Props) {
   const { children } = props
   return useIsAdmin() ? <>{children}</> : null
 }
+
+export function IfNotAdmin(props: Props) {
+  const { children } = props
+  return !useIsAdmin() ? <>{children}</> : null
+}

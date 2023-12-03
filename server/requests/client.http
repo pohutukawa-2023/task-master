@@ -1,14 +1,14 @@
 ### Get a clients details (200)
 GET http://localhost:3000/api/v1/client
-Authorization: Bearer {{TOKEN}}
+Authorization: {{$dotenv CLIENT_TOKEN}}
 
 ### Try to get a client that doesn't exist (404)
 GET http://localhost:3000/api/v1/client/fakeUser987
-Authorization: Bearer {{TOKEN}}
+Authorization: {{$dotenv CLIENT_TOKEN}}
 
 ### Add a new client
 POST http://localhost:3000/api/v1/client/add HTTP/1.1
-Authorization: Bearer {{TOKEN}}
+Authorization: {{$dotenv CLIENT_TOKEN}}
 content-type: application/json
 
 {
@@ -26,5 +26,5 @@ audience={{$dotenv VITE_AUTH0_AUDIENCE}}
 &grant_type=password
 &client_id={{$dotenv VITE_AUTH0_CLIENT_ID}}
 &client_secret={{$dotenv VITE_AUTH0_CLIENT_SECRET}}
-&username={{$dotenv USERNAME}}
-&password={{$dotenv PASSWORD}}
+&username={{$dotenv CLIENT_USERNAME}}
+&password={{$dotenv CLIENT_PASSWORD}}
