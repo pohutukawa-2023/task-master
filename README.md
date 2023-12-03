@@ -67,6 +67,22 @@ logo - Lucidity condensed
 - Deploy our app
 - Do 20 tests
 
+// patch for client side - xavier
+// editing task admin - pathik
+// add tasks admin - david
+
+// 1 - admin only fix (me)
+// 2 - dave and pathik
+// 3 - xavier
+// 4 - displays on a phone -kirsty
+// 5 - use id to get a client - david (type the username)
+// 6 - create an admin button - david
+// 7 - display dashboard -kirsty
+// 8 - deploy
+// 9 - do 20 tests - all
+
+// stats - display the stats.
+
 ## Canva
 
 https://www.canva.com/design/DAF1ghbFOtc/pi2yHcM0OICUMSrxah55Lw/edit?utm_content=DAF1ghbFOtc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
