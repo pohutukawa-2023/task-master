@@ -1,25 +1,12 @@
-import { useAuth0 } from '@auth0/auth0-react'
 import { IfAdmin, IfNotAdmin } from './Authenticated.tsx'
 import NavButton from './UI/NavButton/NavButton.tsx'
 import { Link } from 'react-router-dom'
 
 function BottomNav() {
-  // TODO: call the useAuth0 hook and destructure user, logout, and loginWithRedirect
-  const { logout, loginWithRedirect, user } = useAuth0()
-  // TODO: replace placeholder user object with the one from auth0
-
-  function handleSignOut() {
-    logout()
-  }
-
-  function handleSignIn() {
-    loginWithRedirect()
-  }
-
   return (
     <>
       <IfNotAdmin>
-        <div className="my-4 w-full md:w-fit flex justify-around">
+        <div className="my-4 w-full md:w-fit flex justify-around absolute inset-x-0 bottom-0">
           <Link to="/profile">
             <NavButton>
               <img
@@ -40,8 +27,9 @@ function BottomNav() {
           </Link>
         </div>
       </IfNotAdmin>
+
       <IfAdmin>
-        <div className="my-6 bg-slate-200 w-full md:w-fit flex justify-around">
+        <div className="my-6 w-full md:w-fit flex justify-around absolute inset-x-0 bottom-0">
           <Link to="/profile">
             <NavButton>
               <img
@@ -64,7 +52,6 @@ function BottomNav() {
             <NavButton>
               <img src={`./images/png/001-bar-chart.png`} alt="stats icon" />
             </NavButton>
-            <p>I am an admin</p>
           </Link>
         </div>
       </IfAdmin>
