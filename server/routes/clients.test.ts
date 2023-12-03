@@ -69,7 +69,6 @@ describe('POST /api/v1/client/add', () => {
       name: 'Harry Otter',
       email: 'harry@example.com',
     }
-    vi.mocked(upsertUser).mockResolvedValue([1])
     const response = await request(server)
       .post('/api/v1/client/edit')
       .send(newClient)
@@ -80,7 +79,6 @@ describe('POST /api/v1/client/add', () => {
   })
 
   it('returns 400 if invalid user data sent', async () => {
-    vi.mocked(upsertUser).mockResolvedValue([1])
     const response = await request(server)
       .post('/api/v1/client/edit')
       .set('authorization', `Bearer ${getMockToken()}`)

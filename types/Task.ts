@@ -6,7 +6,7 @@ export const taskDraftSchema = z.object({
   taskOptionId: z.number(),
   data: z.string(),
   isComplete: z.boolean(),
-  date: z.date(),
+  date: z.coerce.date(),
 })
 
 export const taskSchema = taskDraftSchema.extend({
