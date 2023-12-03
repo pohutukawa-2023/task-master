@@ -19,21 +19,54 @@ function BottomNav() {
   return (
     <>
       <IfNotAdmin>
-        <div>
+        <div className="my-4 w-full md:w-fit flex justify-around">
           <Link to="/profile">
-            <NavButton>Profile</NavButton>
+            <NavButton>
+              <img
+                src={`./images/png/007-user-1.png`}
+                alt="profile user icon"
+              />
+            </NavButton>
           </Link>
-          <NavButton>Tasks</NavButton>
-          <NavButton>Stats</NavButton>
+          <Link to="/test">
+            <NavButton>
+              <img src={`./images/png/013-task-1.png`} alt="tasks icon" />
+            </NavButton>
+          </Link>
+          <Link to="/test">
+            <NavButton>
+              <img src={`./images/png/001-bar-chart.png`} alt="stats icon" />
+            </NavButton>
+          </Link>
         </div>
       </IfNotAdmin>
       <IfAdmin>
-        <Link to="/profile">
-          <NavButton>Profile</NavButton>
-        </Link>
-        <NavButton>Tasks</NavButton>
-        <NavButton>Add Tasks</NavButton>
-        <NavButton>Stats</NavButton>
+        <div className="my-6 bg-slate-200 w-full md:w-fit flex justify-around">
+          <Link to="/profile">
+            <NavButton>
+              <img
+                src={`./images/png/007-user-1.png`}
+                alt="profile user icon"
+              />
+            </NavButton>
+          </Link>
+          <Link to="/test">
+            <NavButton>
+              <img src={`./images/png/019-add.png`} alt="add client icon" />
+            </NavButton>
+          </Link>
+          <Link to="/test">
+            <NavButton>
+              <img src={`./images/png/013-task-1.png`} alt="add task icon" />
+            </NavButton>
+          </Link>
+          <Link to="/test">
+            <NavButton>
+              <img src={`./images/png/001-bar-chart.png`} alt="stats icon" />
+            </NavButton>
+            <p>I am an admin</p>
+          </Link>
+        </div>
       </IfAdmin>
     </>
   )

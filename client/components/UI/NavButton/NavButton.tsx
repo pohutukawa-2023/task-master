@@ -6,14 +6,13 @@ type ButtonProps = HtmlHTMLAttributes<HTMLButtonElement>
  <Button>button-img</Button> 
 */
 
-function NavButton({ onClick, children, ...rest }: ButtonProps) {
+function NavButton({ children, ...rest }: ButtonProps) {
   return (
     <button
       className={
-        'bg-slate-500 text-black font-bold py-2 px-2 rounded-lg focus:bg-black focus:shadow-[0px_0px_5px_2px_#000000]'
+        'bg-lightPurple text-black font-bold py-4 px-4 rounded-full focus:shadow-[0px_0px_5px_2px_#0A0047] w-20 h-20'
       }
       {...rest}
-      onClick={onClick}
     >
       {children}
     </button>

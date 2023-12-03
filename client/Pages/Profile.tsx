@@ -57,7 +57,6 @@ function Profile() {
 
   return (
     <>
-      <BottomNav />
       <form onSubmit={handleSubmit} className="grid">
         <label htmlFor="auth0Id" className="font-semibold">
           User ID
@@ -106,6 +105,7 @@ function Profile() {
           ) : null}
         </div>
       </form>
+      <BottomNav />
     </>
   )
 }
