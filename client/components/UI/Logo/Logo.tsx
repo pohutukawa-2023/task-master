@@ -2,16 +2,22 @@ import { HtmlHTMLAttributes } from 'react'
 
 type Props = HtmlHTMLAttributes<HTMLDivElement>
 
+// bg-gradient-to-r from-lightPurple to-darkPurple
+
 function Logo({ children, ...rest }: Props) {
   return (
-    <div
-      className={
-        'flex flex-row justify-center items-center bg-gradient-to-r from-lightPurple to-darkPurple  rounded-full text-black text-sm w-16 h-16'
-      }
-      {...rest}
-    >
-      {children}
-    </div>
+    <>
+      {/* <Link to="/"> */}
+      <div
+        className={
+          'flex flex-row justify-center items-center rounded-full text-sm w-24 h-24'
+        }
+        {...rest}
+      >
+        {children}
+      </div>
+      {/* </Link> */}
+    </>
   )
 }
 
