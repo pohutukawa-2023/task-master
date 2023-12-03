@@ -1,6 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery } from '@tanstack/react-query'
 import { getAdminClients } from '../../apis/admin'
+import { Link } from 'react-router-dom'
 
 function AdminClientlist() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
@@ -33,7 +34,13 @@ function AdminClientlist() {
             const uniqueClient = data.find(
               (client: any) => client.id === uniqueId
             )
-            return <div key={uniqueClient.id}>{uniqueClient.name}</div>
+            return (
+              <div key={uniqueClient.id}>
+                <Link to={`/admin/${uniqueClient.username}/tasks`}>
+                  {uniqueClient.name}
+                </Link>
+              </div>
+            )
           })}
       </div>
     </>

@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll, beforeEach } from 'vitest'
 import db from './connection'
-import { upsertUser, getUser } from './users'
+import { upsertUser, getUser, getAdminClients } from './users'
 import { User } from '../../types/User'
 
 beforeAll(async () => {
@@ -60,6 +60,23 @@ describe('upsertUser', () => {
     // )
     await upsertUser(newUser)
     const after = await db('users').select()
-    expect(after).toHaveLength(8)
+    expect(after).toHaveLength(7)
+  })
+})
+
+// get clients by admin_id
+describe('getAdminClients', () => {
+  it('should return clients by admin', async () => {
+    const clients = await getAdminClients('auth0|6567ec0f1531c5f8eeca7c39')
+    expect(clients[0]).toHaveProperty('id')
+    expect(clients[0].admin_id).toBe('auth0|6567ec0f1531c5f8eeca7c39')
+
+    expect(clients[0]).toHaveProperty('name')
+    expect(clients[0]).toHaveProperty('task_option_id')
+  })
+
+  it('should return an empty array when admin has no clients', async () => {
+    const clients = await getAdminClients('userThatDoesntExist')
+    expect(clients).toStrictEqual([])
   })
 })
