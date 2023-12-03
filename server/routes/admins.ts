@@ -7,22 +7,22 @@ import { logError } from '../logger.ts'
 
 const router = express.Router()
 
-router.get('/:clientId/tasks', validateAccessToken, async (req, res) => {
-  const adminId = req.auth?.payload.sub
-  const clientId = req.params.clientId
+// router.get('/:clientId/tasks', validateAccessToken, async (req, res) => {
+//   const adminId = req.auth?.payload.sub
+//   const clientId = req.params.clientId
 
-  try {
-    const result = await getTasksByAdmin(adminId as string, clientId)
-    if (!result) {
-      return res.status(404).send('Not found')
-    } else {
-      return res.json(result)
-    }
-  } catch (error) {
-    logError(error)
-    return res.status(500).send('Something went wrong')
-  }
-})
+//   try {
+//     const result = await getTasksByAdmin(adminId as string, clientId)
+//     if (!result) {
+//       return res.status(404).send('Not found')
+//     } else {
+//       return res.json(result)
+//     }
+//   } catch (error) {
+//     logError(error)
+//     return res.status(500).send('Something went wrong')
+//   }
+// })
 // GET /api/v1/admin
 router.get('/clientlist', validateAccessToken, async (req, res) => {
   const auth0id = req.auth?.payload.sub
@@ -41,9 +41,10 @@ router.get('/clientlist', validateAccessToken, async (req, res) => {
   }
 })
 
-router.get('/:clientId/tasks', validateAccessToken, async (req, res) => {
+// GET /api/v1/admin/:clientUsername/tasks
+router.get('/:clientUsername/tasks', validateAccessToken, async (req, res) => {
   const adminId = req.auth?.payload.sub
-  const clientId = req.params.clientId
+  const clientUsername = req.params.clientUsername
 
   if (!adminId) {
     res.status(400).json({ message: 'Please login with your admin Id' })
@@ -51,7 +52,7 @@ router.get('/:clientId/tasks', validateAccessToken, async (req, res) => {
   }
 
   try {
-    const adminClientTasks = await getAdminClientTasks(adminId, clientId)
+    const adminClientTasks = await getAdminClientTasks(adminId, clientUsername)
     res.status(200).json(adminClientTasks)
   } catch (error) {
     logError(error)

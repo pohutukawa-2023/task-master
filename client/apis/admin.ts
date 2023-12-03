@@ -14,10 +14,13 @@ export async function getAdminClients(token: string) {
   return res.body
 }
 
-export async function getAdminClientTasks(token: string) {
+export async function getAdminClientTasks(
+  adminId: string,
+  clientUsername: string
+) {
   const res = await request
-    .get(`${rootUrl}/admin/clientUsername/tasks`)
-    .set('Authorization', `Bearer ${token}`)
+    .get(`${rootUrl}/admin/${clientUsername}/tasks`)
+    .set('Authorization', `Bearer ${adminId}`)
     .set('Content-Type', 'application/json')
   console.log(res.body)
 
