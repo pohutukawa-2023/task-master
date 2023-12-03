@@ -9,10 +9,14 @@ export async function getUser(id: User['id']): Promise<User[]> {
 }
 
 export async function getAdminClients(authId: string) {
-  return await db('tasks')
-    .join('users', 'tasks.user_id', 'users.id')
-    .select()
-    .where('tasks.admin_id', authId)
+  try {
+    return await db('tasks')
+      .join('users', 'tasks.user_id', 'users.id')
+      .select()
+      .where('tasks.admin_id', authId)
+  } catch (error) {
+    return Promise.reject(new Error(error as string))
+  }
 }
 
 export async function upsertUser(newUser: User) {

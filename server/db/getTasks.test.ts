@@ -13,3 +13,23 @@ beforeEach(async () => {
 describe('getUser', () => {
   it.skip('is skipped because theres not test', async () => {})
 })
+
+describe('getAdminAuthId', () => {
+  it('should return a user with the given auth0id', async () => {
+    const expected = {
+      username: 'bananaClient',
+      name: 'Banana Cabana',
+      email: 'banana@example.org',
+      is_admin: 0,
+    }
+
+    const user = await getUser('auth0|001')
+
+    expect(user).toStrictEqual(expected)
+  })
+
+  it('should return an empty array when user not found', async () => {
+    const user = await getUser('userThatDoesntExist')
+    expect(user).toBe(undefined)
+  })
+})
