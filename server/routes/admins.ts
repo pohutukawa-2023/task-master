@@ -11,7 +11,6 @@ const router = express.Router()
 router.get('/:clientId/tasks', validateAccessToken, async (req, res) => {
   const adminId = req.auth?.payload.sub
   const clientId = req.params.clientId
-
   if (!adminId) {
     res.status(400).json({ message: 'Please login with your admin Id' })
     return
@@ -19,7 +18,8 @@ router.get('/:clientId/tasks', validateAccessToken, async (req, res) => {
 
   try {
     const result = await getTasksByAdmin(adminId as string, clientId)
-    if (!result) {
+    // console.log(result)
+    if (result.length === 0) {
       return res.status(404).send('Not found')
     } else {
       return res.json(result)
