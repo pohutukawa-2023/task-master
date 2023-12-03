@@ -13,11 +13,11 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 export const options = {
   indexAxis: 'y' as const,
-  elements: {
-    bar: {
-      borderWidth: 2,
-    },
-  },
+  // elements: {
+  //   bar: {
+  //     borderWidth: 3,
+  //   },
+  // },
   plugins: {
     title: {
       display: true,
@@ -50,12 +50,12 @@ export const data = {
     {
       label: 'Completed Tasks',
       data: stats.map((e) => e.tasksDone),
-      backgroundColor: '#C3ACD0',
+      backgroundColor: '#7743DB',
     },
     {
       label: 'Total Tasks',
       data: stats.map((e) => e.tasksTotal),
-      backgroundColor: '#7743DB',
+      backgroundColor: '#C3ACD0',
     },
   ],
 }
