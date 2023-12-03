@@ -665,12 +665,16 @@ video {
   padding-top: 1.25rem;
 }
 
-.pt-\[45\%\] {
-  padding-top: 45%;
+.pt-\[55\%\] {
+  padding-top: 55%;
 }
 
 .pt-title {
   padding-top: 40%;
+}
+
+.pt-\[45\%\] {
+  padding-top: 45%;
 }
 
 .font-sans {
