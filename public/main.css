@@ -525,6 +525,10 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
 .block {
   display: block;
 }
@@ -661,8 +665,8 @@ video {
   padding-top: 1.25rem;
 }
 
-.pt-\[55\%\] {
-  padding-top: 55%;
+.pt-\[45\%\] {
+  padding-top: 45%;
 }
 
 .pt-title {

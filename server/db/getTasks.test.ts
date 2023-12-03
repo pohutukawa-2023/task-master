@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeAll, beforeEach } from 'vitest'
 import db from './connection'
 import { getTasks } from './getTasks'
+// import { getUser } from './users'
 
 beforeAll(async () => {
   await db.migrate.latest()
@@ -22,4 +23,7 @@ describe('getTasks', () => {
     const tasks = await getTasks('auth0|050')
     expect(tasks).toHaveLength(0)
   })
+})
+describe('getUser', () => {
+  it.skip('is skipped because theres not test', async () => {})
 })

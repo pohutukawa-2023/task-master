@@ -42,5 +42,12 @@ export async function seed(knex) {
       email: 'kirkpatrickxavier@example.com',
       is_admin: true,
     },
+    {
+      id: 'auth0|656ba4f101f9e8a19d2c8d19',
+      username: 'kirsty@example.com',
+      name: 'Kirsty Ammundsen',
+      email: 'kirsty@example.com',
+      is_admin: true,
+    },
   ])
 }
