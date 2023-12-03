@@ -1,5 +1,5 @@
 import express from 'express'
-import { getTasksByAdmin, getAdminClientTasks } from '../db/getTasks'
+import { getAdminClientTasks } from '../db/getTasks'
 
 import * as db from '../db/users.ts'
 import { validateAccessToken } from '../auth0'
@@ -53,7 +53,11 @@ router.get('/:clientUsername/tasks', validateAccessToken, async (req, res) => {
 
   try {
     const adminClientTasks = await getAdminClientTasks(adminId, clientUsername)
-    res.status(200).json(adminClientTasks)
+    if (!adminClientTasks) {
+      return res.status(404).send('Not found')
+    } else {
+      return res.status(200).json(adminClientTasks)
+    }
   } catch (error) {
     logError(error)
     res.status(500).json({ message: 'Unable to retrieve client tasks' })
