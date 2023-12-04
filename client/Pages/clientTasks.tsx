@@ -53,7 +53,7 @@ function ClientTasks() {
   ) {
     e.preventDefault()
     const token = await getAccessTokenSilently()
-    console.log(e.target.checked)
+    // console.log(e.target.checked)
 
     mutation.mutate({ done: !e.target.checked, task_id, token })
   }
