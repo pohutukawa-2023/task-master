@@ -1,12 +1,12 @@
-import { IfAuthenticated } from './Authenticated.tsx'
+import { IfAdmin } from './Authenticated.tsx'
 import NavButton from './UI/NavButton/NavButton.tsx'
 import { Link } from 'react-router-dom'
 
-function BottomNav() {
+function AdminNav() {
   return (
     <>
-      <IfAuthenticated>
-        <div className="bg-primaryBeige my-4 w-full md:w-fit flex justify-around fixed inset-x-0 bottom-0">
+      <IfAdmin>
+        <div className="bg-primaryBeige my-6 w-full md:w-fit flex justify-around fixed inset-x-0 bottom-0">
           <Link to="/profile">
             <NavButton>
               <img src={`/images/png/007-user-1.png`} alt="profile user icon" />
@@ -14,7 +14,12 @@ function BottomNav() {
           </Link>
           <Link to="/test">
             <NavButton>
-              <img src={`/images/png/013-task-1.png`} alt="tasks icon" />
+              <img src={`/images/png/019-add.png`} alt="add client icon" />
+            </NavButton>
+          </Link>
+          <Link to="/test">
+            <NavButton>
+              <img src={`/images/png/013-task-1.png`} alt="add task icon" />
             </NavButton>
           </Link>
           <Link to="/test">
@@ -23,9 +28,9 @@ function BottomNav() {
             </NavButton>
           </Link>
         </div>
-      </IfAuthenticated>
+      </IfAdmin>
     </>
   )
 }
 
-export default BottomNav
+export default AdminNav
