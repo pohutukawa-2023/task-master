@@ -16,6 +16,8 @@ export default function AdminLayout() {
       if (user && user.sub) {
         const response = await getClient(accessToken)
         return response
+      } else {
+        return null
       }
     },
     refetchOnWindowFocus: false,

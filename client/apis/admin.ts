@@ -1,4 +1,5 @@
 import request from 'superagent'
+import { TaskData } from '../../types/Task'
 
 const rootUrl = '/api/v1'
 
@@ -32,6 +33,21 @@ export async function deleteAdminClientTasks(id: number, adminId: string) {
     .delete(`${rootUrl}/admin/:clientUsername/tasks/${id}`)
     .set('Authorization', `Bearer ${adminId}`)
     .set('Content-Type', 'application/json')
+}
+
+export async function addTask(
+  token: string,
+  clientId: string,
+  taskData: TaskData
+) {
+  const res = await request
+    .post(`${rootUrl}/admin/${clientId}/addTask`)
+    .send(taskData)
+    .set('Authorization', `Bearer ${token}`)
+    .set('Content-Type', 'application/json')
+
+  console.log(res.body)
+  return res.body
 }
 
 function logError(err: Error) {

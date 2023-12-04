@@ -23,7 +23,7 @@ function useIsAdmin() {
       }
     },
   })
-  return admin.is_admin && isAuthenticated
+  return isAuthenticated && admin?.is_admin
 }
 
 interface Props {

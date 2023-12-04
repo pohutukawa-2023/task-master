@@ -9,7 +9,7 @@ function AdminClientTasks() {
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['adminClientTasks'],
-    queryFn: async () => {
+    queryFn: async (): Promise<AdminClientTask[]> => {
       const adminId = await getAccessTokenSilently()
       const adminClientTasks = await getAdminClientTasks(
         adminId,
@@ -48,7 +48,7 @@ function AdminClientTasks() {
     <>
       <h2>Client: {clientUsername}</h2>
       <div>
-        {data.map((task: any) => (
+        {data.map((task) => (
           <div key={task.id}>
             {task.date} -- {task.taskName} -- {task.isComplete} -
             <button onClick={() => handleDeleteTask(task.id)}>del</button>
