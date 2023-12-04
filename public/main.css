@@ -556,6 +556,34 @@ video {
   margin-bottom: 0.5rem;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
 .block {
   display: block;
 }
@@ -582,6 +610,10 @@ video {
 
 .h-full {
   height: 100%;
+}
+
+.h-10 {
+  height: 2.5rem;
 }
 
 .w-20 {
@@ -663,6 +695,11 @@ video {
   background-color: rgb(247 239 229 / var(--tw-bg-opacity));
 }
 
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
@@ -710,6 +747,16 @@ video {
   padding-bottom: 1rem;
 }
 
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
 .pt-5 {
   padding-top: 1.25rem;
 }
@@ -720,6 +767,10 @@ video {
 
 .pt-title {
   padding-top: 40%;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
 }
 
 .font-sans {
@@ -748,6 +799,11 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .font-bold {
@@ -781,6 +837,10 @@ video {
 .placeholder-\[\#B07CF2\]::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(176 124 242 / var(--tw-placeholder-opacity));
+}
+
+.accent-darkPurple {
+  accent-color: #7743DB;
 }
 
 .hover\:bg-darkPurple:hover {
