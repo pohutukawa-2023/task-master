@@ -5,23 +5,25 @@ import { addTask } from '../apis/admin'
 import { TaskData } from '../../types/Task'
 
 function AddClientTask() {
-  const { clientId } = useParams()
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
 
   const queryClient = useQueryClient()
 
   const insertTaskMutation = useMutation({
-    mutationFn: ({ form, token }: { form: TaskData; token: string }) =>
-      addTask(token, clientId, { form }),
+    mutationFn: ({
+      token,
+      clientId,
+      form,
+    }: {
+      token: string
+      clientId: string
+      form: TaskData
+    }) => addTask(token, clientId, form),
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ['tasks', clientId] })
+      queryClient.invalidateQueries({ queryKey: ['adminTasks', user?.sub] })
       // navigate('/my-songs')
     },
   })
-
-  if (!clientId || !isAuthenticated || !user) {
-    return <div>error</div>
-  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -29,20 +31,50 @@ function AddClientTask() {
     const token = await getAccessTokenSilently()
 
     const formData = new FormData(e.target as HTMLFormElement)
-    const taskOptionId = formData.get('taskOptionId')
-    const data = formData.get('data')
-    const isComplete = formData.get('isComplete')
-    const date = formData.get('date')
+    // auth0|656ba3141d577edc5228f00e
+    const clientId = formData.get('clientId')
+    const taskOptionId = Number(formData.get('taskOptionId'))
+    const data = ''
+    const isComplete = formData.get('isComplete') == 'on' ? true : false
+
+    console.log(formData.get('date'))
+
+    const date = String(formData.get('date'))
+    console.log(date)
 
     const form = { taskOptionId, data, isComplete, date }
 
-    insertTaskMutation.mutate({ token, form })
+    console.log(form)
+
+    insertTaskMutation.mutate({ token, clientId, form })
   }
 
   return (
     <div>
       <div>AddClientTask</div>
-      <div>{clientId}</div>
+      <div>Add task</div>
+      <form className="grid" onSubmit={handleSubmit}>
+        <label>
+          client Auth0 Id
+          <input type="text" name="clientId" required />
+        </label>
+
+        <label>
+          task option
+          <input type="text" name="taskOptionId" required />
+        </label>
+
+        <label>
+          complete?
+          <input type="checkbox" name="isComplete" />
+        </label>
+
+        <label>
+          date
+          <input type="date" name="date" required />
+        </label>
+        <button>Add</button>
+      </form>
     </div>
   )
 }

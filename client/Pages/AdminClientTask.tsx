@@ -37,29 +37,11 @@ function AdminClientTasks() {
       <div>
         {data.map((task) => (
           <div key={task.id}>
-            {task.date.toString()} -- {task.taskName} -- {task.isComplete} -
+            {task.date} -- {task.taskName} -- {task.isComplete} -
             <button>del</button>
           </div>
         ))}
       </div>
-      <div>Add task</div>
-      <form className="grid">
-        <label>
-          task option
-          <input type="text" name="taskOptionId" />
-        </label>
-
-        <label>
-          complete?
-          <input type="checkbox" name="isComplete" />
-        </label>
-
-        <label>
-          date
-          <input type="date" name="date" />
-        </label>
-        <button>Add</button>
-      </form>
     </>
   )
 }

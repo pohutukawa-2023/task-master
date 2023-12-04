@@ -21,7 +21,7 @@ export async function up(knex) {
       .notNullable()
     table.string('data')
     table.boolean('is_complete').defaultTo(false)
-    table.date('date')
+    table.string('date')
   })
 }
 
