@@ -4,9 +4,11 @@ import { getClient, upsertClient } from '../apis/client'
 import { User, UserDraft } from '../../types/User'
 import Button from '../components/UI/Button/Button'
 import AdminNav from '../components/AdminNav'
+import BottomNav from '../components/BottomNav'
+import TextBox from '../components/UI/Textbox/Textbox'
 
 function Profile() {
-  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
+  const { user, isAuthenticated, logout, getAccessTokenSilently } = useAuth0()
 
   const { data, isLoading } = useQuery({
     queryKey: ['client', user?.sub],
@@ -68,10 +70,9 @@ function Profile() {
         <label htmlFor="name" className="font-semibold">
           Name
         </label>
-        <input
+        <TextBox
           id="name"
           name="name"
-          className="mb-2"
           type="text"
           defaultValue={data?.name || user?.name}
         />
@@ -79,34 +80,37 @@ function Profile() {
         <label htmlFor="username" className="font-semibold">
           Username:
         </label>
-        <input
+        <TextBox
           id="username"
           name="username"
-          className="mb-2"
           type="text"
           defaultValue={data?.username || user?.nickname}
         />
         <label htmlFor="email" className="font-semibold">
           Email:
         </label>
-        <input
+        <TextBox
           id="email"
           name="email"
-          className="mb-2"
           defaultValue={data?.email || user?.email}
         />
-        <div>
+        <div className="mt-2">
           <Button type="submit" disabled={updateMutation.isLoading}>
-            {updateMutation.isLoading ? 'Saving...' : 'Save'}
+            {data ? 'Update profile' : 'Create profile'}
           </Button>
-          {updateMutation.isSuccess && <p>Profile saved</p>}
+          {updateMutation.isSuccess && (
+            <span className="ml-2">Profile saved</span>
+          )}
           {updateMutation.isError ? (
-            <div>An error occurred: {updateMutation.error.message}</div>
+            <span>An error occurred: {updateMutation.error.message}</span>
           ) : null}
         </div>
       </form>
-
-      <AdminNav />
+      <div className="mt-2">
+        <Button onClick={logout}>Logout</Button>
+      </div>
+      {data && data.is_admin === 1 && <AdminNav />}
+      {data && data.is_admin === 0 && <BottomNav />}
     </>
   )
 }
