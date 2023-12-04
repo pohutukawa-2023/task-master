@@ -30,7 +30,7 @@ export async function insertTask(task: TaskDraft): Promise<Task> {
 // Delete task from admin side
 export async function deleteTask(id: number, adminId: string): Promise<Task> {
   try {
-    return db('tasks').where('id', id).where('adminId', adminId).del()
+    return db('tasks').where('id', id).where('admin_id', adminId).del()
   } catch (error) {
     return Promise.reject(new Error(error as string))
   }

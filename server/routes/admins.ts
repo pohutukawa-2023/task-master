@@ -128,10 +128,10 @@ router.delete(
 
     try {
       await deleteTask(id, adminId)
-      return res.status(200)
+      res.sendStatus(200)
     } catch (error) {
       logError(error)
-      res.status(500).json({ message: 'Unable to delete the tasks' })
+      res.status(500).json({ message: 'Cannot delete task' })
     }
   }
 )

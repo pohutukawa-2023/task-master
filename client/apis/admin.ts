@@ -27,6 +27,13 @@ export async function getAdminClientTasks(
   return res.body
 }
 
+export async function deleteAdminClientTasks(id: number, adminId: string) {
+  return await request
+    .delete(`${rootUrl}/admin/:clientUsername/tasks/${id}`)
+    .set('Authorization', `Bearer ${adminId}`)
+    .set('Content-Type', 'application/json')
+}
+
 function logError(err: Error) {
   console.log(err)
   if (err.message === 'Username Taken') {
