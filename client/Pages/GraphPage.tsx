@@ -11,21 +11,21 @@ import { Bar } from 'react-chartjs-2'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
-export const options = {
-  indexAxis: 'y' as const,
-  plugins: {},
-  responsive: true,
-  scales: {
-    x: {
-      stacked: false,
-    },
-    y: {
-      stacked: true,
-    },
-  },
-}
-
 export default function GraphPage({ stats }) {
+  const options = {
+    indexAxis: 'y' as const,
+    plugins: {},
+    responsive: true,
+    scales: {
+      x: {
+        stacked: false,
+      },
+      y: {
+        stacked: true,
+      },
+    },
+  }
+
   // must be called labels to work
   const labels = stats.map((e) => e.date)
 
