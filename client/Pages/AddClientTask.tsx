@@ -5,9 +5,11 @@ import { addTask } from '../apis/admin'
 import { TaskData } from '../../types/Task'
 import Button from '../components/UI/Button/Button'
 import TextBox from '../components/UI/Textbox/Textbox'
+import Select from '../components/UI/Select/Select'
+import Checkbox from '../components/UI/Checkbox/Checkbox'
 
 function AddClientTask() {
-  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
+  const { user, getAccessTokenSilently } = useAuth0()
 
   const queryClient = useQueryClient()
 
@@ -37,32 +39,37 @@ function AddClientTask() {
     const clientId = formData.get('clientId')
     const taskOptionId = Number(formData.get('taskOptionId'))
     const data = ''
-    const isComplete = formData.get('isComplete') == 'on' ? true : false
-
-    console.log(formData.get('date'))
-
+    // const isComplete = formData.get('isComplete') == 'on' ? true : false
+    const isComplete = false
     const date = String(formData.get('date'))
-    console.log(date)
 
     const form = { taskOptionId, data, isComplete, date }
 
-    console.log(form)
-
     insertTaskMutation.mutate({ token, clientId, form })
   }
+
+  const task_options = [
+    { id: 1, value: 'Breathing' },
+    { id: 2, value: 'Meditation' },
+    { id: 3, value: 'Something else' },
+  ]
 
   return (
     <div>
       <div className="mb-2 text-xl">AddClientTask</div>
       <form className="grid" onSubmit={handleSubmit}>
         <label htmlFor="clientId">Client</label>
-        <TextBox name="clientId" required />
+        <TextBox addclasses="mb-2" name="clientId" required />
         <label htmlFor="taskOptionId">Task</label>
-        <TextBox name="taskOptionId" required />
-        <label htmlFor="isComplete">Complete?</label>
-        <TextBox name="isComplete" required />
+        <Select addclasses="mb-2" name="taskOptionId" required>
+          {task_options.map((option) => (
+            <option key={option.id} value={option.id}>
+              {option.value}
+            </option>
+          ))}
+        </Select>
         <label htmlFor="date">Date</label>
-        <TextBox name="date" required />
+        <TextBox type="date" addclasses="mb-2" name="date" required />
         <Button addclasses="mt-4">Add</Button>
       </form>
     </div>
