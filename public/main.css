@@ -576,6 +576,10 @@ video {
   display: grid;
 }
 
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
 .h-20 {
   height: 5rem;
 }
@@ -638,6 +642,10 @@ video {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.self-center {
+  align-self: center;
 }
 
 .rounded-full {
@@ -728,6 +736,10 @@ video {
 
 .pt-title {
   padding-top: 40%;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .font-sans {

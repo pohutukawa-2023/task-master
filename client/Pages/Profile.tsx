@@ -60,10 +60,20 @@ function Profile() {
   return (
     <>
       <form onSubmit={handleSubmit} className="grid">
-        <label htmlFor="auth0Id" className="font-semibold">
+        <label htmlFor="auth0Id" className="font-semibold flex justify-center">
           User ID
         </label>
-        <div id="auth0Id" className="mb-2">
+
+        <div className="flex justify-center">
+          {data && (
+            <img
+              className=""
+              alt={user?.sub}
+              src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${user?.sub}`}
+            ></img>
+          )}
+        </div>
+        <div id="auth0Id" className=" flex justify-center">
           {user?.sub}
         </div>
 
