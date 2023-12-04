@@ -5,6 +5,7 @@ import {
   IfAuthenticated,
   IfNotAuthenticated,
 } from '../components/Authenticated'
+import Profile from './Profile'
 
 function Home() {
   const { logout, loginWithRedirect, user } = useAuth0()

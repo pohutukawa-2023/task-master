@@ -28,6 +28,13 @@ export async function getAdminClientTasks(
   return res.body
 }
 
+export async function deleteAdminClientTasks(id: number, adminId: string) {
+  return await request
+    .delete(`${rootUrl}/admin/:clientUsername/tasks/${id}`)
+    .set('Authorization', `Bearer ${adminId}`)
+    .set('Content-Type', 'application/json')
+}
+
 export async function addTask(
   token: string,
   clientId: string,

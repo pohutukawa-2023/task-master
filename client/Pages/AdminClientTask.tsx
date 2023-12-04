@@ -1,8 +1,9 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
-import { getAdminClientTasks } from '../apis/admin'
+import { deleteAdminClientTasks, getAdminClientTasks } from '../apis/admin'
 import { AdminClientTask } from '../../types/Admin'
+import Button from '../components/UI/Button/Button'
 
 function AdminClientTasks() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
@@ -19,6 +20,20 @@ function AdminClientTasks() {
       return adminClientTasks
     },
   })
+
+  const queryClient = useQueryClient()
+  const mutation = useMutation({
+    mutationFn: async (id: number) => {
+      const adminId = await getAccessTokenSilently()
+      await deleteAdminClientTasks(id, adminId)
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['adminClientTasks'] })
+    },
+  })
+
+  const handleDeleteTask = (id: number) => mutation.mutate(id)
+
   if (!isAuthenticated && !user) {
     return <div>Not authenticated</div>
   }
@@ -38,7 +53,7 @@ function AdminClientTasks() {
         {data.map((task) => (
           <div key={task.id}>
             {task.date} -- {task.taskName} -- {task.isComplete} -
-            <button>del</button>
+            <Button onClick={() => handleDeleteTask(task.id)}>x</Button>
           </div>
         ))}
       </div>
