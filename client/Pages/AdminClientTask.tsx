@@ -11,6 +11,7 @@ function AdminClientTasks() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
   const { clientUsername } = useParams()
   const [currentDate, setCurrentDate] = useState(new Date()) // set current date
+  const [view, setView] = useState('Day')
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['adminClientTasks'],
@@ -53,6 +54,7 @@ function AdminClientTasks() {
   return (
     <>
       <h2>Client: {clientUsername}</h2>
+
       <div className="flex items-center">
         <Button onClick={minusDate}>-</Button>
         <div className="ml-2 mr-2">
