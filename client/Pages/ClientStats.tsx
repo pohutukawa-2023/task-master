@@ -1,8 +1,8 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
 import { getClientStats } from '../apis/client'
-import GraphPage from './GraphPage'
+import GraphPage from '../components/GraphPage'
+import Header from '../components/Header'
 
 function ClientStats() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
@@ -66,6 +66,7 @@ function ClientStats() {
 
   return (
     <>
+      <Header title="Stats" />
       <h2>Client: {clientStats[1].clientName}</h2>
       <br />
       <h3>{`${clientStats[1].clientName}'s Progress`}</h3>

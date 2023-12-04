@@ -14,7 +14,6 @@ export default function ClientLayout() {
 
   return (
     <>
-      <Header />
       <div className="p-6">
         <Outlet />
       </div>

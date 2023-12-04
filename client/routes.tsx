@@ -11,7 +11,7 @@ import AddClientTask from './Pages/AddClientTask.tsx'
 import ClientLayout from './Pages/ClientLayout.tsx'
 import AdminLayout from './Pages/AdminLayout.tsx'
 import ClientStats from './Pages/ClientStats.tsx'
-import { GraphPage } from './Pages/GraphPage.tsx'
+import { GraphPage } from './components/GraphPage.tsx'
 
 export const routes = createRoutesFromElements(
   <>
