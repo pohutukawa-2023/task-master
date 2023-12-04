@@ -21,7 +21,7 @@ function AdminClientTasks() {
 
   const queryClient = useQueryClient()
   const mutation = useMutation({
-    mutationFn: async (id) => {
+    mutationFn: async (id: number) => {
       const adminId = await getAccessTokenSilently()
       await deleteAdminClientTasks(id, adminId)
     },
