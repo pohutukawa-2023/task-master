@@ -12,7 +12,7 @@ function BottomNav() {
               <img src={`/images/png/007-user-1.png`} alt="profile user icon" />
             </NavButton>
           </Link>
-          <Link to="/test">
+          <Link to="/client/tasks">
             <NavButton>
               <img src={`/images/png/013-task-1.png`} alt="tasks icon" />
             </NavButton>
