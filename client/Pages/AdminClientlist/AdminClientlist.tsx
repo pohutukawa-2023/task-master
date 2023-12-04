@@ -2,6 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery } from '@tanstack/react-query'
 import { getAdminClients } from '../../apis/admin'
 import { Link } from 'react-router-dom'
+import Task from '../../components/UI/Task/Task'
 
 function AdminClientlist() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
@@ -35,9 +36,9 @@ function AdminClientlist() {
               (client: any) => client.id === uniqueId
             )
             return (
-              <div key={uniqueClient.id}>
+              <div key={uniqueClient.id} style={{ marginTop: '8px' }}>
                 <Link to={`/admin/${uniqueClient.username}/tasks`}>
-                  {uniqueClient.name}
+                  <Task>{uniqueClient.name}</Task>
                 </Link>
               </div>
             )

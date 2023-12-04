@@ -26,5 +26,9 @@ audience={{$dotenv VITE_AUTH0_AUDIENCE}}
 &grant_type=password
 &client_id={{$dotenv VITE_AUTH0_CLIENT_ID}}
 &client_secret={{$dotenv VITE_AUTH0_CLIENT_SECRET}}
-&username={{$dotenv KIRSTY_USERNAME}}
-&password={{$dotenv KIRSTY_PASSWORD}}
+&username={{$dotenv CLIENT_USERNAME}}
+&password={{$dotenv CLIENT_PASSWORD}}
+
+### As an admin, get a specific clients tasks
+GET http://localhost:3000/api/v1/client/tasks
+Authorization: {{$dotenv DAVID_TOKEN}}

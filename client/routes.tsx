@@ -7,6 +7,8 @@ import AdminClientlist from './Pages/AdminClientlist/AdminClientlist.tsx'
 import ProtectedComponent from './components/UI/ProtectedComponent.tsx'
 import AdminClientTasks from './Pages/AdminClientTask.tsx'
 import TestLayout from './Pages/TestLayout.tsx'
+import ClientTasks from './Pages/clientTasks.tsx'
+
 import AddClientTask from './Pages/AddClientTask.tsx'
 import ClientLayout from './Pages/ClientLayout.tsx'
 import AdminLayout from './Pages/AdminLayout.tsx'
@@ -28,8 +30,14 @@ export const routes = createRoutesFromElements(
     </Route>
     <Route path="/admin" element={<AdminLayout />}>
       <Route index element={<Home />} />
-      <Route path="clientlist" element={<AdminClientlist />} />
-      <Route path=":clientUsername/tasks" element={<AdminClientTasks />} />
+      <Route
+        path="clientlist"
+        element={<ProtectedComponent component={AdminClientlist} />}
+      />
+      <Route
+        path=":clientUsername/tasks"
+        element={<ProtectedComponent component={AdminClientTasks} />}
+      />
       <Route path="addTask" element={<AddClientTask />} />
       <Route path="addTask/:clientId" element={<AddClientTask />} />
       <Route path=":clientId/stats" element={<ClientStats />} />
