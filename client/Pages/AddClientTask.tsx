@@ -1,6 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
+
 import { addTask } from '../apis/admin'
 import { TaskData } from '../../types/Task'
 import Button from '../components/UI/Button/Button'
@@ -9,6 +10,9 @@ import Select from '../components/UI/Select/Select'
 import Checkbox from '../components/UI/Checkbox/Checkbox'
 
 function AddClientTask() {
+  const { clientId } = useParams()
+  const navigate = useNavigate()
+
   const { user, getAccessTokenSilently } = useAuth0()
 
   const queryClient = useQueryClient()
@@ -59,7 +63,16 @@ function AddClientTask() {
       <div className="mb-2 text-xl">AddClientTask</div>
       <form className="grid" onSubmit={handleSubmit}>
         <label htmlFor="clientId">Client</label>
-        <TextBox addclasses="mb-2" name="clientId" required />
+        {clientId ? (
+          <TextBox
+            addclasses="mb-2"
+            name="clientId"
+            defaultValue={clientId}
+            required
+          />
+        ) : (
+          <TextBox addclasses="mb-2" name="clientId" required />
+        )}
         <label htmlFor="taskOptionId">Task</label>
         <Select addclasses="mb-2" name="taskOptionId" required>
           {task_options.map((option) => (
@@ -71,6 +84,9 @@ function AddClientTask() {
         <label htmlFor="date">Date</label>
         <TextBox type="date" addclasses="mb-2" name="date" required />
         <Button addclasses="mt-4">Add</Button>
+        <Button addclasses="mt-4" onClick={() => navigate(-1)}>
+          Back
+        </Button>
       </form>
     </div>
   )
