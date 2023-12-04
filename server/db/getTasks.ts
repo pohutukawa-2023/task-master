@@ -1,5 +1,6 @@
-import { Task, TaskSnakeCase } from '../../models/task.ts'
+import { Task } from '../../models/task.ts'
 import { TaskOptions } from '../../models/taskOption.ts'
+import { AdminClientTask } from '../../types/Admin.ts'
 import db from './connection.ts'
 
 export async function getTasks(
@@ -24,7 +25,7 @@ export async function getTasksByAdmin(
 export async function getAdminClientTasks(
   adminId: string,
   clientUsername: string
-) {
+): Promise<AdminClientTask[]> {
   return await db('tasks')
     .join('users', 'tasks.user_id', 'users.id')
     .join('task_options', 'task_options.id', 'tasks.task_option_id')

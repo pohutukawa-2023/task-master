@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getClient } from '../apis/client'
 import AdminNav from '../components/AdminNav'
 import { Outlet } from 'react-router-dom'
+import Logo from '../components/UI/Logo/Logo'
 
 // Note that you must add the useQuery and UseAuth0 on the page for the isAdmin and isNot Admin functions to work.
 
@@ -16,6 +17,8 @@ export default function AdminLayout() {
       if (user && user.sub) {
         const response = await getClient(accessToken)
         return response
+      } else {
+        return null
       }
     },
     refetchOnWindowFocus: false,

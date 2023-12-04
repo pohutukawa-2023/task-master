@@ -12,14 +12,14 @@ function AdminNav() {
               <img src={`/images/png/007-user-1.png`} alt="profile user icon" />
             </NavButton>
           </Link>
-          <Link to="/test">
+          <Link to="/admin/clientlist">
             <NavButton>
-              <img src={`/images/png/019-add.png`} alt="add client icon" />
+              <img src={`/images/png/013-task-1.png`} alt="add client icon" />
             </NavButton>
           </Link>
-          <Link to="/test">
+          <Link to="/admin/addTask">
             <NavButton>
-              <img src={`/images/png/013-task-1.png`} alt="add task icon" />
+              <img src={`/images/png/019-add.png`} alt="add task icon" />
             </NavButton>
           </Link>
           <Link to="/test">

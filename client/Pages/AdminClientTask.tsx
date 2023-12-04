@@ -1,15 +1,18 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
-import { getAdminClientTasks } from '../apis/admin'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useNavigate, useParams } from 'react-router-dom'
+import { deleteAdminClientTasks, getAdminClientTasks } from '../apis/admin'
+import { AdminClientTask } from '../../types/Admin'
+import Button from '../components/UI/Button/Button'
 
 function AdminClientTasks() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
   const { clientUsername } = useParams()
+  const navigate = useNavigate()
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['adminClientTasks'],
-    queryFn: async () => {
+    queryFn: async (): Promise<AdminClientTask[]> => {
       const adminId = await getAccessTokenSilently()
       const adminClientTasks = await getAdminClientTasks(
         adminId,
@@ -18,6 +21,20 @@ function AdminClientTasks() {
       return adminClientTasks
     },
   })
+
+  const queryClient = useQueryClient()
+  const mutation = useMutation({
+    mutationFn: async (id: number) => {
+      const adminId = await getAccessTokenSilently()
+      await deleteAdminClientTasks(id, adminId)
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['adminClientTasks'] })
+    },
+  })
+
+  const handleDeleteTask = (id: number) => mutation.mutate(id)
+
   if (!isAuthenticated && !user) {
     return <div>Not authenticated</div>
   }
@@ -34,13 +51,16 @@ function AdminClientTasks() {
     <>
       <h2>Client: {clientUsername}</h2>
       <div>
-        {data.map((task: any) => (
+        {data.map((task) => (
           <div key={task.id}>
             {task.date} -- {task.taskName} -- {task.isComplete} -
-            <button>del</button>
+            <Button onClick={() => handleDeleteTask(task.id)}>x</Button>
           </div>
         ))}
       </div>
+      <Button onClick={() => navigate(`/admin/addTask/${data[0]?.clientId}`)}>
+        Add task
+      </Button>
     </>
   )
 }
