@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { deleteAdminClientTasks, getAdminClientTasks } from '../apis/admin'
 import { AdminClientTask } from '../../types/Admin'
 import Button from '../components/UI/Button/Button'
@@ -8,6 +8,7 @@ import Button from '../components/UI/Button/Button'
 function AdminClientTasks() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
   const { clientUsername } = useParams()
+  const navigate = useNavigate()
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['adminClientTasks'],
@@ -57,6 +58,9 @@ function AdminClientTasks() {
           </div>
         ))}
       </div>
+      <Button onClick={() => navigate(`/admin/addTask/${data[0]?.clientId}`)}>
+        Add task
+      </Button>
     </>
   )
 }
