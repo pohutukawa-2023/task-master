@@ -13,17 +13,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 export const options = {
   indexAxis: 'y' as const,
-  // elements: {
-  //   bar: {
-  //     borderWidth: 3,
-  //   },
-  // },
-  plugins: {
-    title: {
-      display: true,
-      text: "Kirsty's Progress",
-    },
-  },
+  plugins: {},
   responsive: true,
   scales: {
     x: {
@@ -35,31 +25,25 @@ export const options = {
   },
 }
 
-// data that I have hardcoded - the shape I want
-const stats = [
-  { date: '01-12-2023', tasksDone: 33 },
-  { date: '02-12-2023', tasksDone: 100 },
-]
+export default function GraphPage({ stats }) {
+  // must be called labels to work
+  const labels = stats.map((e) => e.date)
 
-// must be called labels to work
-const labels = stats.map((e) => e.date)
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Percentage Completed',
+        data: stats.map((e) => e.percentDone),
+        backgroundColor: '#7743DB',
+      },
+      {
+        label: 'Total',
+        data: stats.map(() => 100),
+        backgroundColor: '#C3ACD0',
+      },
+    ],
+  }
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Completed Tasks',
-      data: stats.map((e) => e.tasksDone),
-      backgroundColor: '#7743DB',
-    },
-    {
-      label: 'Total Tasks',
-      data: stats.map(() => 100),
-      backgroundColor: '#C3ACD0',
-    },
-  ],
-}
-
-export function GraphPage() {
   return <Bar options={options} data={data} />
 }

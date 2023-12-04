@@ -20,11 +20,10 @@ export async function upsertClient(token: string, user: UserDraft) {
   return res.body
 }
 
-export async function getClientStats(token: string, clientId: string) {
+export async function getClientStats(token: string) {
   const res = await request
-    .get(`/api/v1/client/stats/${clientId}`)
+    .get(`/api/v1/client/stats`)
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
-
   return res.body
 }

@@ -24,7 +24,7 @@ export const routes = createRoutesFromElements(
     </Route>
     <Route path="/client" element={<ClientLayout />}>
       <Route index element={<Home />} />
-      <Route path=":clientId/stats" element={<GraphPage />} />
+      <Route path=":clientId/stats" element={<ClientStats />} />
     </Route>
     <Route path="/admin" element={<AdminLayout />}>
       <Route index element={<Home />} />
@@ -32,7 +32,7 @@ export const routes = createRoutesFromElements(
       <Route path=":clientUsername/tasks" element={<AdminClientTasks />} />
       <Route path="addTask" element={<AddClientTask />} />
       <Route path="addTask/:clientId" element={<AddClientTask />} />
-      <Route path=":clientId/stats" element={<GraphPage />} />
+      <Route path=":clientId/stats" element={<ClientStats />} />
     </Route>
     <Route path="/test" element={<TestLayout />} />
   </>
