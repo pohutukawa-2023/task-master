@@ -2,6 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 import { deleteAdminClientTasks, getAdminClientTasks } from '../apis/admin'
+import { AdminClientTask } from '../../types/Admin'
 
 function AdminClientTasks() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
