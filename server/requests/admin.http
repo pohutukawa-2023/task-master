@@ -26,5 +26,5 @@ audience={{$dotenv VITE_AUTH0_AUDIENCE}}
 &grant_type=password
 &client_id={{$dotenv VITE_AUTH0_CLIENT_ID}}
 &client_secret={{$dotenv VITE_AUTH0_CLIENT_SECRET}}
-&username={{$dotenv PATHIK_USERNAME}}
-&password={{$dotenv PATHIK_PASSWORD}}
+&username={{$dotenv KIRSTY_USERNAME}}
+&password={{$dotenv KIRSTY_PASSWORD}}

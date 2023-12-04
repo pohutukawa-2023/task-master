@@ -27,7 +27,7 @@ export const options = {
   responsive: true,
   scales: {
     x: {
-      stacked: true,
+      stacked: false,
     },
     y: {
       stacked: true,
@@ -37,8 +37,8 @@ export const options = {
 
 // data that I have hardcoded - the shape I want
 const stats = [
-  { date: '01-12-2023', tasksDone: 0, tasksTotal: 3 },
-  { date: '02-12-2023', tasksDone: 1, tasksTotal: 1 },
+  { date: '01-12-2023', tasksDone: 33 },
+  { date: '02-12-2023', tasksDone: 100 },
 ]
 
 // must be called labels to work
@@ -54,7 +54,7 @@ export const data = {
     },
     {
       label: 'Total Tasks',
-      data: stats.map((e) => e.tasksTotal),
+      data: stats.map(() => 100),
       backgroundColor: '#C3ACD0',
     },
   ],

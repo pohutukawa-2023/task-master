@@ -29,6 +29,7 @@ export const routes = createRoutesFromElements(
       <Route index element={<Home />} />
       <Route path="clientlist" element={<AdminClientlist />} />
       <Route path=":clientUsername/tasks" element={<AdminClientTasks />} />
+      <Route path=":clientId/stats" element={<GraphPage />} />
     </Route>
     <Route path="/test" element={<TestLayout />} />
   </>

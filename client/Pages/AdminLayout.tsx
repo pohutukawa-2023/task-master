@@ -36,7 +36,9 @@ export default function AdminLayout() {
 
   return (
     <>
-      <Outlet />
+      <div className="p-6">
+        <Outlet />
+      </div>
       <AdminNav />
     </>
   )
