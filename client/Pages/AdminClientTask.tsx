@@ -4,11 +4,18 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { deleteAdminClientTasks, getAdminClientTasks } from '../apis/admin'
 import { AdminClientTask } from '../../types/Admin'
 import Button from '../components/UI/Button/Button'
+import AdminClientTaskView from './AdminClientTaskView'
+import { useState } from 'react'
 
 function AdminClientTasks() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
   const { clientUsername } = useParams()
+
+  const [currentDate, setCurrentDate] = useState(new Date()) // set current date
+  const [view, setView] = useState('Day')
+
   const navigate = useNavigate()
+
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['adminClientTasks'],
@@ -22,19 +29,6 @@ function AdminClientTasks() {
     },
   })
 
-  const queryClient = useQueryClient()
-  const mutation = useMutation({
-    mutationFn: async (id: number) => {
-      const adminId = await getAccessTokenSilently()
-      await deleteAdminClientTasks(id, adminId)
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['adminClientTasks'] })
-    },
-  })
-
-  const handleDeleteTask = (id: number) => mutation.mutate(id)
-
   if (!isAuthenticated && !user) {
     return <div>Not authenticated</div>
   }
@@ -47,15 +41,38 @@ function AdminClientTasks() {
     return <p>something went wrong</p>
   }
 
+  // Date view
+
+  function minusDate() {
+    const updatedDate = new Date(currentDate)
+    updatedDate.setDate(updatedDate.getDate() - 1)
+    setCurrentDate(updatedDate)
+  }
+
+  function plusDate() {
+    const updatedDate = new Date(currentDate)
+    updatedDate.setDate(updatedDate.getDate() + 1)
+    setCurrentDate(updatedDate)
+  }
+
   return (
     <>
       <h2>Client: {clientUsername}</h2>
+
+      <div className="flex items-center">
+        <Button onClick={minusDate}>-</Button>
+        <div className="ml-2 mr-2">
+          {currentDate.toLocaleDateString('en-GB')}
+        </div>
+        <Button onClick={plusDate}>+</Button>
+      </div>
       <div>
         {data.map((task) => (
-          <div key={task.id}>
-            {task.date} -- {task.taskName} -- {task.isComplete} -
-            <Button onClick={() => handleDeleteTask(task.id)}>x</Button>
-          </div>
+          <AdminClientTaskView
+            key={task.id}
+            task={task}
+            currentDate={currentDate}
+          />
         ))}
       </div>
       <Button onClick={() => navigate(`/admin/addTask/${data[0]?.clientId}`)}>
