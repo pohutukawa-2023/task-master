@@ -3,6 +3,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 import { addTask } from '../apis/admin'
 import { TaskData } from '../../types/Task'
+import Button from '../components/UI/Button/Button'
+import TextBox from '../components/UI/Textbox/Textbox'
 
 function AddClientTask() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
@@ -51,29 +53,17 @@ function AddClientTask() {
 
   return (
     <div>
-      <div>AddClientTask</div>
-      <div>Add task</div>
+      <div className="mb-2 text-xl">AddClientTask</div>
       <form className="grid" onSubmit={handleSubmit}>
-        <label>
-          client Auth0 Id
-          <input type="text" name="clientId" required />
-        </label>
-
-        <label>
-          task option
-          <input type="text" name="taskOptionId" required />
-        </label>
-
-        <label>
-          complete?
-          <input type="checkbox" name="isComplete" />
-        </label>
-
-        <label>
-          date
-          <input type="date" name="date" required />
-        </label>
-        <button>Add</button>
+        <label htmlFor="clientId">Client</label>
+        <TextBox name="clientId" required />
+        <label htmlFor="taskOptionId">Task</label>
+        <TextBox name="taskOptionId" required />
+        <label htmlFor="isComplete">Complete?</label>
+        <TextBox name="isComplete" required />
+        <label htmlFor="date">Date</label>
+        <TextBox name="date" required />
+        <Button addclasses="mt-4">Add</Button>
       </form>
     </div>
   )
