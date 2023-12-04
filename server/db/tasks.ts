@@ -2,7 +2,6 @@ import { Task, TaskDraft } from '../../types/Task.ts'
 import db from './connection.ts'
 
 export async function insertTask(task: TaskDraft): Promise<Task> {
-  console.log(task)
   try {
     const result = await db('tasks')
       .insert({
