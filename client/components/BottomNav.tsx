@@ -20,7 +20,7 @@ function BottomNav() {
               <img src={`/images/png/013-task-1.png`} alt="tasks icon" />
             </NavButton>
           </Link>
-          <Link to={`${user?.sub}/stats`}>
+          <Link to={`/client/${user?.sub}/stats`}>
             <NavButton>
               <img src={`/images/png/001-bar-chart.png`} alt="stats icon" />
             </NavButton>

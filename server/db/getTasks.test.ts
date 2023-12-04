@@ -52,8 +52,6 @@ describe('getAdminClientTasks', () => {
 describe('getClientStatsTasks', () => {
   it('should return tasks filtering for clientId', async () => {
     const tasks = await getClientStatsTasks('auth0|656ba3141d577edc5228f00e')
-
-    console.log(tasks)
     expect(tasks[0].clientId).toBe('auth0|656ba3141d577edc5228f00e')
     expect(tasks[0]).toHaveProperty('id')
     expect(tasks[0]).toHaveProperty('isComplete')
