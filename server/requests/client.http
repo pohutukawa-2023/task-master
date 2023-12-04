@@ -17,6 +17,10 @@ content-type: application/json
   "email": "test@example.org"
 }
 
+### Get Stats Data
+GET http://localhost:3000/api/v1/client/stats
+Authorization: {{$dotenv CLIENT_TOKEN}}
+
 
 ### Get an access token (Note: must add a .env in this folder)
 POST https://task-master.au.auth0.com/oauth/token HTTP/1.1
