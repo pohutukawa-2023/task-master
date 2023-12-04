@@ -8,9 +8,14 @@ export async function getTasks(
 ): Promise<TaskOptions[]> {
   return db('tasks as t')
     .where('t.user_id', auth0id)
-    .select('is_complete as isComplete')
     .join('task_options as o', 't.task_option_id', 'o.id')
-    .select('o.id', 'o.name')
+    .select(
+      't.id',
+      'is_complete as isComplete',
+      'o.id as option_id',
+      'o.name',
+      'date'
+    )
 }
 // export async function getTasksByAdmin(
 //   adminAuth0id: Task['adminId'],

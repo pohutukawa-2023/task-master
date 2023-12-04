@@ -30,6 +30,6 @@ export interface TaskData {
 export interface ClientsTask {
   id: number
   name: string
-  date: Date
+  date: string
   isComplete: boolean
 }

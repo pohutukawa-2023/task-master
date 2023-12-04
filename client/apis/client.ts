@@ -27,3 +27,12 @@ export async function getClientTasks(auth0id: string) {
     .set('Content-Type', 'application/json')
   return res.body
 }
+
+export async function taskDone(done: boolean, task_id: number, token: string) {
+  const res = await request
+    .patch(`/api/v1/client/tasks`)
+    .set('Authorization', `Bearer ${token}`)
+    .set('Content-Type', 'application/json')
+    .send({ done, task_id })
+  return res.body
+}

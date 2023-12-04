@@ -5,6 +5,7 @@ import { getTasks } from '../db/getTasks.ts'
 import { validateAccessToken } from '../auth0'
 import { userDraftSchema } from '../../types/User.ts'
 import { logError } from '../logger.ts'
+import { taskComplete } from '../db/taskComplete.ts'
 
 const router = express.Router()
 
@@ -78,6 +79,32 @@ router.post('/edit', validateAccessToken, async (req, res) => {
     } else {
       return res.status(400).json({ message: 'Invalid form' })
     }
+  } catch (error) {
+    logError(error)
+    return res.status(500).send('Something went wrong')
+  }
+})
+
+// PATCH /api/v1/client/tasks
+
+// Mark a task as done
+router.patch('/tasks', validateAccessToken, async (req, res) => {
+  // const auth0Id = req.auth?.payload.sub
+  const form = req.body
+
+  // if (!auth0Id) {
+  // return res.status(400).json({ message: 'Missing auth0 id' })
+  // }
+
+  if (!form) {
+    return res.status(400).json({ message: 'Please provide a form' })
+  }
+
+  const { done, task_id } = form
+
+  try {
+    await taskComplete(done, task_id)
+    res.sendStatus(204)
   } catch (error) {
     logError(error)
     return res.status(500).send('Something went wrong')
