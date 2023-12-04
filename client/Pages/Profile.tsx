@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { getClient, upsertClient } from '../apis/client'
 import { User, UserDraft } from '../../types/User'
 import Button from '../components/UI/Button/Button'
+import AdminNav from '../components/AdminNav'
 
 function Profile() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
@@ -104,6 +105,8 @@ function Profile() {
           ) : null}
         </div>
       </form>
+
+      <AdminNav />
     </>
   )
 }

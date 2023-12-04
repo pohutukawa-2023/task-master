@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 import { deleteAdminClientTasks, getAdminClientTasks } from '../apis/admin'
 import { AdminClientTask } from '../../types/Admin'
+import Button from '../components/UI/Button/Button'
 
 function AdminClientTasks() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
@@ -52,7 +53,7 @@ function AdminClientTasks() {
         {data.map((task) => (
           <div key={task.id}>
             {task.date} -- {task.taskName} -- {task.isComplete} -
-            <button onClick={() => handleDeleteTask(task.id)}>del</button>
+            <Button onClick={() => handleDeleteTask(task.id)}>x</Button>
           </div>
         ))}
       </div>
