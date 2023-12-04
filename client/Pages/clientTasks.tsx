@@ -1,6 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { getClientTasks } from '../apis/client'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { ClientsTask } from '../../models/task'
 // import { User, UserDraft } from '../../types/User'
 
 function ClientTasks() {
@@ -18,9 +19,15 @@ function ClientTasks() {
     // refetchOnWindowFocus: false,
     // retry: 1,
   })
-  console.log(data)
 
   // const queryClient = useQueryClient()
+  // const mutation = useMutation({
+  //   mutationFn: ({ name, age }: { name: string; age: number }) =>
+  //     addPassenger(name, age),
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries(['passengers'])
+  //   },
+  // })
 
   if (!isAuthenticated && !user) {
     return <div>Not authenticated</div>
@@ -37,13 +44,16 @@ function ClientTasks() {
       </div>
 
       <div>
-        {data?.map((task: any) => (
+        {data?.map((task: ClientsTask) => (
           <>
-            <li>
+            <div>
               <input type="checkbox" name="taskDone" />
-              <label key={task}> {task.name}</label>
+              <label>
+                {' '}
+                -{task.name} - {task.isComplete}
+              </label>
               <button></button>
-            </li>
+            </div>
           </>
         ))}
       </div>

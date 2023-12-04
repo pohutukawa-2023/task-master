@@ -26,3 +26,10 @@ export interface TaskData {
   isComplete: boolean
   date: Date
 }
+
+export interface ClientsTask {
+  id: number
+  name: string
+  date: Date
+  isComplete: boolean
+}
