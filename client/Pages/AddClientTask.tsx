@@ -36,8 +36,9 @@ function AddClientTask() {
       clientId: string
       form: TaskData
     }) => addTask(token, clientId, form),
-    onSettled: () => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['adminTasks', user?.sub] })
+      navigate(-1)
       // navigate('/my-songs')
     },
   })
