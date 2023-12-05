@@ -6,6 +6,7 @@ import Button from '../components/UI/Button/Button'
 import AdminNav from '../components/AdminNav'
 import BottomNav from '../components/BottomNav'
 import TextBox from '../components/UI/Textbox/Textbox'
+import Header from '../components/Header'
 
 function Profile() {
   const { user, isAuthenticated, logout, getAccessTokenSilently } = useAuth0()
@@ -58,7 +59,8 @@ function Profile() {
   }
 
   return (
-    <>
+    <div className="p-6">
+      <Header title="Profile" />
       <form onSubmit={handleSubmit} className="grid">
         <label htmlFor="auth0Id" className="font-semibold flex justify-center">
           User ID
@@ -121,7 +123,7 @@ function Profile() {
       </div>
       {data && data.is_admin === 1 && <AdminNav />}
       {data && data.is_admin === 0 && <BottomNav />}
-    </>
+    </div>
   )
 }
 
