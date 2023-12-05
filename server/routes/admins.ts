@@ -1,5 +1,5 @@
 import express from 'express'
-import { getAdminClientTasks } from '../db/getTasks'
+import { getAdminClientTasks, getAllClientsStats } from '../db/getTasks'
 
 import * as db from '../db/users.ts'
 import { validateAccessToken } from '../auth0'
@@ -66,6 +66,29 @@ router.get('/:clientUsername/tasks', validateAccessToken, async (req, res) => {
       return res.status(404).send('Not found')
     } else {
       return res.status(200).json(adminClientTasks)
+    }
+  } catch (error) {
+    logError(error)
+    res.status(500).json({ message: 'Unable to retrieve client tasks' })
+  }
+})
+
+// GET /api/v1/admin/:clientId/stats
+router.get('/:clientId/stats', validateAccessToken, async (req, res) => {
+  const adminId = req.auth?.payload.sub
+  const clientId = req.params.clientId
+
+  if (!adminId) {
+    res.status(400).json({ message: 'Please login with your admin Id' })
+    return
+  }
+
+  try {
+    const adminClientStats = await getAllClientsStats(adminId, clientId)
+    if (adminClientStats.length === 0) {
+      return res.status(404).send('Not found')
+    } else {
+      return res.status(200).json(adminClientStats)
     }
   } catch (error) {
     logError(error)

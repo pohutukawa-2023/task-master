@@ -16,7 +16,6 @@ function AdminClientTasks() {
 
   const navigate = useNavigate()
 
-
   const { data, isLoading, isError } = useQuery({
     queryKey: ['adminClientTasks'],
     queryFn: async (): Promise<AdminClientTask[]> => {
@@ -40,6 +39,9 @@ function AdminClientTasks() {
   if (isError) {
     return <p>something went wrong</p>
   }
+
+  console.log('clienttasks', data)
+  console.log('clientuser', clientUsername)
 
   // Date view
 
