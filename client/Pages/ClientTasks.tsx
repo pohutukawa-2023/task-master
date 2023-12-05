@@ -89,7 +89,7 @@ function ClientTasks() {
   sortedData?.forEach((task: ClientsTask) => {
     if (task.date !== lastDate) {
       rows.push(
-        <div className="font-semibold text-center text-xl">
+        <div key={task.date} className="font-semibold text-center text-xl">
           {new Date(task.date).toLocaleDateString('en-GB', {
             weekday: 'short',
             day: '2-digit',
