@@ -13,6 +13,8 @@ import AddClientTask from './Pages/AddClientTask.tsx'
 import ClientLayout from './Pages/ClientLayout.tsx'
 import AdminLayout from './Pages/AdminLayout.tsx'
 import ClientStats from './Pages/ClientStats.tsx'
+import AdminStatsClients from './Pages/AdminStatsClients.tsx'
+import AdminStats from './Pages/AdminStats.tsx'
 
 export const routes = createRoutesFromElements(
   <>
@@ -40,7 +42,8 @@ export const routes = createRoutesFromElements(
       />
       <Route path="addTask" element={<AddClientTask />} />
       <Route path="addTask/:clientId" element={<AddClientTask />} />
-      <Route path=":clientId/stats" element={<ClientStats />} />
+      <Route path="stats" element={<AdminStatsClients />} />
+      <Route path="stats/:clientId" element={<AdminStats />} />
     </Route>
     <Route path="/test" element={<TestLayout />} />
   </>
