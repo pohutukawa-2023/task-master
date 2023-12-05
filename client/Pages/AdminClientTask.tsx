@@ -44,7 +44,7 @@ function AdminClientTasks() {
   if (isError) {
     return <p>something went wrong</p>
   }
-
+  console.log(data)
   const rows = []
   let lastDate = null
 
@@ -61,45 +61,46 @@ function AdminClientTasks() {
       )
     }
     rows.push(
-      <>
-        <div className="flex items-center">
-          <div
-            className="flex items-center p-2 px-4 bg-lightPurple text-darkNavy border rounded-full focus:shadow-[0px_0px_5px_2px_#C3ACD0] border-transparent placeholder-[#B07CF2] focus:outline-none block w-full sm:text-sm"
-            key={task.id}
-          >
-            <div>
-              {task.isComplete === true ? (
-                <img
-                  className="w-4 h-4 mr-6"
-                  src="/images/png/022-tick.png"
-                  alt="tick-icon"
-                />
-              ) : (
-                <img
-                  className="w-4 h-4 mr-6"
-                  src="/images/png/021-cross.png"
-                  alt="cross-icon"
-                />
-              )}
-            </div>
-            {task.taskName}
-          </div>
+      <div key={task.id} className="flex items-center">
+        <div className="flex items-center p-2 px-4 bg-lightPurple text-darkNavy border rounded-full focus:shadow-[0px_0px_5px_2px_#C3ACD0] border-transparent placeholder-[#B07CF2] focus:outline-none block w-full sm:text-sm">
           <div>
-            <button onClick={() => handleDeleteTask(task.id)}>
-              <div className="rounded-full w-8 h-8 ml-6 mr-2 mt-2">
-                <img src="/images/png/020-trash.png" alt="trash-icon" />
-              </div>
-            </button>
+            {task.isComplete === true ? (
+              <img
+                className="w-4 h-4 mr-6"
+                src="/images/png/022-tick.png"
+                alt="tick-icon"
+              />
+            ) : (
+              <img
+                className="w-4 h-4 mr-6"
+                src="/images/png/021-cross.png"
+                alt="cross-icon"
+              />
+            )}
           </div>
+          {task.taskName}
         </div>
-      </>
+        <div>
+          <button onClick={() => handleDeleteTask(task.id)}>
+            <div className="rounded-full w-8 h-8 ml-6 mr-2 mt-2">
+              <img src="/images/png/020-trash.png" alt="trash-icon" />
+            </div>
+          </button>
+        </div>
+      </div>
     )
     lastDate = task.date
   })
 
   return (
     <>
-      <Header title="Task" />
+      <Header
+        title={
+          data[0] && data[0].clientName
+            ? `Tasks: ${data[0].clientName}`
+            : `Tasks: ${clientUsername}`
+        }
+      />
       <div>
         <div className="mb-28 flex flex-col gap-4">{rows}</div>
       </div>
