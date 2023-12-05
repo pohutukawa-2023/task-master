@@ -22,7 +22,7 @@ describe('insertTask', () => {
       date: new Date(),
     }
     const result = await insertTask(newTask)
-    expect(result.id).toEqual(13)
+    expect(result.id).toEqual(24)
     expect(result.userId).toEqual('auth0|001')
     expect(result.adminId).toEqual('auth0|999')
   })

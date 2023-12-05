@@ -7,11 +7,19 @@ import { TaskData } from '../../types/Task'
 import Button from '../components/UI/Button/Button'
 import TextBox from '../components/UI/Textbox/Textbox'
 import Select from '../components/UI/Select/Select'
-import Checkbox from '../components/UI/Checkbox/Checkbox'
+import QRScanner from './QRScanner'
+import { useEffect, useState } from 'react'
 
 function AddClientTask() {
   const { clientId } = useParams()
+  const [QRCode, setQRCode] = useState('')
+
+  const [showQRScanner, setShowQRScanner] = useState(false)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    console.log(clientId)
+  })
 
   const { user, getAccessTokenSilently } = useAuth0()
 
@@ -53,9 +61,71 @@ function AddClientTask() {
   }
 
   const task_options = [
-    { id: 1, value: 'Breathing' },
-    { id: 2, value: 'Meditation' },
-    { id: 3, value: 'Something else' },
+    {
+      id: 1,
+      name: 'Breathing',
+      link: '',
+    },
+    {
+      id: 2,
+      name: 'Something else',
+      link: '',
+    },
+    {
+      id: 3,
+      name: 'Another task',
+      link: '',
+    },
+    {
+      id: 4,
+      name: 'Balance Training',
+      link: '',
+    },
+    {
+      id: 5,
+      name: 'Posture Correction Exercises',
+      link: '',
+    },
+    {
+      id: 6,
+      name: 'Cardiovascular Activity',
+      link: '',
+    },
+    {
+      id: 7,
+      name: 'Strength Training',
+      link: '',
+    },
+    {
+      id: 8,
+      name: 'Mindfulness Practice',
+      link: '',
+    },
+    {
+      id: 9,
+      name: 'Relaxation Techniques',
+      link: '',
+    },
+    {
+      id: 10,
+      name: 'Core Strengthening Exercises',
+      link: '',
+    },
+    {
+      id: 11,
+      name: 'Joint Mobility Exercises',
+      link: '',
+    },
+    {
+      id: 12,
+      name: 'Walking Routine',
+      link: '',
+    },
+    {
+      id: 13,
+      name: 'Water Therapy',
+      link: '',
+    },
   ]
 
   return (
@@ -63,21 +133,39 @@ function AddClientTask() {
       <div className="mb-2 text-xl">AddClientTask</div>
       <form className="grid" onSubmit={handleSubmit}>
         <label htmlFor="clientId">Client</label>
-        {clientId ? (
-          <TextBox
-            addclasses="mb-2"
-            name="clientId"
-            defaultValue={clientId}
-            required
-          />
-        ) : (
-          <TextBox addclasses="mb-2" name="clientId" required />
-        )}
+        <div>
+          {QRCode || clientId ? (
+            <TextBox
+              addclasses="mb-2"
+              name="clientId"
+              value={QRCode || clientId}
+              onChange={(e) => setQRCode(e.target.value)}
+              required
+            />
+          ) : (
+            <>
+              <div className="flex">
+                <TextBox addclasses="mb-2" name="clientId" required />
+                <Button
+                  addclasses="ml-2"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setShowQRScanner(!showQRScanner)
+                  }}
+                >
+                  {showQRScanner ? 'Close' : 'Scan'}
+                </Button>
+              </div>
+              <div>{showQRScanner && <QRScanner setQRCode={setQRCode} />}</div>
+            </>
+          )}
+        </div>
+
         <label htmlFor="taskOptionId">Task</label>
         <Select addclasses="mb-2" name="taskOptionId" required>
           {task_options.map((option) => (
             <option key={option.id} value={option.id}>
-              {option.value}
+              {option.name}
             </option>
           ))}
         </Select>
