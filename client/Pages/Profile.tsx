@@ -70,15 +70,15 @@ function Profile() {
           {user?.sub}
         </div> */}
 
-        <div className="flex justify-center mt-2 min-h-[150px]">
-          {data && (
+        {data && (
+          <div className="flex justify-center mt-2 min-h-[150px]">
             <img
               className="mix-blend-darken"
               alt={user?.sub}
               src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${user?.sub}`}
             ></img>
-          )}
-        </div>
+          </div>
+        )}
 
         <label htmlFor="name" className="font-semibold mt-2 ml-4">
           Name
@@ -113,9 +113,6 @@ function Profile() {
           </Button>
         </div>
         <div className="flex mt-4 text-center">
-          {updateMutation.isSuccess && (
-            <span className="ml-2">Profile saved</span>
-          )}
           {updateMutation.isError ? (
             <span>An error occurred: {updateMutation.error.message}</span>
           ) : null}
