@@ -3,20 +3,11 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 import { deleteAdminClientTasks, getAdminClientTasks } from '../apis/admin'
 import { AdminClientTask } from '../../types/Admin'
-import Button from '../components/UI/Button/Button'
-// import AdminClientTaskView from './AdminClientTaskView'
-import { useState } from 'react'
 import Header from '../components/Header'
-import Task from '../components/UI/Task/Task'
 
 function AdminClientTasks() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
   const { clientUsername } = useParams()
-
-  // const [currentDate, setCurrentDate] = useState(new Date()) // set current date
-  // const [view, setView] = useState('Day')
-
-  // const navigate = useNavigate()
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['adminClientTasks'],
@@ -30,6 +21,18 @@ function AdminClientTasks() {
     },
   })
 
+  const queryClient = useQueryClient()
+  const mutation = useMutation({
+    mutationFn: async (id: number) => {
+      const adminId = await getAccessTokenSilently()
+      await deleteAdminClientTasks(id, adminId)
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['adminClientTasks'] })
+    },
+  })
+  const handleDeleteTask = (id: number) => mutation.mutate(id)
+
   if (!isAuthenticated && !user) {
     return <div>Not authenticated</div>
   }
@@ -41,9 +44,6 @@ function AdminClientTasks() {
   if (isError) {
     return <p>something went wrong</p>
   }
-
-  // console.log('clienttasks', data)
-  // console.log('clientuser', clientUsername)
 
   const rows = []
   let lastDate = null
@@ -60,27 +60,42 @@ function AdminClientTasks() {
         </div>
       )
     }
-    rows.push(<div key={task.id}>{task.taskName}</div>)
+    rows.push(
+      <>
+        <div className="flex items-center">
+          <div
+            className="flex items-center p-2 px-4 bg-lightPurple text-darkNavy border rounded-full focus:shadow-[0px_0px_5px_2px_#C3ACD0] border-transparent placeholder-[#B07CF2] focus:outline-none block w-full sm:text-sm"
+            key={task.id}
+          >
+            <div>
+              {task.isComplete === true ? (
+                <img
+                  className="w-4 h-4 mr-6"
+                  src="/images/png/022-tick.png"
+                  alt="tick-icon"
+                />
+              ) : (
+                <img
+                  className="w-4 h-4 mr-6"
+                  src="/images/png/021-cross.png"
+                  alt="cross-icon"
+                />
+              )}
+            </div>
+            {task.taskName}
+          </div>
+          <div>
+            <button onClick={() => handleDeleteTask(task.id)}>
+              <div className="rounded-full w-8 h-8 ml-6 mr-2 mt-2">
+                <img src="/images/png/020-trash.png" alt="trash-icon" />
+              </div>
+            </button>
+          </div>
+        </div>
+      </>
+    )
     lastDate = task.date
   })
-
-  // // Date view
-
-  // function minusDate() {
-  //   const updatedDate = new Date(currentDate)
-  //   updatedDate.setDate(updatedDate.getDate() - 1)
-  //   setCurrentDate(updatedDate)
-  // }
-
-  // function plusDate() {
-  //   const updatedDate = new Date(currentDate)
-  //   updatedDate.setDate(updatedDate.getDate() + 1)
-  //   setCurrentDate(updatedDate)
-  // }
-
-  // const params = new URLSearchParams({
-  //   selectedDate: currentDate.toISOString().split('T')[0],
-  // })
 
   return (
     <>
@@ -88,31 +103,6 @@ function AdminClientTasks() {
       <div>
         <div className="mb-28 flex flex-col gap-4">{rows}</div>
       </div>
-      {/* <h2>Client: {clientUsername}</h2>
-
-      <div className="flex items-center">
-        <Button onClick={minusDate}>-</Button>
-        <div className="ml-2 mr-2">
-          {currentDate.toLocaleDateString('en-GB')}
-        </div>
-        <Button onClick={plusDate}>+</Button>
-      </div>
-      <div>
-        {data.map((task) => (
-          <AdminClientTaskView
-            key={task.id}
-            task={task}
-            currentDate={currentDate}
-          />
-        ))}
-      </div>
-      <Button
-        onClick={() =>
-          navigate(`/admin/addTask/${data[0]?.clientId}?${params}`)
-        }
-      >
-        Add task
-      </Button> */}
     </>
   )
 }
