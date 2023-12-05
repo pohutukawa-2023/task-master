@@ -70,7 +70,7 @@ function ClientStats() {
     <>
       <Header title="Stats" />
 
-      <h3 key="name" className="text-lg text-center my-4">
+      <h3 key="name" className="text-2xl text-center my-4">
         {clientStats[0]
           ? `${clientStats[0].clientName}'s Progress`
           : `You have no tasks yet!`}

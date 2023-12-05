@@ -80,7 +80,10 @@ function Profile() {
           )}
         </div>
 
-        <label htmlFor="name" className="font-semibold mt-2 ml-4">
+        <label
+          htmlFor="name"
+          className="font-semibold mt-2 ml-4 text-darkPurple"
+        >
           Name
         </label>
         <TextBox
@@ -90,7 +93,10 @@ function Profile() {
           defaultValue={data?.name || user?.name}
         />
 
-        <label htmlFor="username" className="font-semibold mt-2 ml-4">
+        <label
+          htmlFor="username"
+          className="font-semibold mt-2 ml-4 text-darkPurple"
+        >
           Username
         </label>
         <TextBox
@@ -99,7 +105,10 @@ function Profile() {
           type="text"
           defaultValue={data?.username || user?.nickname}
         />
-        <label htmlFor="email" className="font-semibold mt-2 ml-4">
+        <label
+          htmlFor="email"
+          className="font-semibold mt-2 ml-4 text-darkPurple"
+        >
           Email
         </label>
         <TextBox
