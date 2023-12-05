@@ -1,4 +1,5 @@
 import { HtmlHTMLAttributes } from 'react'
+import { Link } from 'react-router-dom'
 
 type Props = HtmlHTMLAttributes<HTMLDivElement>
 
@@ -7,16 +8,16 @@ type Props = HtmlHTMLAttributes<HTMLDivElement>
 function Logo({ children, ...rest }: Props) {
   return (
     <>
-      {/* <Link to="/"> */}
-      <div
-        className={
-          'flex flex-row justify-center items-center rounded-full text-sm w-24 h-24'
-        }
-        {...rest}
-      >
-        {children}
-      </div>
-      {/* </Link> */}
+      <Link to="/profile">
+        <div
+          className={
+            'flex flex-row justify-center items-center rounded-full text-sm w-20 h-20'
+          }
+          {...rest}
+        >
+          {children}
+        </div>
+      </Link>
     </>
   )
 }
