@@ -38,12 +38,7 @@ function ClientTasks() {
       const response = await getClientTasks(auth0id)
       return response
     },
-
-    // Not reallu Sure about the two lines below.
-    // refetchOnWindowFocus: false,
-    // retry: 1,
   })
-  // console.log(data)
 
   const queryClient = useQueryClient()
   const mutation = useMutation({
@@ -61,14 +56,6 @@ function ClientTasks() {
       queryClient.invalidateQueries(['tasks'])
     },
   })
-
-  if (!isAuthenticated && !user) {
-    return <div>Not authenticated</div>
-  }
-
-  if (isLoading) {
-    return <p>Loading... please wait</p>
-  }
 
   async function handleChangeDone(
     e: React.ChangeEvent<HTMLInputElement>,
@@ -108,7 +95,14 @@ function ClientTasks() {
         <Header title="Tasks" />
       </div>
       <form>
-        <div className="mb-28 flex flex-col gap-4">{rows}</div>
+        {!isAuthenticated && !user && <div>Not authenticated</div>}
+        {isLoading && <p>Loading... please wait</p>}
+        {data && rows && rows.length > 0 && (
+          <div className="mb-28 flex flex-col gap-4">{rows}</div>
+        )}
+        <div className="mb-28 flex flex-col gap-4 text-center text-2xl mt-4">
+          {rows.length === 0 && 'No tasks assigned yet'}
+        </div>
       </form>
     </>
   )
