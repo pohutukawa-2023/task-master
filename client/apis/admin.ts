@@ -10,7 +10,7 @@ export async function getAdminClients(token: string) {
     .get(`${rootUrl}/admin/clientlist`)
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
-  console.log(res.body)
+  // console.log(res.body)
 
   return res.body
 }
@@ -23,7 +23,7 @@ export async function getAdminClientTasks(
     .get(`${rootUrl}/admin/${clientUsername}/tasks`)
     .set('Authorization', `Bearer ${adminId}`)
     .set('Content-Type', 'application/json')
-  console.log(res.body)
+  // console.log(res.body)
 
   return res.body
 }
@@ -46,7 +46,7 @@ export async function addTask(
     .set('Authorization', `Bearer ${token}`)
     .set('Content-Type', 'application/json')
 
-  console.log(res.body)
+  // console.log(res.body)
   return res.body
 }
 

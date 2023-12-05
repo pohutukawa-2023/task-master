@@ -11,13 +11,13 @@ function QRScanner({ setQRCode }: Props) {
   // const [result, setResult] = useState('')
 
   useEffect(() => {
-    console.log('loaded')
+    // console.log('loaded')
     codeReader
       .decodeFromInputVideoDevice(undefined, videoRef.current)
       .then((result) => {
         const qr = result.getText()
         setQRCode(qr)
-        console.log(qr)
+        // console.log(qr)
       })
       .catch((err) => console.error(err))
   }, [])

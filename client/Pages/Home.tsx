@@ -15,7 +15,7 @@ function Home() {
   }
 
   function handleSignIn() {
-    console.log(user)
+    // console.log(user)
     loginWithRedirect()
   }
 

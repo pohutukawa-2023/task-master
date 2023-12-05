@@ -48,7 +48,7 @@ function AdminStats() {
     return <p>loading...</p>
   }
 
-  console.log(clients)
+  // console.log(clients)
 
   const groupedStats = Object.values(
     clientStats.reduce((acc, item) => {
