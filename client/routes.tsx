@@ -12,6 +12,8 @@ import ClientTasks from './Pages/ClientTasks.tsx'
 import AddClientTask from './Pages/AddClientTask.tsx'
 import ClientLayout from './Pages/ClientLayout.tsx'
 import AdminLayout from './Pages/AdminLayout.tsx'
+import ClientStats from './Pages/ClientStats.tsx'
+import { GraphPage } from './components/GraphPage.tsx'
 
 export const routes = createRoutesFromElements(
   <>
@@ -24,7 +26,7 @@ export const routes = createRoutesFromElements(
     </Route>
     <Route path="/client" element={<ClientLayout />}>
       <Route index element={<Home />} />
-      <Route path="/client/tasks" element={<ClientTasks />} />
+      <Route path=":clientId/stats" element={<ClientStats />} />
     </Route>
     <Route path="/admin" element={<AdminLayout />}>
       <Route index element={<Home />} />
@@ -36,8 +38,9 @@ export const routes = createRoutesFromElements(
         path=":clientUsername/tasks"
         element={<ProtectedComponent component={AdminClientTasks} />}
       />
-      <Route path="/admin/addTask" element={<AddClientTask />} />
-      <Route path="/admin/addTask/:clientId" element={<AddClientTask />} />
+      <Route path="addTask" element={<AddClientTask />} />
+      <Route path="addTask/:clientId" element={<AddClientTask />} />
+      <Route path=":clientId/stats" element={<ClientStats />} />
     </Route>
     <Route path="/test" element={<TestLayout />} />
   </>
