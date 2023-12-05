@@ -9,18 +9,24 @@ export async function getTasks(
   return db('tasks as t')
     .where('t.user_id', auth0id)
     .join('task_options as o', 't.task_option_id', 'o.id')
-    .select('o.id', 'o.name')
+    .select(
+      't.id',
+      'is_complete as isComplete',
+      'o.id as option_id',
+      'o.name',
+      'date'
+    )
 }
-export async function getTasksByAdmin(
-  adminAuth0id: Task['adminId'],
-  clientAuth0id: Task['userId']
-): Promise<TaskOptions[]> {
-  return db('tasks as t')
-    .where('t.admin_id', adminAuth0id)
-    .where('t.user_id', clientAuth0id)
-    .join('task_options as o', 't.task_option_id', 'o.id')
-    .select('o.id', 'o.name')
-}
+// export async function getTasksByAdmin(
+//   adminAuth0id: Task['adminId'],
+//   clientAuth0id: Task['userId']
+// ): Promise<TaskOptions[]> {
+//   return db('tasks as t')
+//     .where('t.admin_id', adminAuth0id)
+//     .where('t.user_id', clientAuth0id)
+//     .join('task_options as o', 't.task_option_id', 'o.id')
+//     .select('o.id', 'o.name')
+// }
 
 export async function getAdminClientTasks(
   adminId: string,
@@ -42,6 +48,21 @@ export async function getAdminClientTasks(
       'users.username as clientUsername',
       'users.name as clientName',
       'users.email as clientEmail',
+      'task_options.name as taskName'
+    )
+}
+
+export async function getClientStatsTasks(clientId: string) {
+  return await db('tasks')
+    .join('users', 'tasks.user_id', 'users.id')
+    .join('task_options', 'task_options.id', 'tasks.task_option_id')
+    .where('tasks.user_id', clientId)
+    .select(
+      'tasks.id as id',
+      'tasks.user_id as clientId',
+      'tasks.is_complete as isComplete',
+      'tasks.date as date',
+      'users.name as clientName',
       'task_options.name as taskName'
     )
 }

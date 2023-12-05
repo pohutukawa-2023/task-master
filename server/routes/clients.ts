@@ -1,10 +1,11 @@
 import express from 'express'
 
 import { getUser, upsertUser } from '../db/users.ts'
-import { getTasks } from '../db/getTasks.ts'
+import { getClientStatsTasks, getTasks } from '../db/getTasks.ts'
 import { validateAccessToken } from '../auth0'
 import { userDraftSchema } from '../../types/User.ts'
 import { logError } from '../logger.ts'
+import { taskComplete } from '../db/taskComplete.ts'
 
 const router = express.Router()
 
@@ -34,7 +35,7 @@ router.get('/', validateAccessToken, async (req, res) => {
 // Get all tasks that have been assigned to a specific client on their account.
 
 router.get('/tasks', validateAccessToken, async (req, res) => {
-  const auth0id = req.params.auth0id
+  const auth0id = req.auth?.payload.sub
 
   if (!auth0id) {
     res.status(400).json({ message: 'Please provide a valid id' })
@@ -43,6 +44,30 @@ router.get('/tasks', validateAccessToken, async (req, res) => {
 
   try {
     const result = await getTasks(auth0id)
+    if (!auth0id) {
+      res.status(404).send('Not found')
+    } else {
+      return res.json(result)
+    }
+  } catch (error) {
+    logError(error)
+    return res.status(500).send('Something went wrong')
+  }
+})
+
+// Get all tasks that have been assigned to a specific client on their account to look at stats
+
+router.get('/stats', validateAccessToken, async (req, res) => {
+  const auth0id = req.auth?.payload.sub
+
+  if (!auth0id) {
+    res.status(400).json({ message: 'Please provide a valid id' })
+    return
+  }
+
+  try {
+    const result = await getClientStatsTasks(auth0id)
+    console.log(result)
     if (!auth0id) {
       res.status(404).send('Not found')
     } else {
@@ -78,6 +103,32 @@ router.post('/edit', validateAccessToken, async (req, res) => {
     } else {
       return res.status(400).json({ message: 'Invalid form' })
     }
+  } catch (error) {
+    logError(error)
+    return res.status(500).send('Something went wrong')
+  }
+})
+
+// PATCH /api/v1/client/tasks
+
+// Mark a task as done
+router.patch('/tasks', validateAccessToken, async (req, res) => {
+  // const auth0Id = req.auth?.payload.sub
+  const form = req.body
+
+  // if (!auth0Id) {
+  // return res.status(400).json({ message: 'Missing auth0 id' })
+  // }
+
+  if (!form) {
+    return res.status(400).json({ message: 'Please provide a form' })
+  }
+
+  const { done, task_id } = form
+
+  try {
+    await taskComplete(done, task_id)
+    res.sendStatus(204)
   } catch (error) {
     logError(error)
     return res.status(500).send('Something went wrong')
