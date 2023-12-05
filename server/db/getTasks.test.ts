@@ -15,7 +15,7 @@ beforeEach(async () => {
 describe('getTasks', () => {
   it('should get a clients assigned tasks by their auth0id', async () => {
     const tasks = await getTasks('auth0|656ba3141d577edc5228f00e')
-    expect(tasks).toHaveLength(4)
+    expect(tasks).toHaveLength(15)
     expect(tasks[0]).toHaveProperty('id')
     expect(tasks[0]).toHaveProperty('name')
   })
