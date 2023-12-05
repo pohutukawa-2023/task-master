@@ -36,3 +36,11 @@ export async function getClientStats(token: string) {
     .set('Content-Type', 'application/json')
   return res.body
 }
+
+export async function getClientTasks(auth0id: string) {
+  const res = await request
+    .get(`/api/v1/client/tasks`)
+    .set('Authorization', `Bearer ${auth0id}`)
+    .set('Content-Type', 'application/json')
+  return res.body
+}
