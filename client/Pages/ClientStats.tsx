@@ -41,8 +41,10 @@ function ClientStats() {
     return <p>loading...</p>
   }
 
+  const sortedStats = clientStats.sort((a, b) => a.date < b.date)
+
   const groupedStats = Object.values(
-    clientStats.reduce((acc, item) => {
+    sortedStats.reduce((acc, item) => {
       const dateKey = item.date
 
       if (!acc[dateKey]) {
@@ -67,8 +69,6 @@ function ClientStats() {
   return (
     <>
       <Header title="Stats" />
-      <h2>Client: {clientStats[1].clientName}</h2>
-      <br />
       <h3>{`${clientStats[1].clientName}'s Progress`}</h3>
       <div>
         <GraphPage stats={stats} />
