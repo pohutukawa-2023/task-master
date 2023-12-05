@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { addTask } from '../apis/admin'
 import { TaskData } from '../../types/Task'
@@ -16,11 +16,11 @@ function AddClientTask() {
   const [QRCode, setQRCode] = useState('')
 
   const [showQRScanner, setShowQRScanner] = useState(false)
+
   const navigate = useNavigate()
 
-  useEffect(() => {
-    console.log(clientId)
-  })
+  const [searchParams, setSearchParams] = useSearchParams()
+  const dateParam = searchParams.get('selectedDate')
 
   const { user, getAccessTokenSilently } = useAuth0()
 
@@ -171,10 +171,24 @@ function AddClientTask() {
             </option>
           ))}
         </Select>
+
         <label htmlFor="date">Date</label>
-        <TextBox type="date" addclasses="mb-2" name="date" required />
+        <TextBox
+          name="date"
+          type="date"
+          defaultValue={dateParam}
+          required
+          addclasses="mb-2"
+        />
+
         <Button addclasses="mt-4">Add</Button>
-        <Button addclasses="mt-4" onClick={() => navigate(-1)}>
+        <Button
+          addclasses="mt-4"
+          onClick={(e) => {
+            e.preventDefault()
+            navigate(-1)
+          }}
+        >
           Back
         </Button>
       </form>

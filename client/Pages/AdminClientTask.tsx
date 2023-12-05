@@ -57,6 +57,10 @@ function AdminClientTasks() {
     setCurrentDate(updatedDate)
   }
 
+  const params = new URLSearchParams({
+    selectedDate: currentDate.toISOString().split('T')[0],
+  })
+
   return (
     <>
       <h2>Client: {clientUsername}</h2>
@@ -77,7 +81,11 @@ function AdminClientTasks() {
           />
         ))}
       </div>
-      <Button onClick={() => navigate(`/admin/addTask/${data[0]?.clientId}`)}>
+      <Button
+        onClick={() =>
+          navigate(`/admin/addTask/${data[0]?.clientId}?${params}`)
+        }
+      >
         Add task
       </Button>
     </>
