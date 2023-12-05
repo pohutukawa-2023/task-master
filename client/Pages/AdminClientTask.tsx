@@ -4,17 +4,19 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { deleteAdminClientTasks, getAdminClientTasks } from '../apis/admin'
 import { AdminClientTask } from '../../types/Admin'
 import Button from '../components/UI/Button/Button'
-import AdminClientTaskView from './AdminClientTaskView'
+// import AdminClientTaskView from './AdminClientTaskView'
 import { useState } from 'react'
+import Header from '../components/Header'
+import Task from '../components/UI/Task/Task'
 
 function AdminClientTasks() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
   const { clientUsername } = useParams()
 
-  const [currentDate, setCurrentDate] = useState(new Date()) // set current date
-  const [view, setView] = useState('Day')
+  // const [currentDate, setCurrentDate] = useState(new Date()) // set current date
+  // const [view, setView] = useState('Day')
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['adminClientTasks'],
@@ -40,30 +42,53 @@ function AdminClientTasks() {
     return <p>something went wrong</p>
   }
 
-  console.log('clienttasks', data)
-  console.log('clientuser', clientUsername)
+  // console.log('clienttasks', data)
+  // console.log('clientuser', clientUsername)
 
-  // Date view
+  const rows = []
+  let lastDate = null
 
-  function minusDate() {
-    const updatedDate = new Date(currentDate)
-    updatedDate.setDate(updatedDate.getDate() - 1)
-    setCurrentDate(updatedDate)
-  }
-
-  function plusDate() {
-    const updatedDate = new Date(currentDate)
-    updatedDate.setDate(updatedDate.getDate() + 1)
-    setCurrentDate(updatedDate)
-  }
-
-  const params = new URLSearchParams({
-    selectedDate: currentDate.toISOString().split('T')[0],
+  data?.forEach((task) => {
+    if (task.date != lastDate) {
+      rows.push(
+        <div className="font-semibold text-center text-xl" key={task.date}>
+          {new Date(task.date).toLocaleDateString('en-GB', {
+            weekday: 'short',
+            day: '2-digit',
+            month: 'short',
+          })}
+        </div>
+      )
+    }
+    rows.push(<div key={task.id}>{task.taskName}</div>)
+    lastDate = task.date
   })
+
+  // // Date view
+
+  // function minusDate() {
+  //   const updatedDate = new Date(currentDate)
+  //   updatedDate.setDate(updatedDate.getDate() - 1)
+  //   setCurrentDate(updatedDate)
+  // }
+
+  // function plusDate() {
+  //   const updatedDate = new Date(currentDate)
+  //   updatedDate.setDate(updatedDate.getDate() + 1)
+  //   setCurrentDate(updatedDate)
+  // }
+
+  // const params = new URLSearchParams({
+  //   selectedDate: currentDate.toISOString().split('T')[0],
+  // })
 
   return (
     <>
-      <h2>Client: {clientUsername}</h2>
+      <Header title="Task" />
+      <div>
+        <div className="mb-28 flex flex-col gap-4">{rows}</div>
+      </div>
+      {/* <h2>Client: {clientUsername}</h2>
 
       <div className="flex items-center">
         <Button onClick={minusDate}>-</Button>
@@ -87,7 +112,7 @@ function AdminClientTasks() {
         }
       >
         Add task
-      </Button>
+      </Button> */}
     </>
   )
 }
