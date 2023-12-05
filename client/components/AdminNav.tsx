@@ -1,11 +1,8 @@
-import { useAuth0 } from '@auth0/auth0-react'
 import { IfAdmin } from './Authenticated.tsx'
 import NavButton from './UI/NavButton/NavButton.tsx'
 import { Link } from 'react-router-dom'
 
 function AdminNav() {
-  const { user } = useAuth0()
-
   return (
     <>
       <IfAdmin>
@@ -25,7 +22,7 @@ function AdminNav() {
               <img src={`/images/png/019-add.png`} alt="add task icon" />
             </NavButton>
           </Link>
-          <Link to={`/admin/${user?.sub}/stats`}>
+          <Link to={`/admin/stats`}>
             <NavButton>
               <img src={`/images/png/001-bar-chart.png`} alt="stats icon" />
             </NavButton>

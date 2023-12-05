@@ -3,18 +3,25 @@ import { useQuery } from '@tanstack/react-query'
 import { getClientStats } from '../apis/client'
 import GraphPage from '../components/GraphPage'
 import Header from '../components/Header'
+import { getAdminClients } from '../apis/admin'
 
-function ClientStats() {
+function AdminStats() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
-
-  // const { clientId } = useParams()
-  // const authId = userURL.clientId
 
   // shape I want the data in
   // const stats = [
   //   { date: '01-12-2023', tasksDone: 0, tasksTotal: 3 },
   //   { date: '02-12-2023', tasksDone: 1, tasksTotal: 1 },
   // ]
+
+  const { data: clients } = useQuery({
+    queryKey: ['adminClients'],
+    queryFn: async () => {
+      const token = await getAccessTokenSilently()
+      const adminClients = await getAdminClients(token)
+      return adminClients
+    },
+  })
 
   const {
     data: clientStats,
@@ -40,6 +47,8 @@ function ClientStats() {
   if (isLoading) {
     return <p>loading...</p>
   }
+
+  console.log(clients)
 
   const groupedStats = Object.values(
     clientStats.reduce((acc, item) => {
@@ -75,4 +84,4 @@ function ClientStats() {
   )
 }
 
-export default ClientStats
+export default AdminStats

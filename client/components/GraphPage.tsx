@@ -14,6 +14,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 export default function GraphPage({ stats }) {
   const options = {
     indexAxis: 'y' as const,
+    maintainAspectRatio: false,
     plugins: {},
     responsive: true,
     scales: {
@@ -45,5 +46,9 @@ export default function GraphPage({ stats }) {
     ],
   }
 
-  return <Bar options={options} data={data} />
+  return (
+    <div className="h-[50vh]">
+      <Bar options={options} data={data} />
+    </div>
+  )
 }

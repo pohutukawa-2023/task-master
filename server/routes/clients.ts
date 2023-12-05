@@ -67,7 +67,6 @@ router.get('/stats', validateAccessToken, async (req, res) => {
 
   try {
     const result = await getClientStatsTasks(auth0id)
-    console.log(result)
     if (!auth0id) {
       res.status(404).send('Not found')
     } else {
