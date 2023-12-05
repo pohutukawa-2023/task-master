@@ -62,24 +62,25 @@ function Profile() {
     <div className="p-6">
       <Header title="Profile" />
       <form onSubmit={handleSubmit} className="grid">
-        <label htmlFor="auth0Id" className="font-semibold flex justify-center">
+        {/* <label htmlFor="auth0Id" className="font-semibold flex justify-center">
           User ID
-        </label>
+        </label> */}
 
-        <div className="flex justify-center">
+        {/* <div id="auth0Id" className=" flex justify-center">
+          {user?.sub}
+        </div> */}
+
+        <div className="flex justify-center mt-2 min-h-[150px]">
           {data && (
             <img
-              className=""
+              className="mix-blend-darken"
               alt={user?.sub}
               src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${user?.sub}`}
             ></img>
           )}
         </div>
-        <div id="auth0Id" className=" flex justify-center">
-          {user?.sub}
-        </div>
 
-        <label htmlFor="name" className="font-semibold">
+        <label htmlFor="name" className="font-semibold mt-2 ml-4">
           Name
         </label>
         <TextBox
@@ -89,8 +90,8 @@ function Profile() {
           defaultValue={data?.name || user?.name}
         />
 
-        <label htmlFor="username" className="font-semibold">
-          Username:
+        <label htmlFor="username" className="font-semibold mt-2 ml-4">
+          Username
         </label>
         <TextBox
           id="username"
@@ -98,18 +99,20 @@ function Profile() {
           type="text"
           defaultValue={data?.username || user?.nickname}
         />
-        <label htmlFor="email" className="font-semibold">
-          Email:
+        <label htmlFor="email" className="font-semibold mt-2 ml-4">
+          Email
         </label>
         <TextBox
           id="email"
           name="email"
           defaultValue={data?.email || user?.email}
         />
-        <div className="mt-2">
+        <div className="grid text-center mt-6">
           <Button type="submit" disabled={updateMutation.isLoading}>
             {data ? 'Update profile' : 'Create profile'}
           </Button>
+        </div>
+        <div className="flex mt-4 text-center">
           {updateMutation.isSuccess && (
             <span className="ml-2">Profile saved</span>
           )}
@@ -118,7 +121,7 @@ function Profile() {
           ) : null}
         </div>
       </form>
-      <div className="mt-2">
+      <div className="grid mt-2">
         <Button onClick={logout}>Logout</Button>
       </div>
       {data && data.is_admin === 1 && <AdminNav />}
