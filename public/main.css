@@ -771,6 +771,10 @@ video {
   text-align: center;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .font-sans {
   font-family: Montserrat, sans-serif;
 }
