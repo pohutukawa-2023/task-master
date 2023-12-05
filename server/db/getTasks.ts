@@ -52,6 +52,25 @@ export async function getAdminClientTasks(
     )
 }
 
+export async function getAllClientsStats(
+  adminId: string,
+  clientId: string
+): Promise<AdminClientTask[]> {
+  return await db('tasks')
+    .join('users', 'tasks.user_id', 'users.id')
+    .join('task_options', 'task_options.id', 'tasks.task_option_id')
+    .where('tasks.admin_id', adminId)
+    .where('users.id', clientId)
+    .select(
+      'tasks.id as id',
+      'tasks.user_id as clientId',
+      'tasks.is_complete as isComplete',
+      'tasks.date as date',
+      'users.name as clientName',
+      'task_options.name as taskName'
+    )
+}
+
 export async function getClientStatsTasks(clientId: string) {
   return await db('tasks')
     .join('users', 'tasks.user_id', 'users.id')

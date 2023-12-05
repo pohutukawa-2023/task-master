@@ -28,6 +28,16 @@ export async function getAdminClientTasks(
   return res.body
 }
 
+export async function getAdminClientStats(token: string, clientId: string) {
+  const res = await request
+    .get(`${rootUrl}/admin/${clientId}/stats`)
+    .set('Authorization', `Bearer ${token}`)
+    .set('Content-Type', 'application/json')
+  console.log(res.body)
+
+  return res.body
+}
+
 export async function deleteAdminClientTasks(id: number, adminId: string) {
   return await request
     .delete(`${rootUrl}/admin/:clientUsername/tasks/${id}`)
