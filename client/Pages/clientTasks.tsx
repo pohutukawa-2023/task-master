@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { ClientsTask } from '../../models/task'
 import Checkbox from '../components/UI/Checkbox/Checkbox'
 import TextBox from '../components/UI/Textbox/Textbox'
+import Header from '../components/Header'
 // import { User, UserDraft } from '../../types/User'
 
 function ClientTasks() {
@@ -63,7 +64,7 @@ function ClientTasks() {
   return (
     <>
       <div>
-        <h1>Tasks</h1>
+        <Header title="Tasks" />
       </div>
       <form>
         <div className="mb-28 flex flex-col gap-4">
