@@ -9,6 +9,7 @@ import TextBox from '../components/UI/Textbox/Textbox'
 import Select from '../components/UI/Select/Select'
 import QRScanner from './QRScanner'
 import { useEffect, useState } from 'react'
+import Header from '../components/Header'
 
 function AddClientTask() {
   const { clientId } = useParams()
@@ -130,7 +131,7 @@ function AddClientTask() {
 
   return (
     <div>
-      <div className="mb-2 text-xl">AddClientTask</div>
+      <Header title="Add Task" />
       <form className="grid" onSubmit={handleSubmit}>
         <label htmlFor="clientId">Client</label>
         <div>
@@ -144,8 +145,8 @@ function AddClientTask() {
             />
           ) : (
             <>
-              <div className="flex">
-                <TextBox addclasses="mb-2" name="clientId" required />
+              <div className="flex mb-2">
+                <TextBox addclasses="" name="clientId" required />
                 <Button
                   addclasses="ml-2"
                   onClick={(e) => {

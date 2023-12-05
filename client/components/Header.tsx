@@ -9,7 +9,7 @@ function Header({ title }: Props) {
   return (
     <>
       <div className="flex justify-between font-title text-lg">
-        <h2 className="text-darkPurple font-title pt-12 pb-6 text-6xl">
+        <h2 className="text-darkPurple font-title pt-8 pb-6 text-6xl">
           {title}
         </h2>
         <Logo>
