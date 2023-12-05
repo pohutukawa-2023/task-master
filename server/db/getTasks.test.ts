@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, beforeEach } from 'vitest'
 import db from './connection'
 
-import { getAdminClientTasks } from './getTasks'
+import { getAdminClientTasks, getClientStatsTasks } from './getTasks'
 import { getTasks } from './getTasks'
 
 beforeAll(async () => {
@@ -44,6 +44,25 @@ describe('getAdminClientTasks', () => {
 
   it('should return an empty array when user not found', async () => {
     const user = await getAdminClientTasks('userThatDoesntExist', 'fakeClient')
+    expect(user).toStrictEqual([])
+  })
+})
+
+// testing to show tasks for a client by admin_id
+describe('getClientStatsTasks', () => {
+  it('should return tasks filtering for clientId', async () => {
+    const tasks = await getClientStatsTasks('auth0|656ba3141d577edc5228f00e')
+
+    expect(tasks[0].clientId).toBe('auth0|656ba3141d577edc5228f00e')
+    expect(tasks[0]).toHaveProperty('id')
+    expect(tasks[0]).toHaveProperty('isComplete')
+    expect(tasks[0]).toHaveProperty('date')
+    expect(tasks[0]).toHaveProperty('clientName')
+    expect(tasks[0]).toHaveProperty('taskName')
+  })
+
+  it('should return an empty array when user not found', async () => {
+    const user = await getClientStatsTasks('userThatDoesntExist')
     expect(user).toStrictEqual([])
   })
 })

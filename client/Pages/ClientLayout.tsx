@@ -13,7 +13,9 @@ export default function ClientLayout() {
 
   return (
     <>
-      <Outlet />
+      <div className="p-6">
+        <Outlet />
+      </div>
       <BottomNav />
     </>
   )

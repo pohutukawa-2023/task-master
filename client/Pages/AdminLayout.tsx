@@ -39,12 +39,9 @@ export default function AdminLayout() {
 
   return (
     <>
-      <div className="flex justify-end p-4 font-title text-lg">
-        <Logo>
-          <img src="/t.svg" alt="Logo for Task Masters" />
-        </Logo>
+      <div className="p-6">
+        <Outlet />
       </div>
-      <Outlet />
       <AdminNav />
     </>
   )
