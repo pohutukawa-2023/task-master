@@ -41,8 +41,10 @@ function ClientStats() {
     return <p>loading...</p>
   }
 
+  const sortedStats = clientStats.sort((a, b) => a.date < b.date)
+
   const groupedStats = Object.values(
-    clientStats.reduce((acc, item) => {
+    sortedStats.reduce((acc, item) => {
       const dateKey = item.date
 
       if (!acc[dateKey]) {
