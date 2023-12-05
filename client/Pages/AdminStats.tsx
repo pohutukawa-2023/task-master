@@ -1,6 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery } from '@tanstack/react-query'
-import { getClientStats } from '../apis/client'
 import GraphPage from '../components/GraphPage'
 import Header from '../components/Header'
 import { getAdminClientStats } from '../apis/admin'
