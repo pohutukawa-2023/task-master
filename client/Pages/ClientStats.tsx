@@ -69,7 +69,13 @@ function ClientStats() {
   return (
     <>
       <Header title="Stats" />
-      <h3 className="text-lg text-center my-4">{`${clientStats[1].clientName}'s Progress`}</h3>
+
+      <h3 key="name" className="text-lg text-center my-4">
+        {clientStats[0]
+          ? `${clientStats[0].clientName}'s Progress`
+          : `You have no tasks yet!`}
+      </h3>
+
       <div>
         <GraphPage stats={stats} />
       </div>

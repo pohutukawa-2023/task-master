@@ -1,27 +1,20 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery } from '@tanstack/react-query'
-import { getClientStats } from '../apis/client'
 import GraphPage from '../components/GraphPage'
 import Header from '../components/Header'
-import { getAdminClients } from '../apis/admin'
+import { getAdminClientStats } from '../apis/admin'
+import { useParams } from 'react-router-dom'
 
 function AdminStats() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
+
+  const { clientId } = useParams()
 
   // shape I want the data in
   // const stats = [
   //   { date: '01-12-2023', tasksDone: 0, tasksTotal: 3 },
   //   { date: '02-12-2023', tasksDone: 1, tasksTotal: 1 },
   // ]
-
-  const { data: clients } = useQuery({
-    queryKey: ['adminClients'],
-    queryFn: async () => {
-      const token = await getAccessTokenSilently()
-      const adminClients = await getAdminClients(token)
-      return adminClients
-    },
-  })
 
   const {
     data: clientStats,
@@ -31,7 +24,7 @@ function AdminStats() {
     queryKey: ['clientStats'],
     queryFn: async () => {
       const token = await getAccessTokenSilently()
-      const clientStats = await getClientStats(token)
+      const clientStats = await getAdminClientStats(token, clientId)
       return clientStats
     },
   })
@@ -47,8 +40,6 @@ function AdminStats() {
   if (isLoading) {
     return <p>loading...</p>
   }
-
-  // console.log(clients)
 
   const groupedStats = Object.values(
     clientStats.reduce((acc, item) => {
@@ -76,7 +67,11 @@ function AdminStats() {
   return (
     <>
       <Header title="Stats" />
-      <h3 className="text-lg text-center my-4">{`${clientStats[1].clientName}'s Progress`}</h3>
+      <h3 className="text-lg text-center my-4">
+        {clientStats[0]
+          ? `${clientStats[0].clientName}'s Progress`
+          : `They have no tasks yet!`}
+      </h3>
       <div>
         <GraphPage stats={stats} />
       </div>

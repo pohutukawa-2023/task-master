@@ -40,6 +40,9 @@ function AdminClientTasks() {
     return <p>something went wrong</p>
   }
 
+  console.log('clienttasks', data)
+  console.log('clientuser', clientUsername)
+
   // Date view
 
   function minusDate() {

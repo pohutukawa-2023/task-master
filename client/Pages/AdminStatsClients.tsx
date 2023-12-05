@@ -43,11 +43,12 @@ function AdminStatsClients() {
       <Header title="Stats" />
       <h3 className="text-3xl text-center my-8">My Clients:</h3>
       <div className="flex flex-col items-center">
-        {clients.map((client) => (
-          <Link key={client.id} to={`${client.id}`}>
-            <Button>{client.name}</Button>
-          </Link>
-        ))}
+        {clients &&
+          clients.map((client) => (
+            <Link key={client.id} to={`${client.id}`}>
+              <Button>{client.name}</Button>
+            </Link>
+          ))}
       </div>
     </>
   )
