@@ -22,7 +22,6 @@ function TaskItem({ task, handleChangeDone }) {
         />
 
         <label htmlFor={task.id.toString()}>{task.name}</label>
-        <button></button>
       </div>
     </>
   )

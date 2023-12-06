@@ -62,13 +62,14 @@ function AdminClientTasks() {
         </div>
       )
     }
+    console.log(task.isComplete)
     rows.push(
       <div key={task.id} className="flex items-center">
         <div className="flex items-center p-2 px-4 bg-lightPurple text-darkNavy border rounded-full focus:shadow-[0px_0px_5px_2px_#C3ACD0] border-transparent placeholder-[#B07CF2] focus:outline-none block w-full sm:text-sm">
           <div>
-            {task.isComplete === true ? (
+            {task.isComplete ? (
               <img
-                className="w-4 h-4 mr-6"
+                className="w-6 h-6 mr-6"
                 src="/images/png/022-tick.png"
                 alt="tick-icon"
               />
