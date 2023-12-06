@@ -25,9 +25,6 @@ describe('getTasks', () => {
     expect(tasks).toHaveLength(0)
   })
 })
-describe('getUser', () => {
-  it.skip('is skipped because theres not test', async () => {})
-})
 
 // testing to show tasks for a client by admin_id
 describe('getAdminClientTasks', () => {
