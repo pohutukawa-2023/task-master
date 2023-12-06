@@ -181,7 +181,7 @@ function AddClientTask() {
         <TextBox
           name="date"
           type="date"
-          defaultValue={dateParam}
+          defaultValue={new Date().toISOString().split('T')[0]}
           required
           addclasses="mb-2"
         />
