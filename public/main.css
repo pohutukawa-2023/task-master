@@ -597,6 +597,10 @@ video {
   margin-top: 1.5rem;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
 .block {
   display: block;
 }
@@ -816,20 +820,12 @@ video {
   padding-top: 1.5rem;
 }
 
-.pt-\[15\%\] {
-  padding-top: 15%;
+.pt-\[25\%\] {
+  padding-top: 25%;
 }
 
 .pt-title {
   padding-top: 20%;
-}
-
-.pt-\[20\%\] {
-  padding-top: 20%;
-}
-
-.pt-\[25\%\] {
-  padding-top: 25%;
 }
 
 .text-center {

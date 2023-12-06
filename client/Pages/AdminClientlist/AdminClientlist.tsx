@@ -30,7 +30,7 @@ function AdminClientlist() {
   return (
     <>
       <Header title="My Clients" />
-      <div>
+      <div className="mb-28 mt-10">
         {data &&
           [...new Set(data.map((client: any) => client.id))].map((uniqueId) => {
             const uniqueClient = data.find(

@@ -184,15 +184,15 @@ function AddClientTask() {
         <label htmlFor="date">Date</label>
         <div className="grid">
           <input
-            className="h-12 bg-lightPurple text-darkNavy border rounded-full focus:shadow-[0px_0px_5px_2px_#C3ACD0] border-transparent placeholder-[#B07CF2] focus:outline-none w-full sm:text-sm"
+            className="h-12 px-4 bg-lightPurple text-darkNavy border rounded-full focus:shadow-[0px_0px_5px_2px_#C3ACD0] border-transparent placeholder-[#B07CF2] focus:outline-none w-full sm:text-sm"
             name="date"
             type="date"
-            defaultValue={new Date().toLocaleString('en-NZ').split(',')[0]}
+            defaultValue={new Date().toISOString().split('T')[0]}
             required
           />
         </div>
 
-        <Button addclasses="mt-4">Add</Button>
+        <Button addclasses="mt-10">Add</Button>
         <Button
           addclasses="mt-4"
           onClick={(e) => {
