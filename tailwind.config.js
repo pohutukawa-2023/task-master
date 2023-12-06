@@ -23,7 +23,7 @@ export default {
         bigMaster: ['3.8rem', '1'],
       },
       padding: {
-        title: '40%',
+        title: '20%',
       },
     },
   },

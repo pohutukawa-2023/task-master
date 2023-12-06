@@ -26,7 +26,7 @@ function Home() {
           <img src="t.svg" alt="Logo for Task Masters" />
         </Logo>
       </div>
-      <div className="pt-title px-4 h-full">
+      <div className="pt-title px-4 h-1/2">
         <h1 className="text-darkPurple text-bigTask">
           <span className="font-title text-bigTask font-semibold">task</span>{' '}
           master
@@ -37,13 +37,17 @@ function Home() {
         <p className="text-md">complete, track, see results.</p>
       </div>
 
-      <div className="flex gap-4 justify-center pt-[45%]">
+      <div>
         <IfNotAuthenticated>
-          <Button onClick={handleSignIn}>Login</Button>
-          <Button onClick={handleSignIn}>Register</Button>
+          <div className="grid gap-4 text-center pt-[25%] m-6">
+            <Button onClick={handleSignIn}>Login</Button>
+            <Button onClick={handleSignIn}>Register</Button>
+          </div>
         </IfNotAuthenticated>
         <IfAuthenticated>
-          <Button onClick={handleSignOut}>Logout</Button>
+          <div className="grid gap-4 text-center pt-[25%] m-6">
+            <Button onClick={handleSignOut}>Logout</Button>
+          </div>
         </IfAuthenticated>
       </div>
     </>

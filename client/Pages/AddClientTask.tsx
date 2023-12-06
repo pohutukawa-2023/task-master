@@ -187,7 +187,7 @@ function AddClientTask() {
             className="h-12 bg-lightPurple text-darkNavy border rounded-full focus:shadow-[0px_0px_5px_2px_#C3ACD0] border-transparent placeholder-[#B07CF2] focus:outline-none w-full sm:text-sm"
             name="date"
             type="date"
-            defaultValue={new Date().toISOString().split('T')[0]}
+            defaultValue={new Date().toLocaleString('en-NZ').split(',')[0]}
             required
           />
         </div>
