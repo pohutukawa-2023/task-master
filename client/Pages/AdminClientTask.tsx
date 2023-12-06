@@ -4,10 +4,12 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { deleteAdminClientTasks, getAdminClientTasks } from '../apis/admin'
 import { AdminClientTask } from '../../types/Admin'
 import Header from '../components/Header'
+import Button from '../components/UI/Button/Button'
 
 function AdminClientTasks() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
   const { clientUsername } = useParams()
+  const navigate = useNavigate()
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['adminClientTasks'],
@@ -101,6 +103,12 @@ function AdminClientTasks() {
             : `Tasks: ${clientUsername}`
         }
       />
+      <div className="grid text-center my-6">
+        <Button onClick={() => navigate(`/admin/addTask/${data[0]?.clientId}`)}>
+          Add Task
+        </Button>
+      </div>
+
       <div>
         <div className="mb-28 flex flex-col gap-4">{rows}</div>
       </div>
