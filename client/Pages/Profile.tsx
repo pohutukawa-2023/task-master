@@ -59,7 +59,7 @@ function Profile() {
   }
 
   return (
-    <div className="p-6">
+    <div className="p-6 mb-28">
       <Header title="Profile" />
       <form onSubmit={handleSubmit} className="grid">
         {/* <label htmlFor="auth0Id" className="font-semibold flex justify-center">
