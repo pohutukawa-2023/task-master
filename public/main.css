@@ -637,6 +637,10 @@ video {
   height: 100%;
 }
 
+.h-12 {
+  height: 3rem;
+}
+
 .min-h-\[150px\] {
   min-height: 150px;
 }
@@ -695,6 +699,10 @@ video {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
 }
 
 .rounded-full {
@@ -791,6 +799,16 @@ video {
 .py-\[0\.75rem\] {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+.py-\[1rem\] {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .pb-6 {

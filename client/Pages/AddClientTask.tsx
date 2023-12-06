@@ -169,22 +169,28 @@ function AddClientTask() {
         </div>
 
         <label htmlFor="taskOptionId">Task</label>
-        <Select addclasses="mb-2" name="taskOptionId" required>
+        <select
+          className="bg-lightPurple text-darkNavy h-12 px-4 mb-2 rounded-full focus:shadow-[0px_0px_5px_2px_#C3ACD0]"
+          name="taskOptionId"
+          required
+        >
           {task_options.map((option) => (
-            <option key={option.id} value={option.id}>
+            <option className="py-4" key={option.id} value={option.id}>
               {option.name}
             </option>
           ))}
-        </Select>
+        </select>
 
         <label htmlFor="date">Date</label>
-        <TextBox
-          name="date"
-          type="date"
-          defaultValue={dateParam}
-          required
-          addclasses="mb-2"
-        />
+        <div className="grid">
+          <input
+            className="h-12 bg-lightPurple text-darkNavy border rounded-full focus:shadow-[0px_0px_5px_2px_#C3ACD0] border-transparent placeholder-[#B07CF2] focus:outline-none w-full sm:text-sm"
+            name="date"
+            type="date"
+            defaultValue={new Date().toISOString().split('T')[0]}
+            required
+          />
+        </div>
 
         <Button addclasses="mt-4">Add</Button>
         <Button
