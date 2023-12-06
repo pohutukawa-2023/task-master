@@ -14,8 +14,9 @@ export async function getTasks(
       'is_complete as isComplete',
       'o.id as option_id',
       'o.name',
-      'date'
+      't.date'
     )
+    .orderBy('t.date', 'desc')
 }
 // export async function getTasksByAdmin(
 //   adminAuth0id: Task['adminId'],
@@ -50,6 +51,7 @@ export async function getAdminClientTasks(
       'users.email as clientEmail',
       'task_options.name as taskName'
     )
+    .orderBy('tasks.date', 'desc')
 }
 
 export async function getAllClientsStats(
@@ -69,6 +71,7 @@ export async function getAllClientsStats(
       'users.name as clientName',
       'task_options.name as taskName'
     )
+    .orderBy('tasks.date', 'desc')
 }
 
 export async function getClientStatsTasks(clientId: string) {
@@ -84,4 +87,5 @@ export async function getClientStatsTasks(clientId: string) {
       'users.name as clientName',
       'task_options.name as taskName'
     )
+    .orderBy('tasks.date', 'desc')
 }
