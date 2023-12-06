@@ -538,6 +538,10 @@ video {
   bottom: 0px;
 }
 
+.m-6 {
+  margin: 1.5rem;
+}
+
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -603,6 +607,14 @@ video {
 
 .grid {
   display: grid;
+}
+
+.h-1\/2 {
+  height: 50%;
+}
+
+.h-12 {
+  height: 3rem;
 }
 
 .h-20 {
@@ -691,6 +703,10 @@ video {
 
 .justify-around {
   justify-content: space-around;
+}
+
+.gap-3 {
+  gap: 0.75rem;
 }
 
 .gap-4 {
@@ -788,11 +804,6 @@ video {
   padding-bottom: 1rem;
 }
 
-.py-\[0\.75rem\] {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-}
-
 .pb-6 {
   padding-bottom: 1.5rem;
 }
@@ -805,12 +816,20 @@ video {
   padding-top: 1.5rem;
 }
 
-.pt-\[45\%\] {
-  padding-top: 45%;
+.pt-\[15\%\] {
+  padding-top: 15%;
 }
 
 .pt-title {
-  padding-top: 40%;
+  padding-top: 20%;
+}
+
+.pt-\[20\%\] {
+  padding-top: 20%;
+}
+
+.pt-\[25\%\] {
+  padding-top: 25%;
 }
 
 .text-center {

@@ -40,7 +40,7 @@ function AdminClientlist() {
               <div
                 key={uniqueClient.id}
                 style={{ marginTop: '8px' }}
-                className="flex flex-col"
+                className="flex flex-col items-center"
               >
                 <Link to={`/admin/${uniqueClient.username}/tasks`}>
                   <Button>{uniqueClient.name}</Button>
