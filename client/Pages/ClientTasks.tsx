@@ -70,9 +70,9 @@ function ClientTasks() {
   const rows = []
   let lastDate = null
 
-  const sortedData = data?.sort((taskA, taskB) => taskA.date < taskB.date)
+  // const sortedData = data?.sort((taskA, taskB) => taskA.date < taskB.date)
 
-  sortedData?.forEach((task: ClientsTask) => {
+  data?.forEach((task: ClientsTask) => {
     if (task.date !== lastDate) {
       rows.push(
         <div key={task.date} className="font-semibold text-center text-xl">
