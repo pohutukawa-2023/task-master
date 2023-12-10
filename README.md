@@ -1,7 +1,57 @@
-# Task master App
+# Task Master App
 
+### Get assigned important tasks. Complete, track, see results.
 
-# User stories
+Task Master is a mobile app designed to streamline the communication and task management between physiotherapists and their clients. The app allows physiotherapists to assign various tasks to their clients, ranging from breathing exercises to yoga and strength workouts. Clients can easily track and complete assigned tasks, while both clients and physiotherapists have access to insightful statistics to monitor progress.
+
+## Screenshots
+
+![Screenshot of client view](/public/taskmaster.png)
+Screenshot of client view
+
+## Features
+
+- **Task Assignment**: Physiotherapists can create and assign tasks to clients, specifying details such as exercise type, duration, and frequency.
+- **Task Completion Tracking**: Clients can mark tasks as completed, providing real-time feedback to physiotherapists about their adherence to the prescribed exercises.
+- **Statistics and Progress Monitoring**: Detailed statistics and visualizations enable both physiotherapists and clients to monitor progress over time, fostering engagement and motivation.
+- **QR Code Scanning:** Physiotherapists can easily connect with clients by scanning their QR codes, streamlining the onboarding process.
+- **Auth0 Integration:** Secure user authentication and authorization using Auth0. Manage user identities, enable single sign-on, and enhance the overall security of the application.
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) installed on your machine
+
+### Installation
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/pohutukawa-2023/task-master.git
+    cd task-master
+    ```
+
+2. Install dependencies:
+
+    ```bash
+    npm install
+    ```
+
+3. Run database migrations:
+
+    ```bash
+    npm run knex migrate:latest
+    ```
+
+### Running the app
+4. To start the app in development mode, run:
+
+    ```bash
+    npm run dev
+    ```
+
+<!-- # User stories
 
 - [] As a user, I want to be able to log in and personal account and see my name somewhere
 - [] As a user, I want to see the home page, then sign in
@@ -85,4 +135,4 @@ logo - Lucidity condensed
 
 ## Canva
 
-https://www.canva.com/design/DAF1ghbFOtc/pi2yHcM0OICUMSrxah55Lw/edit?utm_content=DAF1ghbFOtc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+https://www.canva.com/design/DAF1ghbFOtc/pi2yHcM0OICUMSrxah55Lw/edit?utm_content=DAF1ghbFOtc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton -->
