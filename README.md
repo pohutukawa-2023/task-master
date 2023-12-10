@@ -4,11 +4,6 @@
 
 Task Master is a mobile app designed to streamline the communication and task management between physiotherapists and their clients. The app allows physiotherapists to assign various tasks to their clients, ranging from breathing exercises to yoga and strength workouts. Clients can easily track and complete assigned tasks, while both clients and physiotherapists have access to insightful statistics to monitor progress.
 
-## Screenshots
-
-![Screenshot of client view](/public/taskmaster.png)
-Screenshot of client view
-
 ## Features
 
 - **Task Assignment**: Physiotherapists can create and assign tasks to clients, specifying details such as exercise type, duration, and frequency.
@@ -16,6 +11,27 @@ Screenshot of client view
 - **Statistics and Progress Monitoring**: Detailed statistics and visualizations enable both physiotherapists and clients to monitor progress over time, fostering engagement and motivation.
 - **QR Code Scanning:** Physiotherapists can easily connect with clients by scanning their QR codes, streamlining the onboarding process.
 - **Auth0 Integration:** Secure user authentication and authorization using Auth0. Manage user identities, enable single sign-on, and enhance the overall security of the application.
+
+## Screenshots
+
+![Screenshot of client view](/public/taskmaster.png)
+Screenshot of client view
+
+## Tech stack
+- Node.js
+- Vite
+- React
+- ReactQuery
+- TypeScript
+- Tailwind CSS
+- Knex
+- SQLite3
+- Express
+- Superagent
+- Vitest
+- Auth0
+- Chart.js
+
 
 ## Getting Started
 
