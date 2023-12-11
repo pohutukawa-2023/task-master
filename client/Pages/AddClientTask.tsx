@@ -65,66 +65,71 @@ function AddClientTask() {
   const task_options = [
     {
       id: 1,
-      name: 'Breathing',
+      name: 'Power Breathing',
       link: '',
     },
     {
       id: 2,
-      name: 'Something else',
+      name: 'Yoga',
       link: '',
     },
     {
       id: 3,
-      name: 'Another task',
+      name: 'Walking',
       link: '',
     },
     {
       id: 4,
-      name: 'Balance Training',
+      name: 'Box Breathing',
       link: '',
     },
     {
       id: 5,
-      name: 'Posture Correction Exercises',
+      name: 'Balance Training',
       link: '',
     },
     {
       id: 6,
-      name: 'Cardiovascular Activity',
+      name: 'Posture Correction Exercises',
       link: '',
     },
     {
       id: 7,
-      name: 'Strength Training',
+      name: 'Cardiovascular Activity',
       link: '',
     },
     {
       id: 8,
-      name: 'Mindfulness Practice',
+      name: 'Strength Training',
       link: '',
     },
     {
       id: 9,
-      name: 'Relaxation Techniques',
+      name: 'Mindfulness Practice',
       link: '',
     },
     {
       id: 10,
-      name: 'Core Strengthening Exercises',
+      name: 'Relaxation Techniques',
       link: '',
     },
     {
       id: 11,
-      name: 'Joint Mobility Exercises',
+      name: 'Core Strengthening Exercises',
       link: '',
     },
     {
       id: 12,
-      name: 'Walking Routine',
+      name: 'Joint Mobility Exercises',
       link: '',
     },
     {
       id: 13,
+      name: 'Walking Routine',
+      link: '',
+    },
+    {
+      id: 14,
       name: 'Water Therapy',
       link: '',
     },
@@ -164,24 +169,30 @@ function AddClientTask() {
         </div>
 
         <label htmlFor="taskOptionId">Task</label>
-        <Select addclasses="mb-2" name="taskOptionId" required>
+        <select
+          className="bg-lightPurple text-darkNavy h-12 px-4 mb-2 rounded-full focus:shadow-[0px_0px_5px_2px_#C3ACD0]"
+          name="taskOptionId"
+          required
+        >
           {task_options.map((option) => (
-            <option key={option.id} value={option.id}>
+            <option className="py-4" key={option.id} value={option.id}>
               {option.name}
             </option>
           ))}
-        </Select>
+        </select>
 
         <label htmlFor="date">Date</label>
-        <TextBox
-          name="date"
-          type="date"
-          defaultValue={dateParam}
-          required
-          addclasses="mb-2"
-        />
+        <div className="grid">
+          <input
+            className="h-12 px-4 bg-lightPurple text-darkNavy border rounded-full focus:shadow-[0px_0px_5px_2px_#C3ACD0] border-transparent placeholder-[#B07CF2] focus:outline-none w-full sm:text-sm"
+            name="date"
+            type="date"
+            defaultValue={new Date().toISOString().split('T')[0]}
+            required
+          />
+        </div>
 
-        <Button addclasses="mt-4">Add</Button>
+        <Button addclasses="mt-10">Add</Button>
         <Button
           addclasses="mt-4"
           onClick={(e) => {

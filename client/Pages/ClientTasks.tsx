@@ -10,7 +10,7 @@ function TaskItem({ task, handleChangeDone }) {
     <>
       <div
         key={task.id}
-        className="flex items-center p-2 px-4 bg-lightPurple text-white border rounded-full focus:shadow-[0px_0px_5px_2px_#C3ACD0] border-transparent placeholder-[#B07CF2] focus:outline-none block w-full sm:text-sm"
+        className="flex items-center p-2 px-4 bg-lightPurple text-darkNavy border rounded-full focus:shadow-[0px_0px_5px_2px_#C3ACD0] border-transparent placeholder-[#B07CF2] focus:outline-none block w-full sm:text-sm"
       >
         <input
           type="checkbox"
@@ -22,7 +22,6 @@ function TaskItem({ task, handleChangeDone }) {
         />
 
         <label htmlFor={task.id.toString()}>{task.name}</label>
-        <button></button>
       </div>
     </>
   )
@@ -38,12 +37,7 @@ function ClientTasks() {
       const response = await getClientTasks(auth0id)
       return response
     },
-
-    // Not reallu Sure about the two lines below.
-    // refetchOnWindowFocus: false,
-    // retry: 1,
   })
-  // console.log(data)
 
   const queryClient = useQueryClient()
   const mutation = useMutation({
@@ -62,14 +56,6 @@ function ClientTasks() {
     },
   })
 
-  if (!isAuthenticated && !user) {
-    return <div>Not authenticated</div>
-  }
-
-  if (isLoading) {
-    return <p>Loading... please wait</p>
-  }
-
   async function handleChangeDone(
     e: React.ChangeEvent<HTMLInputElement>,
     task_id: number
@@ -84,10 +70,12 @@ function ClientTasks() {
   const rows = []
   let lastDate = null
 
+  // const sortedData = data?.sort((taskA, taskB) => taskA.date < taskB.date)
+
   data?.forEach((task: ClientsTask) => {
     if (task.date !== lastDate) {
       rows.push(
-        <div className="font-semibold text-center text-xl">
+        <div key={task.date} className="font-semibold text-center text-xl">
           {new Date(task.date).toLocaleDateString('en-GB', {
             weekday: 'short',
             day: '2-digit',
@@ -108,7 +96,14 @@ function ClientTasks() {
         <Header title="Tasks" />
       </div>
       <form>
-        <div className="mb-28 flex flex-col gap-4">{rows}</div>
+        {!isAuthenticated && !user && <div>Not authenticated</div>}
+        {isLoading && <p>Loading... please wait</p>}
+        {data && rows && rows.length > 0 && (
+          <div className="mb-28 flex flex-col gap-4">{rows}</div>
+        )}
+        <div className="mb-28 flex flex-col gap-4 text-center text-2xl mt-4">
+          {rows.length === 0 && 'No tasks assigned yet'}
+        </div>
       </form>
     </>
   )

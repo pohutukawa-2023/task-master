@@ -84,33 +84,6 @@ describe('POST /api/v1/admin/:clientId/addTask', () => {
 })
 
 describe('GET /api/v1/admin/:clientId/tasks', () => {
-  it.skip('should return 200 with a clients assigned tasks', async () => {
-    const testTask = [
-      {
-        id: 1,
-        name: 'Breathing',
-        link: '',
-      },
-    ]
-    vi.mocked(getTasksByAdmin).mockResolvedValue(testTask)
-    const client = 'auth0|001'
-    const response = await request(server)
-      .get(`/api/v1/admin/${client}/tasks`)
-      .set('authorization', `Bearer ${getMockToken()}`)
-    expect(response.status).toBe(200)
-    expect(response.body).toEqual(testTask)
-  })
-
-  it.skip('should return 404 if the tasks not found', async () => {
-    vi.mocked(getTasksByAdmin).mockResolvedValue([])
-    const client = 'auth0|001'
-    const response = await request(server)
-      .get(`/api/v1/admin/${client}/tasks`)
-      .set('authorization', `Bearer ${getMockToken()}`)
-    expect(response.status).toBe(404)
-    expect(response.text).toEqual('Not found')
-  })
-
   it('should return 401 status if the request fails', async () => {
     const client = 'auth0|001'
     const response = await request(server).get(`/api/v1/admin/${client}/tasks`)
