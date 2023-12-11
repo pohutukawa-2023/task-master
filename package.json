@@ -17,6 +17,7 @@
     "db:seed": "npm run knex seed:run",
     "build": "run-s build:client build:server",
     "build:client": "vite build",
+    "serve": "vite preview",
     "build:server": "esbuild --packages=external --platform=node --format=esm --outfile=dist/server.js --bundle server/index.ts",
     "test": "vitest",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",

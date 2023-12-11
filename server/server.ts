@@ -21,7 +21,7 @@ server.use('/api/v1/admin', adminRoutes)
 if (process.env.NODE_ENV === 'production') {
   server.use('/assets', express.static('../assets'))
   server.get('*', (req, res) => {
-    res.sendFile('../index.html')
+    res.sendFile('index.html', { root: __dirname })
   })
 }
 
