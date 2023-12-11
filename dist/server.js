@@ -449,14 +449,12 @@ server.use("/api/v1/tasks", tasks_default);
 server.use("/api/v1/client", clients_default);
 server.use("/api/v1/admin", admins_default);
 if (process.env.NODE_ENV === "production") {
-  server.use("/assets", express4.static(Path2.join(__dirname2, "assets")));
+  server.use(express4.static(Path2.resolve("public")));
+  server.use("/assets", express4.static(Path2.resolve("./dist/assets")));
   server.get("*", (req, res) => {
-    res.sendFile("index.html", { root: __dirname2 });
+    res.sendFile(Path2.resolve("./dist/index.html"));
   });
 }
-server.get("*", (req, res) => {
-  res.sendFile(Path2.join(__dirname2, "public/index.html"));
-});
 var server_default = server;
 
 // server/index.ts
