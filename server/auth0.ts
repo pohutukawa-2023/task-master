@@ -4,10 +4,10 @@ import express from 'express'
 import * as oidc from 'express-openid-connect'
 import dotenv from 'dotenv'
 
-// if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-const envConfig = dotenv.config()
-if (envConfig.error) throw envConfig.error
-// }
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+  const envConfig = dotenv.config()
+  if (envConfig.error) throw envConfig.error
+}
 
 export const oidcConfig: oidc.ConfigParams = {
   authorizationParams: {
