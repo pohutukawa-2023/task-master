@@ -1,8 +1,8 @@
 {
-  "name": "jwt-auth-query",
+  "name": "taskmaster",
   "type": "module",
-  "description": "An exercise to practice how to apply authentication",
-  "version": "0.1.0",
+  "description": "Get assigned important tasks. Complete, track, see results.",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "start": "node dist/server.js",
@@ -74,6 +74,7 @@
     "@types/react-dom": "^18.0.11",
     "@types/styled-components": "^5.1.26",
     "@types/supertest": "^2.0.12",
+    "@vite-pwa/assets-generator": "^0.2.1",
     "@vitejs/plugin-react": "^4.0.4",
     "@vitest/coverage-c8": "^0.31.0",
     "babel-plugin-styled-components": "^1.12.0",
