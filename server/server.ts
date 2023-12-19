@@ -18,8 +18,12 @@ server.use('/api/v1/tasks', taskRoutes)
 server.use('/api/v1/client', clientRoutes)
 server.use('/api/v1/admin', adminRoutes)
 
-server.get('*', (req, res) => {
-  res.sendFile(Path.join(__dirname, 'public/index.html'))
-})
+if (process.env.NODE_ENV === 'production') {
+  server.use(express.static(Path.resolve('public')))
+  server.use('/assets', express.static(Path.resolve('./dist/assets')))
+  server.get('*', (req, res) => {
+    res.sendFile(Path.resolve('./dist/index.html'))
+  })
+}
 
 export default server

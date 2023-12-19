@@ -1,0 +1,24 @@
+FROM node:20-alpine
+WORKDIR /app
+
+COPY ["package.json", "package-lock.json*", "./"]
+RUN npm ci
+
+COPY . .
+
+ENV NODE_ENV=production
+
+ARG __AUTH0_AUDIENCE
+ARG __AUTH0_DOMAIN
+ARG __AUTH0_CLIENT_ID
+
+ENV VITE_AUTH0_AUDIENCE=${__AUTH0_AUDIENCE}
+ENV VITE_AUTH0_DOMAIN=${__AUTH0_DOMAIN}
+ENV VITE_AUTH0_CLIENT_ID=${__AUTH0_CLIENT_ID}
+
+RUN echo "${VITE_AUTH0_AUDIENCE}"
+RUN echo "${VITE_AUTH0_DOMAIN}"
+RUN echo "${VITE_AUTH0_CLIENT_ID}"
+
+RUN npm run build
+RUN npm prune --omit=dev
