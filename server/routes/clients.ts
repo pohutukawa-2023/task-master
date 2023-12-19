@@ -96,7 +96,7 @@ router.post('/edit', validateAccessToken, async (req, res) => {
     const userResult = userDraftSchema.safeParse(form)
 
     if (userResult.success) {
-      const user = { ...userResult.data, id: auth0Id, isAdmin: false }
+      const user = { ...userResult.data, id: auth0Id }
       const result = await upsertUser(user)
       return res.status(201).send(result)
     } else {

@@ -27,7 +27,6 @@ export async function upsertUser(newUser: User) {
         username: newUser.username,
         name: newUser.name,
         email: newUser.email,
-        is_admin: newUser.isAdmin,
       })
       .returning('*')
       .onConflict('id')

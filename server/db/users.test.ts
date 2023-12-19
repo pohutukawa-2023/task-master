@@ -62,6 +62,48 @@ describe('upsertUser', () => {
     const after = await db('users').select()
     expect(after).toHaveLength(8)
   })
+
+  it('should not change an admin to a non-admin', async () => {
+    const newUser: User = {
+      id: 'auth0|999',
+      username: 'already',
+      name: 'exists',
+      email: 'innit@example.org',
+      isAdmin: false,
+    }
+    await upsertUser(newUser)
+    const after = await db('users').select().where('id', newUser.id)
+    expect(after[0]).toHaveProperty('is_admin', 1)
+    expect(after[0]).toHaveProperty('username', newUser.username)
+  })
+
+  it('should not change a non-admin to an admin', async () => {
+    const newUser: User = {
+      id: 'auth0|001',
+      username: 'already',
+      name: 'exists',
+      email: 'innit@example.org',
+      isAdmin: true,
+    }
+    await upsertUser(newUser)
+    const after = await db('users').select().where('id', newUser.id)
+    expect(after[0]).toHaveProperty('is_admin', 0)
+    expect(after[0]).toHaveProperty('username', newUser.username)
+  })
+
+  it('should not create an admin user', async () => {
+    const newUser: User = {
+      id: 'auth0|876',
+      username: 'hacker',
+      name: 'not real',
+      email: 'hacker@example.org',
+      isAdmin: true,
+    }
+    await upsertUser(newUser)
+    const after = await db('users').select().where('id', newUser.id)
+    expect(after[0]).toHaveProperty('is_admin', 0)
+    expect(after[0]).toHaveProperty('username', newUser.username)
+  })
 })
 
 // get clients by admin_id

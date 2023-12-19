@@ -1,7 +1,6 @@
 import { vi, describe, it, expect } from 'vitest'
 import request from 'supertest'
 import server from '../server'
-import { getTasksByAdmin } from '../db/getTasks'
 
 import { getMockToken } from './mockToken'
 import { TaskDraft } from '../../types/Task'
@@ -48,6 +47,10 @@ describe('POST /api/v1/admin/:clientId/addTask', () => {
   })
 
   it('returns 400 if invalid user data sent', async () => {
+    const console_error = vi
+      .spyOn(console, 'error')
+      .mockImplementation(() => {})
+
     const newTask = {
       userId: 'auth0|001',
     }
@@ -60,9 +63,14 @@ describe('POST /api/v1/admin/:clientId/addTask', () => {
     expect(response.error).toEqual(
       Error('cannot POST /api/v1/admin/auth0%7C001/addTask (400)')
     )
+    expect(console_error).toBeCalled()
+    console_error.mockReset()
   })
 
-  it('returns 500 if addUser fails', async () => {
+  it('returns 500 if addTask fails', async () => {
+    const console_error = vi
+      .spyOn(console, 'error')
+      .mockImplementation(() => {})
     const newTask: TaskDraft = {
       userId: 'auth0|001',
       adminId: 'auth0|999',
@@ -80,6 +88,8 @@ describe('POST /api/v1/admin/:clientId/addTask', () => {
     expect(response.error).toEqual(
       Error('cannot POST /api/v1/admin/auth0%7C001/addTask (500)')
     )
+    expect(console_error).toBeCalled()
+    console_error.mockReset()
   })
 })
 
