@@ -39,9 +39,9 @@ export default function AdminLayout() {
 
   return (
     <>
-      <div className="p-6">
+      <main className="h-[844px] w-[390px] bg-primaryBeige p-6">
         <Outlet />
-      </div>
+      </main>
       <AdminNav />
     </>
   )
