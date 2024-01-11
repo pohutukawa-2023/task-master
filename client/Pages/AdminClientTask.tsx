@@ -110,7 +110,7 @@ function AdminClientTasks() {
         </Button>
       </div>
 
-      <div className="h-[50vh] overflow-y-auto no-scrollbar">
+      <div className="h-[55vh] overflow-y-auto no-scrollbar">
         <div className="flex flex-col gap-4 mb-28">{rows}</div>
       </div>
     </>

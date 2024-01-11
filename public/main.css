@@ -669,6 +669,14 @@ video {
   height: 75vh;
 }
 
+.h-\[60vh\] {
+  height: 60vh;
+}
+
+.h-\[55vh\] {
+  height: 55vh;
+}
+
 .min-h-\[150px\] {
   min-height: 150px;
 }
