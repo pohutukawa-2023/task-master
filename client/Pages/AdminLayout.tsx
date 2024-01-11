@@ -41,8 +41,8 @@ export default function AdminLayout() {
     <>
       <main className="h-[844px] w-[390px] bg-primaryBeige p-6">
         <Outlet />
+        <AdminNav />
       </main>
-      <AdminNav />
     </>
   )
 }
