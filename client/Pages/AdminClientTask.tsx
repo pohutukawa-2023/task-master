@@ -53,7 +53,7 @@ function AdminClientTasks() {
   data?.forEach((task) => {
     if (task.date != lastDate) {
       rows.push(
-        <div className="font-semibold text-center text-xl" key={task.date}>
+        <div className="text-xl font-semibold text-center" key={task.date}>
           {new Date(task.date).toLocaleDateString('en-GB', {
             weekday: 'short',
             day: '2-digit',
@@ -85,7 +85,7 @@ function AdminClientTasks() {
         </div>
         <div>
           <button onClick={() => handleDeleteTask(task.id)}>
-            <div className="rounded-full w-8 h-8 ml-6 mr-2 mt-2">
+            <div className="w-8 h-8 mt-2 ml-6 mr-2 rounded-full">
               <img src="/images/png/020-trash.png" alt="trash-icon" />
             </div>
           </button>
@@ -104,14 +104,14 @@ function AdminClientTasks() {
             : `Tasks: ${clientUsername}`
         }
       />
-      <div className="grid text-center my-6">
+      <div className="grid my-6 text-center">
         <Button onClick={() => navigate(`/admin/addTask/${data[0]?.clientId}`)}>
           Add Task
         </Button>
       </div>
 
-      <div>
-        <div className="mb-28 flex flex-col gap-4">{rows}</div>
+      <div className="h-[50vh] overflow-y-auto no-scrollbar">
+        <div className="flex flex-col gap-4 mb-28">{rows}</div>
       </div>
     </>
   )
