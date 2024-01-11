@@ -13,7 +13,7 @@ export default function ClientLayout() {
 
   return (
     <>
-      <main className="h-[844px] w-[390px] bg-primaryBeige p-6">
+      <main className="sm:h-[844px] sm:w-[390px] bg-primaryBeige p-6">
         <Outlet />
       </main>
       <BottomNav />
