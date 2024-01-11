@@ -1002,6 +1002,30 @@ video {
     bottom: 50%;
   }
 
+  .sm\:top-1\/2 {
+    top: 50%;
+  }
+
+  .sm\:-ml-\[390px\] {
+    margin-left: -390px;
+  }
+
+  .sm\:-ml-\[195px\] {
+    margin-left: -195px;
+  }
+
+  .sm\:-mt-\[422px\] {
+    margin-top: -422px;
+  }
+
+  .sm\:-mb-\[422px\] {
+    margin-bottom: -422px;
+  }
+
+  .sm\:h-fit {
+    height: fit-content;
+  }
+
   .sm\:w-\[390px\] {
     width: 390px;
   }
