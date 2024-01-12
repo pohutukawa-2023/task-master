@@ -62,14 +62,6 @@ function Profile() {
     <div className="p-6 mb-28">
       <Header title="Profile" />
       <form onSubmit={handleSubmit} className="grid">
-        {/* <label htmlFor="auth0Id" className="font-semibold flex justify-center">
-          User ID
-        </label> */}
-
-        {/* <div id="auth0Id" className=" flex justify-center">
-          {user?.sub}
-        </div> */}
-
         {data && (
           <div className="flex justify-center mt-2 min-h-[150px]">
             <img
