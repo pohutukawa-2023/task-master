@@ -9,7 +9,7 @@ function BottomNav() {
   return (
     <>
       <IfAuthenticated>
-        <div className="bg-primaryBeige py-4 w-full md:w-fit flex justify-around fixed inset-x-0 bottom-0">
+        <div className="fixed inset-x-0 bottom-0 flex justify-around w-full py-4 bg-primaryBeige sm:w-[390px] sm:h-fit sm:left-1/2 sm:bottom-1/2 sm:-ml-[195px] sm:-mb-[422px]">
           <NavButton link={'/profile'}>
             <img src={`/images/png/007-user-1.png`} alt="profile user icon" />
           </NavButton>
