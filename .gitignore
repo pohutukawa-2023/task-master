@@ -4,3 +4,6 @@ bundle.*
 *.sqlite3
 .env
 public/main.css
+dev-dist/registerSW.js
+dev-dist/sw.js
+dev-dist/workbox-b5f7729d.js
